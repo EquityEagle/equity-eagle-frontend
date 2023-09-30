@@ -7,13 +7,13 @@ const ClickOpacity = ({ child, className }) => {
     if (clicked) {
       setTimeout(() => {
         setClicked(false);
-      }, 900);
+      }, 400);
     }
   }, [clicked]);
   return (
     <div
-      className={`${className}${
-        clicked ? "bg-slate-800 transition-all duration-100" : "  "
+      className={`${className} ${
+        clicked ? "bg-slate-800 duration-100 transition-all" : ""
       } p-[6px] relative rounded-full transition-all duration-100`}
       onClick={() => setClicked(true)}
     >

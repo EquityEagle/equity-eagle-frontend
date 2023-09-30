@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle`
 padding: 0;
 margin: 0;
 box-sizing: border-box;
+/* overflow-x: hidden; */
 }
 
 
@@ -21,17 +22,27 @@ body{
 `;
 
 export const LeftBlur = styled.div`
-  position: fixed;
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 255, 0.9),
-    rgba(255, 0, 0, 0.8)
-  );
-  width: 500px;
-  height: 500px;
+  position: absolute;
+  background: linear-gradient(rgb(35 64 175), rgb(30 58 138));
+  /* border-radius: 20px; Adjust the value to control the roundnesss */
+  padding: 20px;
+  width: 300px;
+  height: 300px;
   border-radius: 9999px;
   filter: blur(55px);
-  z-index: 0;
+  z-index: -10;
+`;
+
+export const RightBlur = styled.div`
+  position: absolute;
+  background: linear-gradient(rgb(220 38 38), rgb(127 29 29));
+  /* border-radius: 20px; Adjust the value to control the roundnesss */
+  padding: 20px;
+  width: 300px;
+  height: 300px;
+  border-radius: 9999px;
+  filter: blur(55px);
+  z-index: -10;
 `;
 
 export const Stars = styled.div`

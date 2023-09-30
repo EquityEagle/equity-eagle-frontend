@@ -9,4 +9,10 @@ export const StyledHero = styled.section`
   align-items: center;
   justify-content: center;
   position: relative;
+  gap: 2rem;
+
+  @media (max-width: 800px) {
+    padding: 1rem;
+    overflow-x: hidden;
+  }
 `;

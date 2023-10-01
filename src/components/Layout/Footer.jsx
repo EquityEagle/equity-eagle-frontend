@@ -86,17 +86,13 @@ const Footer = () => {
           Get in touch
         </a>
         <a
-          href="#about"
-          //   target="_blank"
-          //   rel="noreferrer"
+          href="#journaling"
           className="text-white text-[16px] hover:opacity-75 font-kanit"
         >
-          About
+          Journaling
         </a>
         <a
           href="#why"
-          //   target="_blank"
-          //   rel="noreferrer"
           className="text-white text-[16px] hover:opacity-75 font-kanit"
         >
           Why Us?

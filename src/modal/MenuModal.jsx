@@ -12,7 +12,12 @@ const MenuModal = () => {
   const content = (
     <StyledMenu>
       {navlinksdata.map((item, index) => (
-        <Link key={index} className="mt-[1rem]">
+        <Link
+          key={index}
+          to={item.link}
+          className="mt-[1rem]"
+          onClick={menumodal.onClose}
+        >
           <p className="text-white font-kanit">{item.text}</p>
         </Link>
       ))}

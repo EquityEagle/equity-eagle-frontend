@@ -3,6 +3,7 @@ import { StyledHero } from "../styles/section/styled";
 import { LeftBlur, RightBlur } from "../styles/Global";
 import { Button } from "../lib";
 import { BsArrowRightShort } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   const bt = (
@@ -23,7 +24,9 @@ const HeroSection = () => {
         Unlock Your Potential: Empower Your Journey with Documentation and
         Journaling to Soar Toward Your Goals with Equity Eagle
       </p>
-      <Button text={bt} secondary padding="10px" />
+      <Link to="/get-started">
+        <Button text={bt} secondary padding="10px" />
+      </Link>
     </StyledHero>
   );
 };

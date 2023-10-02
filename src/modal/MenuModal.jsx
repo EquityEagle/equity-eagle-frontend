@@ -21,8 +21,12 @@ const MenuModal = () => {
           <p className="text-white font-kanit">{item.text}</p>
         </Link>
       ))}
-      <Button secondary text="Sign Up" width="100px" />
-      <Button primary text="Sign In" width="100px" />
+      <Link to="/auth/sign-up" onClick={menumodal.onClose}>
+        <Button secondary text="Sign Up" width="100px" />
+      </Link>
+      <Link to="/auth/login" onClick={menumodal.onClose}>
+        <Button primary text="Sign In" width="100px" />
+      </Link>
     </StyledMenu>
   );
   return <>{open && content}</>;

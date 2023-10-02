@@ -40,8 +40,10 @@ const Navbar = () => {
           </Link>
         ))}
         <div className="flex gap-[1rem] ml-[3rem]">
-          <Button text="Sign In" primary />
-          <Link to="/get-started">
+          <Link to="/auth/login">
+            <Button text="Sign In" primary />
+          </Link>
+          <Link to="/auth/sign-up">
             <Button text="Sign Up" secondary />
           </Link>
         </div>

@@ -4,9 +4,8 @@ import { AuthDivider, Button, Input, PasswordInput } from "../../lib";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { BackArrow } from "../../components";
 
-const Login = () => {
+const SignUp = () => {
   const g = (
     <div className="flex gap-[2rem] cursor-pointer border border-white p-[12px] rounded-[4px] hover:bg-slate-700">
       <FcGoogle size={25} />
@@ -21,21 +20,21 @@ const Login = () => {
   );
   return (
     <StyledStart>
-      {/* <BackArrow className="-translate-x-[10rem]" /> */}
-      <h1 className="text-white font-kanit text-[40px] max-[700px]:text-[30px]">
-        Welcome back
+      <h1 className="text-white font-kanit text-[40px] mt-[2rem] max-[700px]:text-[30px]">
+        Create your account
       </h1>
       <div className="flex flex-col gap-[1rem] w-[300px]">
         <Input placeholder="Email address" type="email" />
+        <Input placeholder="Username" type="text" />
         <PasswordInput />
-        <Button secondary text="Sign In" fullWidth padding="10px" />
+        <Button secondary text="Sign Up" fullWidth padding="10px" />
         <div className="flex gap-2 justify-center">
-          <p className="text-white font-roboto">Don't have an account?</p>
+          <p className="text-white font-roboto">Already have an account? </p>
           <Link
-            to="/auth/sign-up"
+            to="/auth/login"
             className="text-blue-600 hover:underline font-poppins"
           >
-            Sign Up
+            Login
           </Link>
         </div>
         <AuthDivider />
@@ -46,4 +45,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

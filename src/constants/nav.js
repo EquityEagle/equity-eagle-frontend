@@ -1,7 +1,74 @@
+import { BsFillPeopleFill, BsHeadsetVr } from "react-icons/bs";
+import {
+  MdDashboard,
+  MdOutlineLightMode,
+  MdTravelExplore,
+} from "react-icons/md";
+import { FaBell } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
+import { FiBookmark } from "react-icons/fi";
+import { BiMessageAltError } from "react-icons/bi";
+
 export const navlinksdata = [
   { text: "Home", link: "/" },
   { text: "Why Us?", link: "/" },
   { text: "Setups", link: "/" },
   { text: "Channels", link: "/" },
   { text: "Signals", link: "/" },
+];
+
+export const sidenavdata = [
+  {
+    text: "Setups",
+    link: "/setups",
+    label: "Setups",
+    icon: <BsHeadsetVr size={25} color="#fff" />,
+  },
+  {
+    text: "Explore",
+    link: "/explore",
+    label: "Explore",
+    icon: <MdTravelExplore size={25} color="#fff" />,
+  },
+  {
+    text: "Notification",
+    link: "/notification",
+    label: "Notification",
+    icon: <FaBell size={25} color="#fff" />,
+  },
+  {
+    text: "Communities",
+    link: "/communities",
+    label: "Communities",
+    icon: <BsFillPeopleFill size={25} color="#fff" className="text-white" />,
+  },
+  {
+    text: "Dashboard",
+    link: "/dashboard",
+    label: "Dashboard",
+    icon: <MdDashboard size={25} color="#fff" className="text-white" />,
+  },
+];
+
+export const moremodaldata = [
+  {
+    text: "Settings",
+    icon: <IoMdSettings size={25} color="#fff" />,
+    link: "/account/settings",
+  },
+  {
+    text: "Saved",
+    icon: <FiBookmark size={25} color="#fff" />,
+    link: "/dashboard/saved",
+  },
+  {
+    text: "Switch Appearance",
+    icon: <MdOutlineLightMode size={25} color="#fff" />,
+    link: "/account/settings/?mode",
+  },
+  {
+    text: "Report a problem",
+    icon: <BiMessageAltError size={25} color="#fff" />,
+    link: "/account/settings/?report",
+  },
 ];

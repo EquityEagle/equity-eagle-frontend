@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { StyledNav } from "../../styles/components/styled";
 import Logo from "./Logo";
 import { navlinksdata } from "../../constants/nav";
-import { Link } from "react-router-dom";
+import { Link, Router, useLocation } from "react-router-dom";
 import { Button, ClickOpacity } from "../../lib";
 import { IoClose, IoMenuSharp } from "react-icons/io5";
 import useMenuModel from "../../hooks/useMenuModel";
@@ -11,6 +11,10 @@ const Navbar = () => {
   const menumodal = useMenuModel();
   const open = menumodal.isOpen;
   const [icon, setIcon] = useState(IoMenuSharp);
+  const path = useLocation();
+  const hide = path.pathname !== "/";
+  const hide2 = path.pathname !== "/auth/login";
+  const hide3 = path.pathname !== "/auth/sign-up";
 
   useEffect(() => {
     if (open) {
@@ -29,7 +33,7 @@ const Navbar = () => {
   }
 
   return (
-    <StyledNav>
+    <StyledNav className={`${path.pathname !== "/" ? "hidden" : "flex"}`}>
       <Logo />
       <div className="flex gap-[1rem] items-center max-[800px]:hidden">
         {navlinksdata.map((item, index) => (

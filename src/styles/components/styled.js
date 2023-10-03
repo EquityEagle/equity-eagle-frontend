@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const StyledNav = styled.nav`
-  display: flex;
+  /* display: ${({ hide, hide2, hide3 }) =>
+    hide || hide2 || hide3 ? "none" : "flex"} */
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -56,4 +57,36 @@ export const StyledMenu = styled.div`
   @media (max-width: 800px) {
     display: flex;
   }
+`;
+
+export const StyledSideNav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: fixed;
+  background: #000;
+  width: 250px;
+  padding: 1rem;
+
+  @media (max-width: 1024px) {
+    width: 100px;
+  }
+  @media (max-width: 700px) {
+    display: none;
+  }
+`;
+
+export const StyledSideNavContainer = styled.div`
+  position: fixed;
+  background-color: #000;
+  width: 250px;
+  margin-top: 2rem;
+`;
+
+export const StyledNavLinksContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  margin-top: 3rem;
 `;

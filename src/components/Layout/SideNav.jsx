@@ -5,7 +5,7 @@ import {
   StyledSideNavContainer,
 } from "../../styles/components/styled";
 import { EagleLogo, EquityEagleLogo } from "../../assets";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { sidenavdata } from "../../constants/nav";
 import { HiMenu } from "react-icons/hi";
 import { IoCreate } from "react-icons/io5";
@@ -14,6 +14,7 @@ import { useMoreMenuModel } from "../../hooks";
 const SideNav = () => {
   const moremodal = useMoreMenuModel();
   const open = moremodal.isOpen;
+  const path = useLocation();
 
   function openMore() {
     if (!open) {
@@ -22,9 +23,6 @@ const SideNav = () => {
       moremodal.onClose();
     }
   }
-  // function closeMore() {
-  //   moremodal.onClose();
-  // }
 
   return (
     <StyledSideNav>
@@ -47,11 +45,15 @@ const SideNav = () => {
           <Link
             title={item.label}
             to={item.link}
-            className="flex gap-2 items-center hover:bg-neutral-800 p-[11px] rounded-[6px]"
+            className={`${
+              path.pathname === item.link
+                ? "bg-neutral-800 text-blue-600"
+                : "text-white"
+            } flex gap-2 items-center hover:bg-neutral-800 p-[11px] rounded-[6px]`}
             key={index}
           >
             {item.icon}
-            <p className="text-white text-[17px] font-poppins max-[1024px]:hidden">
+            <p className="text-whit text-[17px] font-poppins max-[1024px]:hidden">
               {item.text}
             </p>
           </Link>
@@ -65,13 +67,13 @@ const SideNav = () => {
           </p>
         </div>
         <div
-          className="flex gap-2 items-center relative hover:bg-neutral-800 p-[12px] max-[1024px]:w-[55px] rounded-[6px] cursor-pointer"
+          className={`flex ${
+            open ? "text-blue-600" : "text-white"
+          } gap-2 items-center relative hover:bg-neutral-800 p-[12px] max-[1024px]:w-[55px] rounded-[6px] cursor-pointer`}
           onClick={openMore}
         >
-          <HiMenu color="#fff" size={30} />
-          <p className="text-white text-[17px] font-poppins max-[1024px]:hidden">
-            More
-          </p>
+          <HiMenu size={30} />
+          <p className="text-[17px] font-poppins max-[1024px]:hidden">More</p>
         </div>
       </div>
     </StyledSideNav>

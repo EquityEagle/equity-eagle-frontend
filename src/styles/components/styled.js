@@ -90,3 +90,20 @@ export const StyledNavLinksContainer = styled.div`
   position: relative;
   margin-top: 3rem;
 `;
+
+export const StyledMobileNav = styled.nav`
+  display: none;
+  background: #000;
+  padding: 10px;
+  position: fixed;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  bottom: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media (max-width: 800px) {
+    display: ${({ notHome }) => (notHome ? "flex" : "none")};
+  }
+`;

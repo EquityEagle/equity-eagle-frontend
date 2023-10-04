@@ -12,9 +12,7 @@ const Navbar = () => {
   const open = menumodal.isOpen;
   const [icon, setIcon] = useState(IoMenuSharp);
   const path = useLocation();
-  const hide = path.pathname !== "/";
-  const hide2 = path.pathname !== "/auth/login";
-  const hide3 = path.pathname !== "/auth/sign-up";
+  const notHome = path.pathname !== "/" && !path.pathname.includes("auth");
 
   useEffect(() => {
     if (open) {
@@ -33,7 +31,7 @@ const Navbar = () => {
   }
 
   return (
-    <StyledNav className={`${path.pathname !== "/" ? "hidden" : "flex"}`}>
+    <StyledNav className={`${notHome ? "hidden" : "flex"}`}>
       <Logo />
       <div className="flex gap-[1rem] items-center max-[800px]:hidden">
         {navlinksdata.map((item, index) => (

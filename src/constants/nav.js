@@ -22,31 +22,31 @@ export const sidenavdata = [
     text: "Setups",
     link: "/setups",
     label: "Setups",
-    icon: <BsHeadsetVr size={25} color="#fff" />,
+    icon: <BsHeadsetVr size={25} />,
   },
   {
     text: "Explore",
     link: "/explore",
     label: "Explore",
-    icon: <MdTravelExplore size={25} color="#fff" />,
+    icon: <MdTravelExplore size={25} />,
   },
   {
     text: "Notification",
     link: "/notification",
     label: "Notification",
-    icon: <FaBell size={25} color="#fff" />,
+    icon: <FaBell size={25} />,
   },
   {
     text: "Communities",
     link: "/communities",
     label: "Communities",
-    icon: <BsFillPeopleFill size={25} color="#fff" className="text-white" />,
+    icon: <BsFillPeopleFill size={25} />,
   },
   {
     text: "Dashboard",
     link: "/dashboard",
     label: "Dashboard",
-    icon: <MdDashboard size={25} color="#fff" className="text-white" />,
+    icon: <MdDashboard size={25} />,
   },
 ];
 

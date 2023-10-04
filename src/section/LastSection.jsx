@@ -3,6 +3,7 @@ import { StyledLast } from "../styles/section/styled";
 import { MarkPNG } from "../assets";
 import { Button } from "../lib";
 import { BsArrowRightShort } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const LastSection = () => {
   const bt = (
@@ -29,7 +30,9 @@ const LastSection = () => {
           alt=""
         />
       </div>
-      <Button secondary text={bt} padding="10px" />
+      <Link to="/auth/sign-up">
+        <Button secondary text={bt} padding="10px" />
+      </Link>
     </StyledLast>
   );
 };

@@ -24,7 +24,7 @@ const HeroSection = () => {
         Unlock Your Potential: Empower Your Journey with Documentation and
         Journaling to Soar Toward Your Goals with Equity Eagle
       </p>
-      <Link to="/get-started">
+      <Link to="/auth/sign-up">
         <Button text={bt} secondary padding="10px" />
       </Link>
     </StyledHero>

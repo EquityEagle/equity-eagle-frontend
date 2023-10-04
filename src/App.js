@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Footer, Navbar } from "./components";
+import { Footer, MobileNav, Navbar } from "./components";
 import { GlobalStyles, LeftBlur, Stars } from "./styles/Global";
 import { DashBoard, LandingPage, Login, SignUp } from "./pages";
 import { MenuModal, MoreMenuModal } from "./modal";
@@ -19,6 +19,7 @@ function App() {
         <Route path="/dashboard" element={<DashBoard />} />
       </Routes>
       {/* <Footer /> */}
+      <MobileNav />
     </div>
   );
 }

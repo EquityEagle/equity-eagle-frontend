@@ -23,7 +23,7 @@ export const StyledNav = styled.nav`
 export const StyledFooter = styled.footer`
   background: #000;
   position: relative;
-  display: flex;
+  display: ${({ notHome }) => (notHome ? "none" : "flex")};
   justify-content: space-evenly;
   padding: 5rem;
   width: 100%;
@@ -63,6 +63,23 @@ export const StyledSideNav = styled.nav`
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
+  /* background: #000; */
+  width: 250px;
+  /* padding: 1rem; */
+
+  @media (max-width: 1024px) {
+    width: 100px;
+  }
+  @media (max-width: 700px) {
+    display: none;
+  }
+`;
+
+export const StyledSideNavContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   position: fixed;
   background: #000;
   width: 250px;
@@ -74,13 +91,6 @@ export const StyledSideNav = styled.nav`
   @media (max-width: 700px) {
     display: none;
   }
-`;
-
-export const StyledSideNavContainer = styled.div`
-  position: fixed;
-  background-color: #000;
-  width: 250px;
-  margin-top: 2rem;
 `;
 
 export const StyledNavLinksContainer = styled.div`
@@ -103,7 +113,31 @@ export const StyledMobileNav = styled.nav`
   padding-left: 16px;
   padding-right: 16px;
 
-  @media (max-width: 800px) {
+  @media (max-width: 700px) {
     display: ${({ notHome }) => (notHome ? "flex" : "none")};
   }
+`;
+
+export const StyledHeroDash = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
+
+  @media (max-width: 700px) {
+    padding: 14px;
+  }
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 `;

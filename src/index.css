@@ -26,3 +26,25 @@ code {
   border-radius: 8px;
   background-color: #fff;
 }
+
+.line-chart-container {
+  width: 100%;
+  max-width: 100%;
+  height: 300px;
+  margin: 0 auto;
+  position: relative;
+}
+.line-chart-container text {
+  color: white;
+}
+
+.Toastify__toast {
+  border-radius: 60px;
+}
+.toast__alert {
+  border-radius: 60px;
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}

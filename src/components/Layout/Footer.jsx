@@ -2,10 +2,13 @@ import React from "react";
 import { StyledFooter } from "../../styles/components/styled";
 import { EquityEagleLogo } from "../../assets";
 import { links } from "../../constants/link";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const path = useLocation();
+  const notHome = path.pathname !== "/" && !path.pathname.includes("auth");
   return (
-    <StyledFooter className="border-t border-t-neutral-500">
+    <StyledFooter notHome={notHome} className="border-t border-t-neutral-500">
       <div className="flex flex-col w-[380px] max-[700px]:w-[300px] gap-5">
         <img
           src={EquityEagleLogo}

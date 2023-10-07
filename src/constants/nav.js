@@ -1,6 +1,7 @@
 import { BsFillPeopleFill, BsHeadsetVr } from "react-icons/bs";
 import {
   MdDashboard,
+  MdOutlineExplore,
   MdOutlineLightMode,
   MdTravelExplore,
 } from "react-icons/md";

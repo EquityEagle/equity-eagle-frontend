@@ -5,13 +5,19 @@ import { BsHeadsetVr } from "react-icons/bs";
 import { MdDashboard, MdTravelExplore } from "react-icons/md";
 import { IoCreate } from "react-icons/io5";
 import { FaBell } from "react-icons/fa";
+import { useCreateModal } from "../../hooks";
 
 const MobileNav = () => {
   const path = useLocation();
   const notHome = path.pathname !== "/" && !path.pathname.includes("auth");
+  const createmodal = useCreateModal();
+
+  function createModal() {
+    createmodal.onOpen();
+  }
   return (
     <StyledMobileNav className={`shadow shadow-slate-400`} notHome={notHome}>
-      <Link to="/">
+      <Link to="/setups">
         <BsHeadsetVr
           size={25}
           className={
@@ -28,9 +34,9 @@ const MobileNav = () => {
         />
       </Link>
 
-      <IoCreate size={35} className={`text-white`} />
+      <IoCreate onClick={createModal} size={35} className={`text-white`} />
 
-      <Link>
+      <Link to="/notification">
         <FaBell
           size={25}
           className={
@@ -39,7 +45,7 @@ const MobileNav = () => {
         />
       </Link>
 
-      <Link to="">
+      <Link to="/dashboard">
         <MdDashboard
           size={25}
           className={

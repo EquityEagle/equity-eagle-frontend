@@ -23,3 +23,16 @@ export const journaldata =
     secondText:
       "Equity Eagle's journaling feature simplifies the process of recording and analyzing your trading experiences. With automatic data capture, you gain valuable insights into key metrics like profit factor, average trade outcomes, and our unique 'EdgeScore' that rates the quality of your journal entries. The higher your EdgeScore, the more effective your journaling. Plus, our platform offers real-time comments, providing you with actionable guidance to enhance your trading journal and improve your future trading decisions.",
   };
+
+export const pricedata = {
+  labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+  datasets: [
+    {
+      label: "Sales",
+      data: [30, 40, 25, 50, 45], // Sample data points
+      borderColor: "rgba(75, 192, 192, 1)", // Line color
+      borderWidth: 2, // Line width
+      fill: false, // Do not fill area under the line
+    },
+  ],
+};

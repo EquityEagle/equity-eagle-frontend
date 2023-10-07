@@ -21,7 +21,10 @@ export const StyledStart = styled.section`
 
 export const StyledDash = styled.div`
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   width: 100%;
   height: 100%;
+  position: relative;
+  /* justify-content: center; */
+  flex: 1;
 `;

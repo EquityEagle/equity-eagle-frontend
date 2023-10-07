@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
+import { SetupFeed, SideNav } from "../../components";
 import { StyledDash } from "../../styles/pages/styled";
-import { DashHero, SideNav } from "../../components";
 
-const Dashboard = () => {
+const Setups = () => {
   useEffect(() => {
-    document.title = "Dashboard - EquityEagle";
+    document.title = "Setups - EquityEagle";
   });
+
   return (
     <StyledDash>
       <SideNav />
-      <DashHero />
+      <SetupFeed />
     </StyledDash>
   );
 };
 
-export default Dashboard;
+export default Setups;

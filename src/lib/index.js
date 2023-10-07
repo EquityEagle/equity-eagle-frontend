@@ -3,3 +3,7 @@ export { default as ClickOpacity } from "./components/ClickOpacity";
 export { default as Input } from "./components/Input";
 export { default as AuthDivider } from "./components/AuthDivider";
 export { default as PasswordInput } from "./components/PasswordInput";
+export { default as DotChart } from "./components/chart/DotChart";
+export { default as PriceDonutChart } from "./components/chart/PriceDonutChart";
+export { default as LineChart } from "./components/chart/LineChart";
+export { default as BackDrop } from "./components/BackDrop";

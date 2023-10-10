@@ -128,9 +128,11 @@ export const StyledHeroDash = styled.div`
   align-items: center;
   padding: 2rem;
   gap: 2rem;
+  margin-left: 2rem;
 
   @media (max-width: 700px) {
     padding: 14px;
+    margin-left: 0;
   }
 `;
 

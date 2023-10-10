@@ -12,7 +12,7 @@ import {
   Setups,
   SignUp,
 } from "./pages";
-import { CreateModal, MenuModal, MoreMenuModal } from "./modal";
+import { CreateModal, MenuModal, MoreMenuModal, SetupModal } from "./modal";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
@@ -37,6 +37,7 @@ function App() {
       <MenuModal />
       <MoreMenuModal />
       <CreateModal />
+      <SetupModal />
       <Routes>
         <Route path="/" index element={<LandingPage />} />
         <Route path="/auth/login" index element={<Login />} />

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useCreateModal } from "../hooks";
+import { useCreateModal, useSetupModal } from "../hooks";
 import { BackDrop } from "../lib";
 import { IoClose } from "react-icons/io5";
 import { SiLivejournal } from "react-icons/si";
@@ -8,10 +8,15 @@ import { FaShareFromSquare } from "react-icons/fa6";
 
 const CreateModal = () => {
   const createmodal = useCreateModal();
+  const setupmodal = useSetupModal();
   const open = createmodal.isOpen;
 
   function closeModel() {
     createmodal.onClose();
+  }
+  function openSet() {
+    createmodal.onClose();
+    setupmodal.onOpen();
   }
 
   const body = (
@@ -31,7 +36,10 @@ const CreateModal = () => {
           <SiLivejournal size={25} color="#fff" />
           <p className="text-white font-kanit">Journal Your trade</p>
         </div>
-        <div className="flex gap-3 hover:bg-slate-800 rounded-[9px] cursor-pointer p-[13px] items-center">
+        <div
+          onClick={openSet}
+          className="flex gap-3 hover:bg-slate-800 rounded-[9px] cursor-pointer p-[13px] items-center"
+        >
           <FaShareFromSquare size={25} color="#fff" />
           <p className="text-white font-kanit">Share trade setup</p>
         </div>

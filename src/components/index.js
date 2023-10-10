@@ -6,3 +6,4 @@ export { default as More } from "./card/More";
 export { default as MobileNav } from "./Layout/MobileNav";
 export { default as DashHero } from "./profile/DashHero";
 export { default as SetupFeed } from "./setup/SetupFeed";
+export { default as NextSideNav } from "./Layout/NextSideNav";

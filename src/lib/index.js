@@ -7,3 +7,5 @@ export { default as DotChart } from "./components/chart/DotChart";
 export { default as PriceDonutChart } from "./components/chart/PriceDonutChart";
 export { default as LineChart } from "./components/chart/LineChart";
 export { default as BackDrop } from "./components/BackDrop";
+export { default as ScaleInLoader } from "./components/ScaleInLoader";
+export { default as SelectOption } from "./components/SelectOption";

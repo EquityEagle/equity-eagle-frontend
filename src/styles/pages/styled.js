@@ -25,6 +25,6 @@ export const StyledDash = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-  /* justify-content: center; */
+  justify-content: space-between;
   flex: 1;
 `;

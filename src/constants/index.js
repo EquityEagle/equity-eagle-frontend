@@ -36,3 +36,5 @@ export const pricedata = {
     },
   ],
 };
+
+export const type = [{ pair: "BUY" }, { pair: "SELL" }];

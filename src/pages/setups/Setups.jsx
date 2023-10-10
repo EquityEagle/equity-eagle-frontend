@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SetupFeed, SideNav } from "../../components";
+import { NextSideNav, SetupFeed, SideNav } from "../../components";
 import { StyledDash } from "../../styles/pages/styled";
 
 const Setups = () => {
@@ -11,6 +11,7 @@ const Setups = () => {
     <StyledDash>
       <SideNav />
       <SetupFeed />
+      <NextSideNav />
     </StyledDash>
   );
 };

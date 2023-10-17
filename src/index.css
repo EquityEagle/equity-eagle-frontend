@@ -39,10 +39,14 @@ code {
 }
 
 .Toastify__toast {
-  border-radius: 60px;
+  border-radius: 10px;
+  background-color: red;
 }
 .toast__alert {
-  border-radius: 60px;
+  border-radius: 10px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
 }
 
 .hide-scroll::-webkit-scrollbar {

@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import SideNav from "./SideNav";
 
 const NextSideNav = () => {
   return (
-    <StyledSideNav>
-      <StyledSideNavContainer>here</StyledSideNavContainer>
-    </StyledSideNav>
+    <StyledSideNav className="border border-l-neutral-900"></StyledSideNav>
   );
 };
 
@@ -13,30 +12,15 @@ const StyledSideNav = styled.nav`
   display: flex;
   flex-direction: column;
   height: 100%;
-  position: relative;
-  width: 450px;
+  position: fixed;
+  width: 300px;
+  right: 0;
+  background-color: #000;
 
   @media (max-width: 1024px) {
     width: 200px;
   }
-  @media (max-width: 700px) {
-    display: none;
-  }
-`;
-
-const StyledSideNavContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  position: fixed;
-  background: #000;
-  width: 450px;
-  padding: 1rem;
-
-  @media (max-width: 1024px) {
-    width: 100px;
-  }
-  @media (max-width: 700px) {
+  @media (max-width: 800px) {
     display: none;
   }
 `;

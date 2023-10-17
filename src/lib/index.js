@@ -9,3 +9,5 @@ export { default as LineChart } from "./components/chart/LineChart";
 export { default as BackDrop } from "./components/BackDrop";
 export { default as ScaleInLoader } from "./components/ScaleInLoader";
 export { default as SelectOption } from "./components/SelectOption";
+export { default as BottomDivider } from "./components/BottomDivider";
+export { default as ActionButton } from "./components/setup/ActionButton";

@@ -15,6 +15,7 @@ const SetupModal = () => {
   const auth = useSelector((state) => state.AUTH);
   const setup = useSelector((state) => state.SETUPS);
   const isLoading = setup.PUBLISH_STATUS === "loading";
+  const close = setup.PUBLISH_STATUS === "success";
   const imgRef = useRef();
   const open = setupmodal.isOpen;
   const dispatch = useDispatch();
@@ -44,6 +45,12 @@ const SetupModal = () => {
     }
   }, [value, typeclick]);
 
+  // useEffect(() => {
+  //     if (close) {
+  //         setupmodal.onClose()
+  //     }
+  // },[close])
+
   const [photo, setPhoto] = useState("");
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -64,6 +71,11 @@ const SetupModal = () => {
 
   function shareSetup() {
     dispatch(publishSetup(data));
+    setTimeout(() => {
+      if (close) {
+        setupmodal.onClose();
+      }
+    }, 4000);
   }
 
   const bodyContent = (

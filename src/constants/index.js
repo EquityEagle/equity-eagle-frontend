@@ -38,3 +38,9 @@ export const pricedata = {
 };
 
 export const type = [{ pair: "BUY" }, { pair: "SELL" }];
+
+export const TestText = {
+  text:
+    "Equity Eagle empowers you to make informed investment decisions," +
+    "helping you optimize your portfolio and maximize returns.",
+};

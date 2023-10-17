@@ -6,7 +6,7 @@ const BackArrow = ({ className }) => {
   const navigate = useNavigate();
   return (
     <div onClick={() => navigate(-1)} className={`${className}`}>
-      <BsArrowLeftShort size={25} color="#fff" className="cursor-pointer" />
+      <BsArrowLeftShort size={30} color="#fff" className="cursor-pointer" />
     </div>
   );
 };

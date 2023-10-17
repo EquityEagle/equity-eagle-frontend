@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const StyledNav = styled.nav`
-  /* display: ${({ hide, hide2, hide3 }) =>
-    hide || hide2 || hide3 ? "none" : "flex"} */
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -65,7 +63,7 @@ export const StyledSideNav = styled.nav`
   height: 100%;
   position: relative;
   /* background: #000; */
-  width: 250px;
+  width: 400px;
   /* padding: 1rem; */
 
   @media (max-width: 1024px) {
@@ -82,7 +80,7 @@ export const StyledSideNavContainer = styled.div`
   height: 100%;
   position: fixed;
   background: #000;
-  width: 250px;
+  width: 350px;
   padding: 1rem;
 
   @media (max-width: 1024px) {
@@ -99,6 +97,10 @@ export const StyledNavLinksContainer = styled.div`
   gap: 1rem;
   position: relative;
   margin-top: 3rem;
+  margin-left: 3rem;
+  @media (max-width: 1024px) {
+    margin-left: 0;
+  }
 `;
 
 export const StyledMobileNav = styled.nav`
@@ -142,4 +144,11 @@ export const FlexBox = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+`;
+
+export const StyledSetupItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
 `;

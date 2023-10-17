@@ -20,11 +20,17 @@ export const StyledStart = styled.section`
 `;
 
 export const StyledDash = styled.div`
-  display: flex;
-  /* flex-direction: column; */
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 25rem auto 25rem;
   width: 100%;
   height: 100%;
   position: relative;
-  justify-content: space-between;
-  flex: 1;
+  gap: 2rem;
+
+  @media (max-width: 800px) {
+    /* grid-template-columns: 100px auto; */
+    display: flex;
+    gap: 1rem;
+  }
 `;

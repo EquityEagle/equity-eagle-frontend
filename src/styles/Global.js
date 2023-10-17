@@ -55,3 +55,10 @@ export const Stars = styled.div`
   z-index: 0;
   filter: blur(10px);
 `;
+
+export const FlexBetween = styled.div`
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+`;

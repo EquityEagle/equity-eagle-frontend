@@ -6,7 +6,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { BackArrow } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { LoginUser } from "../../redux/auth";
+import { LoginUser, SignInWithGoogle } from "../../redux/auth";
 
 const Login = () => {
   useEffect(() => {
@@ -30,10 +30,29 @@ const Login = () => {
 
   function Login() {
     dispatch(LoginUser(user));
-    // setUser({ ...user, email: "", password: "" });
   }
+
+  function handleSignIn() {
+    console.log("Before signIn");
+    // signIn()
+    //   .then((userData) => {
+    //     console.log("After signIn");
+    //     if (userData) {
+    //       const email = userData.email;
+    //       dispatch(SignInWithGoogle(email));
+    //       console.log("Logged in as:", userData);
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.error("Sign-in error:", error);
+    //   });
+  }
+
   const g = (
-    <div className="flex gap-[2rem] cursor-pointer border border-white p-[12px] rounded-[4px] hover:bg-slate-700">
+    <div
+      onClick={handleSignIn}
+      className="flex gap-[2rem] cursor-pointer border border-white p-[12px] rounded-[4px] hover:bg-slate-700"
+    >
       <FcGoogle size={25} />
       <p className="text-white font-roboto">Continue with Google</p>
     </div>

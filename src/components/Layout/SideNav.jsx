@@ -36,12 +36,12 @@ const SideNav = () => {
           <img
             src={EquityEagleLogo}
             alt="Equity-Eagle-Logo"
-            className="w-[100px] max-[1024px]:hidden"
+            className="w-[100px] ml-[3rem] max-[1024px]:hidden"
           />
           <img
             src={EagleLogo}
             alt="Equity-Eagle-Logo"
-            className="w-[95px] hidden max-[1024px]:block"
+            className="w-[95px] ml-0 hidden max-[1024px]:block"
           />
         </Link>
         <StyledNavLinksContainer>
@@ -63,7 +63,7 @@ const SideNav = () => {
             </Link>
           ))}
         </StyledNavLinksContainer>
-        <div className="flex flex-col gap-[12px] absolute bottom-[2rem] w-[200px]">
+        <div className="flex flex-col gap-[12px] absolute ml-[3rem] max-[1024px]:ml-0 bottom-[2rem] w-[200px]">
           <div
             onClick={createModal}
             className="flex gap-2 items-center relative hover:bg-neutral-800 p-[12px] max-[1024px]:w-[55px] rounded-[6px] cursor-pointer"

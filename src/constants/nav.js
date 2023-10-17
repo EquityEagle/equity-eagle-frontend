@@ -9,6 +9,7 @@ import { FaBell } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { FiBookmark } from "react-icons/fi";
 import { BiMessageAltError } from "react-icons/bi";
+import { RiAccountPinBoxFill, RiAccountPinCircleFill } from "react-icons/ri";
 
 export const navlinksdata = [
   { text: "Home", link: "/" },
@@ -63,9 +64,9 @@ export const moremodaldata = [
     link: "/dashboard/saved",
   },
   {
-    text: "Switch Appearance",
-    icon: <MdOutlineLightMode size={25} color="#fff" />,
-    link: "/account/settings/?mode",
+    text: "Account",
+    icon: <RiAccountPinBoxFill size={25} color="#fff" />,
+    link: "/account/",
   },
   {
     text: "Report a problem",

@@ -7,3 +7,5 @@ export { default as MobileNav } from "./Layout/MobileNav";
 export { default as DashHero } from "./profile/DashHero";
 export { default as SetupFeed } from "./setup/SetupFeed";
 export { default as NextSideNav } from "./Layout/NextSideNav";
+export { default as ViewedSetup } from "./setup/ViewedSetup";
+export { default as TopHeader } from "./Layout/TopHeader";

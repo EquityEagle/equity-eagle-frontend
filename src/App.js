@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import { Footer, MobileNav, Navbar } from "./components";
 import { GlobalStyles, LeftBlur, Stars } from "./styles/Global";
@@ -9,6 +9,7 @@ import {
   LandingPage,
   Login,
   Notification,
+  SetupId,
   Setups,
   SignUp,
 } from "./pages";
@@ -21,6 +22,7 @@ import Communities from "./pages/communities/Communities";
 function App() {
   const user = useSelector((state) => state.AUTH);
   const navigate = useNavigate();
+  const path = useLocation();
 
   useEffect(() => {
     if (user.userLoaded) {
@@ -33,7 +35,7 @@ function App() {
     <div>
       <GlobalStyles />
       <Navbar />
-      <ToastContainer style={{ padding: "10px" }} draggable />
+      <ToastContainer draggable bodyClassName="toast__alert" />
       <MenuModal />
       <MoreMenuModal />
       <CreateModal />
@@ -45,10 +47,11 @@ function App() {
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/notification" element={<Notification />} />
         <Route path="/setups" element={<Setups />} />
-        <Route path="/communities" element={<Communities />} />
+        <Route path="/setups/statusId/:setupId" element={<SetupId />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path="/communities" element={<Communities />} />
       </Routes>
-      <Footer />
+      {path.pathname.includes("auth") ? "" : <Footer />}
       <MobileNav />
     </div>
   );

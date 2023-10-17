@@ -14,6 +14,8 @@ const initialState = {
   loginError: null,
   regStatus: null,
   regError: null,
+  G_LOG_STATUS: null,
+  G_LOG_ERROR: null,
   userLoaded: false,
 };
 
@@ -47,6 +49,26 @@ export const RegUser = createAsyncThunk(
         email: user.email,
         username: user.username,
         password: user.password,
+      });
+      localStorage.setItem("eeToken", token?.data);
+      return token?.data;
+    } catch (error) {
+      console.log(error.response.data);
+      toast.error(error.response.data, {
+        position: "top-center",
+        className: "toast__alert",
+      });
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const SignInWithGoogle = createAsyncThunk(
+  "auth/google",
+  async (email, { rejectWithValue }) => {
+    try {
+      const token = await axios.post(`${BASE_URL}/auth/mail-login`, {
+        email: email,
       });
       localStorage.setItem("eeToken", token?.data);
       return token?.data;
@@ -143,6 +165,27 @@ const AuthSlice = createSlice({
     });
     builder.addCase(RegUser.rejected, (state, action) => {
       return { ...state, regStatus: "rejected", regError: action.payload };
+    });
+    builder.addCase(SignInWithGoogle.pending, (state, action) => {
+      return { ...state, G_LOG_STATUS: "loading" };
+    });
+    builder.addCase(SignInWithGoogle.fulfilled, (state, action) => {
+      if (action.payload) {
+        const user = jwtDecode(action.payload);
+        return {
+          ...state,
+          token: action.payload,
+          id: user.id,
+          name: user.name,
+          username: user.username,
+          email: user.email,
+          userLoaded: true,
+          G_LOG_STATUS: "loading",
+        };
+      }
+    });
+    builder.addCase(SignInWithGoogle.rejected, (state, action) => {
+      return { ...state, G_LOG_STATUS: "failed", G_LOG_ERROR: action.payload };
     });
   },
 });

@@ -7,8 +7,10 @@ import { pricedata } from "../../constants";
 import DHSOne from "../Layout/profile/DHSOne";
 import { LuLogOut } from "react-icons/lu";
 import { logOut } from "../../redux/auth";
+import DHSII from "../Layout/profile/DHSII";
+import { GoArrowRight } from "react-icons/go";
 
-const DashHero = () => {
+const DashHero = ({ setOpenTrade }) => {
   const user = useSelector((state) => state.AUTH);
   const [userdata, setUserdata] = useState([]);
   const rate = 100;
@@ -31,7 +33,7 @@ const DashHero = () => {
     dispatch(logOut());
   }
   return (
-    <StyledHeroDash className="relative">
+    <StyledHeroDash className="relative max-[700px]:mb-[5rem]">
       <LuLogOut
         className="hidden max-[700px]:block self-start"
         color="#fff"
@@ -43,11 +45,17 @@ const DashHero = () => {
         <LineChart data={data} />
       </div>
       <p className="text-neutral-400 font-kanit">Detailed Metric</p>
-      <FlexBox>
+      <FlexBox className="flex-col">
         <DHSOne user={userdata} />
+        <DHSII user={userdata} />
       </FlexBox>
       <div className="h-[1px] self-center w-[80%] bg-neutral-400" />
       <p className="text-neutral-400 font-kanit">Trades</p>
+      <GoArrowRight
+        className="p-2 cursor-pointer bg-white rounded-full hover:rounded-[8px] w-[50px] h-[50px] flex items-center justify-center "
+        size={25}
+        onClick={() => setOpenTrade(true)}
+      />
     </StyledHeroDash>
   );
 };

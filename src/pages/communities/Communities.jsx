@@ -1,11 +1,13 @@
 import React from "react";
 import { StyledDash } from "../../styles/pages/styled";
-import { SideNav } from "../../components";
+import { CommunityFeed, NextSideNav, SideNav } from "../../components";
 
 const Communities = () => {
   return (
     <StyledDash>
       <SideNav />
+      <CommunityFeed />
+      <NextSideNav />
     </StyledDash>
   );
 };

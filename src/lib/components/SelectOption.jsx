@@ -37,7 +37,12 @@ const SelectOption = ({ data, placeholder, setValue }) => {
 
 export default SelectOption;
 
-export const SelectOptionII = ({ data, placeholder, setTypeClick }) => {
+export const SelectOptionII = ({
+  data,
+  stateData,
+  placeholder,
+  setTypeClick,
+}) => {
   return (
     <Select
       className="max-[700px]:w-full"
@@ -58,7 +63,7 @@ export const SelectOptionII = ({ data, placeholder, setTypeClick }) => {
           className="max-[700px]:w-full"
           value={item.pair}
           onClick={() => {
-            setTypeClick(item.pair);
+            setTypeClick({ ...stateData, type: item.pair });
           }}
         >
           {item.pair}

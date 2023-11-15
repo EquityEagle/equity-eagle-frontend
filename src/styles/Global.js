@@ -62,3 +62,14 @@ export const FlexBetween = styled.div`
   position: relative;
   align-items: center;
 `;
+
+export const FlexEven = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+  align-items: center;
+
+  @media (max-width: 700px) {
+    justify-content: space-between;
+  }
+`;

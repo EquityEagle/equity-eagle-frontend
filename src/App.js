@@ -13,7 +13,13 @@ import {
   Setups,
   SignUp,
 } from "./pages";
-import { CreateModal, MenuModal, MoreMenuModal, SetupModal } from "./modal";
+import {
+  CreateModal,
+  MenuModal,
+  MoreMenuModal,
+  SetupModal,
+  TradeModal,
+} from "./modal";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
@@ -40,14 +46,15 @@ function App() {
       <MoreMenuModal />
       <CreateModal />
       <SetupModal />
+      <TradeModal />
       <Routes>
         <Route path="/" index element={<LandingPage />} />
         <Route path="/auth/login" index element={<Login />} />
         <Route path="/auth/sign-up" index element={<SignUp />} />
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/notification" element={<Notification />} />
-        <Route path="/setups" element={<Setups />} />
-        <Route path="/setups/statusId/:setupId" element={<SetupId />} />
+        <Route path="/ideas" element={<Setups />} />
+        <Route path="/ideas/statusId/:setupId" element={<SetupId />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/communities" element={<Communities />} />
       </Routes>

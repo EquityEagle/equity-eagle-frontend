@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { FlexBetween } from "../../../styles/Global";
+import { FlexBetween, FlexEven } from "../../../styles/Global";
 import { AiFillHeart, AiOutlineFundView, AiOutlineHeart } from "react-icons/ai";
 import { BiSolidCommentDetail } from "react-icons/bi";
 import { RiShoppingBag3Fill, RiShoppingBag3Line } from "react-icons/ri";
 import IconWrap from "./IconWrap";
 import { formatNumberWithK } from "../../functions";
 import { useSelector } from "react-redux";
-import { LikeSetup } from "../../../helper/post";
+import { BagSetup, LikeSetup, StarSetup } from "../../../helper/post";
 import { getSetupActions } from "../../../helper/fetch";
+import { FaRegStar, FaStar } from "react-icons/fa";
+import { FiShare, FiShoppingBag } from "react-icons/fi";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ActionButton = ({ setup }) => {
+  const navigate = useNavigate();
+  const path = useLocation();
   const [actiondata, setActiondata] = useState([]);
   const userId = useSelector((state) => state.AUTH.id);
-  const setupId = setup._id;
+  const setupId = setup?._id;
   const Liked = actiondata.likes;
   const liked = Liked?.includes(userId);
-  // const liked = true;
-  console.log("actiondata:", actiondata);
+  const stared = actiondata.star?.includes(userId);
 
   useEffect(() => {
     const fetchLikes = async () => {
@@ -26,17 +30,37 @@ const ActionButton = ({ setup }) => {
     fetchLikes();
   }, [actiondata]);
 
-  const likes = actiondata.likes?.length;
-  const comments = actiondata.comments?.length;
+  const likes = actiondata.likes?.length || 0;
+  const comments = actiondata.comments?.length || 0;
+  const views = actiondata.views?.length || 0;
+  const stars = actiondata.star?.length || 0;
   const formattedLikes = formatNumberWithK(likes);
   const formattedcomment = formatNumberWithK(comments);
+  const formattedviews = formatNumberWithK(views);
+  const formattedStar = formatNumberWithK(stars);
 
   async function likeSetup() {
     await LikeSetup(setupId, userId);
   }
 
+  function goToSetup() {
+    if (path.pathname === `/ideas/statusId/${setupId}`) {
+      return null;
+    } else {
+      navigate(`/ideas/statusId/${setupId}`);
+    }
+  }
+
+  async function starsetup() {
+    await StarSetup(setupId, userId);
+  }
+
+  async function bagsetup() {
+    await BagSetup(setupId, userId);
+  }
+
   return (
-    <FlexBetween className="p-[12px] max-[700px]:p-[9px]">
+    <FlexEven className="p-[12px] max-[700px]:p-[9px]">
       <IconWrap
         icon={
           liked ? (
@@ -47,26 +71,34 @@ const ActionButton = ({ setup }) => {
         }
         color="text-red-500"
         text={formattedLikes}
-        bg="hover:bg-red-300 max-[800px]:hover:bg-transparent"
-        title="Likes"
         onClick={likeSetup}
+        title="Like"
       />
       <IconWrap
         icon={
-          <RiShoppingBag3Fill className="text-white cursor-pointer" size={25} />
+          stared ? (
+            <FaStar className="text-yellow-400 cursor-pointer" size={25} />
+          ) : (
+            <FaRegStar className="text-yellow-400 cursor-pointer" size={25} />
+          )
         }
+        color="text-yellow-400"
+        text={formattedStar}
+        onClick={starsetup}
+        title="Star"
+      />
+      <IconWrap
+        icon={<FiShare className="text-white cursor-pointer" size={25} />}
         color="text-white"
-        text="126"
-        bg="hover:bg-neutral-600 max-[800px]:hover:bg-transparent"
-        title="Bagged"
+        // onClick={bagsetup}
+        title="Share"
       />
       <IconWrap
         icon={
           <AiOutlineFundView className="text-white cursor-pointer" size={25} />
         }
         color="text-white"
-        text="1.17k"
-        bg="hover:bg-neutral-600 max-[800px]:hover:bg-transparent"
+        text={formattedviews}
         title="Views"
       />
       <IconWrap
@@ -78,10 +110,10 @@ const ActionButton = ({ setup }) => {
         }
         color="text-blue-500"
         text={formattedcomment}
-        bg="hover:bg-blue-200 hover:text-blue-600 max-[800px]:hover:bg-transparent"
+        onClick={goToSetup}
         title="Comments"
       />
-    </FlexBetween>
+    </FlexEven>
   );
 };
 

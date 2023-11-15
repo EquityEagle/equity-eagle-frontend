@@ -61,9 +61,11 @@ export const publishSetup = createAsyncThunk(
 
 export const viewSetup = createAsyncThunk(
   "setup/view",
-  async (setupId, { rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${BASE_URL}/setup/${setupId}/one`);
+      const response = await axios.get(
+        `${BASE_URL}/setup/${data.setupId}/${data.userId}/one`
+      );
       return response?.data;
     } catch (error) {
       console.log(error.response.data);
@@ -80,7 +82,7 @@ export const commentSetup = createAsyncThunk(
   "setup/comment",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
+      const response = await axios.patch(
         `${BASE_URL}/setup/${data.setupId}/${data.userId}/comment`,
         {
           desc: data.desc,

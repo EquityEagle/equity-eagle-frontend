@@ -114,6 +114,7 @@ export const StyledMobileNav = styled.nav`
   bottom: 0;
   padding-left: 16px;
   padding-right: 16px;
+  z-index: 100;
 
   @media (max-width: 700px) {
     display: ${({ notHome }) => (notHome ? "flex" : "none")};

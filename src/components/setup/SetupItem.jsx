@@ -1,18 +1,21 @@
 import React, { useState } from "react";
 import { StyledSetupItem } from "../../styles/components/styled";
 import { Placeholder } from "../../assets";
-import { ActionButton, BackDrop, BottomDivider } from "../../lib";
+import { ActionButton, BackDrop, BottomDivider, CustomTitle } from "../../lib";
 import { FlexBetween } from "../../styles/Global";
 import { HiDotsHorizontal } from "react-icons/hi";
 import TruncatedText from "../../lib/components/TruncatedText";
 import { TestText } from "../../constants";
 import { useLocation, useNavigate } from "react-router-dom";
+import SetupMenuModal from "../../modal/SetupMenuModal";
 
 const SetupItem = ({ item }) => {
-  const setupId = item._id;
+  const setupId = item?._id;
   const navigate = useNavigate();
   const [max, setMax] = useState(80);
   const [less, setLess] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const path = useLocation();
 
   function show(event) {
@@ -35,10 +38,10 @@ const SetupItem = ({ item }) => {
   }
 
   function goToSetup() {
-    if (path.pathname === "/setups") {
-      navigate(`/setups/statusId/${setupId}`);
-    } else {
+    if (path.pathname === `/ideas/statusId/${setupId}`) {
       return null;
+    } else {
+      navigate(`/ideas/statusId/${setupId}`);
     }
   }
 
@@ -65,17 +68,23 @@ const SetupItem = ({ item }) => {
           />
           <p className="text-white font-roboto">{item?.username}</p>
         </div>
-        <HiDotsHorizontal
-          size={30}
-          color="#fff"
-          className="p-1 rounded-full hover:bg-slate-700 cursor-pointer max-[700px]:mr-2"
-        />
+        <div className="flex flex-col relative">
+          <HiDotsHorizontal
+            size={30}
+            color="#fff"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={() => setOpen(!open)}
+            className="p-1 rounded-full hover:bg-slate-700 cursor-pointer max-[700px]:mr-2"
+          />
+          {isHovered && <CustomTitle title="More" className="/top-[35px]" />}
+          {open && <SetupMenuModal item={item} />}
+        </div>
       </FlexBetween>
-      {/* <BottomDivider /> */}
-      <div className="flex flex-col relative gap-3 h-full">
+      <div className="flex flex-col relative gap-3 h-full p-[12px] max-[700px]:p-[10px]">
         <TruncatedText
           text={item?.desc}
-          className="text-neutral-200 font-[300] cursor-pointer flex text-sm p-[12px] max-[700px]:p-[10px] font-poppins"
+          className="text-neutral-200 font-[300] cursor-pointer flex text-sm font-poppins"
           maxLength={max}
           underText={less ? h : s}
           onClick={goToSetup}
@@ -83,12 +92,11 @@ const SetupItem = ({ item }) => {
         <img
           src={item?.image?.url}
           alt="Image"
-          className="w-full /rounded-[9px] cursor-pointer max-[700px]:h-[200px]"
+          className="w-full h-[400px] rounded-[9px] cursor-pointer max-[700px]:h-[300px]"
           onClick={viewImg}
         />
       </div>
       <div className="flex flex-col">
-        {/* <BottomDivider /> */}
         <ActionButton setup={item} />
       </div>
       {openViewImg && (
@@ -99,7 +107,6 @@ const SetupItem = ({ item }) => {
             <img
               src={clickedImg}
               className="w-[70%] max-[700px]:w-full max-[700px]:h-[50%] z-[200] relative cursor-pointer"
-              //   onClick={() => setOpenViewImg(false)}
             />
           }
         />

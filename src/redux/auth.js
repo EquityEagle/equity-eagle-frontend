@@ -105,7 +105,10 @@ const AuthSlice = createSlice({
 
     logOut: (state) => {
       localStorage.removeItem("eeToken");
-      toast.info("Logged out", { position: "top-center" });
+      toast.info("Logged out", {
+        position: "top-center",
+        className: "toast__alert",
+      });
 
       return {
         ...state,

@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { BsHeadsetVr } from "react-icons/bs";
 import { MdDashboard, MdTravelExplore } from "react-icons/md";
 import { IoCreate } from "react-icons/io5";
-import { FaBell } from "react-icons/fa";
+import { FaBell, FaBrain } from "react-icons/fa";
 import { useCreateModal } from "../../hooks";
 
 const MobileNav = () => {
@@ -17,11 +17,11 @@ const MobileNav = () => {
   }
   return (
     <StyledMobileNav className={`shadow shadow-slate-400`} notHome={notHome}>
-      <Link to="/setups">
-        <BsHeadsetVr
+      <Link to="/ideas">
+        <FaBrain
           size={25}
           className={
-            path.pathname === "/setups" ? "text-blue-600" : "text-white"
+            path.pathname === "/ideas" ? "text-blue-600" : "text-white"
           }
         />
       </Link>

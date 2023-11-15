@@ -5,7 +5,7 @@ import {
   MdOutlineLightMode,
   MdTravelExplore,
 } from "react-icons/md";
-import { FaBell } from "react-icons/fa";
+import { FaBell, FaBrain } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { FiBookmark } from "react-icons/fi";
 import { BiMessageAltError } from "react-icons/bi";
@@ -21,10 +21,10 @@ export const navlinksdata = [
 
 export const sidenavdata = [
   {
-    text: "Setups",
-    link: "/setups",
-    label: "Setups",
-    icon: <BsHeadsetVr size={25} />,
+    text: "Ideas",
+    link: "/ideas",
+    label: "Ideas",
+    icon: <FaBrain size={25} />,
   },
   {
     text: "Explore",

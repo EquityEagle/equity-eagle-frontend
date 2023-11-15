@@ -32,6 +32,21 @@ const SignUp = () => {
   function SignUp() {
     dispatch(RegUser(user));
   }
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter") {
+        dispatch(SignUp(user));
+      }
+    };
+
+    document.addEventListener("keypress", handleKeyPress);
+
+    return () => {
+      document.removeEventListener("keypress", handleKeyPress);
+    };
+  }, [user]);
+
   const g = (
     <div className="flex gap-[2rem] cursor-pointer border border-white p-[12px] rounded-[4px] hover:bg-slate-700">
       <FcGoogle size={25} />

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import TopHeader from "../Layout/TopHeader";
 import { ScaleInLoader } from "../../lib";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,16 +6,25 @@ import SetupItem from "./SetupItem";
 import { useParams } from "react-router-dom";
 import { viewSetup } from "../../redux/setup";
 import Comments from "../input/Comments";
+import SetupComments from "../comments/SetupComments";
+import { getViewdSetup } from "../../helper/fetch";
 
 const ViewedSetup = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.SETUPS);
-  const loading = data.VIEWD_STATUS === "loading";
-  const empty = data.VIEWD_IDEA.length === 0;
   const { setupId } = useParams();
+  const user = useSelector((state) => state.AUTH);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const empty = data.length === 0;
 
   useEffect(() => {
-    dispatch(viewSetup(setupId));
+    const getViewd = async () => {
+      setLoading(true);
+      const data = await getViewdSetup(setupId, user.id);
+      setData(data);
+      setLoading(false);
+    };
+    getViewd();
   }, [setupId]);
 
   return (
@@ -26,7 +35,7 @@ const ViewedSetup = () => {
           : "border-l border-l-neutral-700 border-r border-r-neutral-700"
       } h-full `}
     >
-      <TopHeader label="Setup" />
+      <TopHeader label="Idea" />
       {loading ? (
         <ScaleInLoader size={110} className="mt-[25%] max-[800px]:mt-[80%]" />
       ) : empty ? (
@@ -35,8 +44,9 @@ const ViewedSetup = () => {
         </div>
       ) : (
         <div className="mt-[4rem]">
-          <SetupItem item={data.VIEWD_IDEA} />
-          <Comments item={data.VIEWD_IDEA} />
+          <SetupItem item={data} />
+          <Comments item={data} />
+          <SetupComments item={data} />
         </div>
       )}
     </div>

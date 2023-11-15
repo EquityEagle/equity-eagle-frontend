@@ -32,6 +32,20 @@ const Login = () => {
     dispatch(LoginUser(user));
   }
 
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter") {
+        dispatch(LoginUser(user));
+      }
+    };
+
+    document.addEventListener("keypress", handleKeyPress);
+
+    return () => {
+      document.removeEventListener("keypress", handleKeyPress);
+    };
+  }, [user]);
+
   function handleSignIn() {
     console.log("Before signIn");
     // signIn()

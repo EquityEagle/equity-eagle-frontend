@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useCreateModal, useSetupModal } from "../hooks";
+import { useCreateModal, useSetupModal, useTradeModal } from "../hooks";
 import { BackDrop } from "../lib";
 import { IoClose } from "react-icons/io5";
 import { SiLivejournal } from "react-icons/si";
@@ -10,6 +10,7 @@ const CreateModal = () => {
   const createmodal = useCreateModal();
   const setupmodal = useSetupModal();
   const open = createmodal.isOpen;
+  const trademodal = useTradeModal();
 
   function closeModel() {
     createmodal.onClose();
@@ -17,6 +18,10 @@ const CreateModal = () => {
   function openSet() {
     createmodal.onClose();
     setupmodal.onOpen();
+  }
+  function openTradeModal() {
+    createmodal.onClose();
+    trademodal.onOpen();
   }
 
   const body = (
@@ -32,20 +37,20 @@ const CreateModal = () => {
       </div>
       <div className="bg-neutral-500 h-[1px] w-full" />
       <div className="flex flex-col mt-1 p-[6px] gap-2">
-        <div className="flex gap-3 hover:bg-slate-800 rounded-[9px] cursor-pointer p-[13px] items-center">
+        <div
+          onClick={openTradeModal}
+          className="flex gap-3 hover:bg-slate-800 rounded-[9px] cursor-pointer p-[13px] items-center"
+        >
           <SiLivejournal size={25} color="#fff" />
           <p className="text-white font-kanit">Journal Your trade</p>
         </div>
+
         <div
           onClick={openSet}
           className="flex gap-3 hover:bg-slate-800 rounded-[9px] cursor-pointer p-[13px] items-center"
         >
-          <FaShareFromSquare size={25} color="#fff" />
-          <p className="text-white font-kanit">Share trade setup</p>
-        </div>
-        <div className="flex gap-3 hover:bg-slate-800 rounded-[9px] cursor-pointer p-[13px] items-center">
           <FaBrain size={25} color="#fff" />
-          <p className="text-white font-kanit">Share market idea</p>
+          <p className="text-white font-kanit">Share Trade Idea</p>
         </div>
       </div>
     </div>

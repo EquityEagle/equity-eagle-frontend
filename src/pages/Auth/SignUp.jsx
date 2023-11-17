@@ -6,6 +6,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RegUser } from "../../redux/auth";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   useEffect(() => {
@@ -47,16 +48,31 @@ const SignUp = () => {
     };
   }, [user]);
 
+  function alertGoogle() {
+    toast.info(`Coming soon`, {
+      position: "top-center",
+      className: "toast__alert",
+    });
+  }
+
   const g = (
-    <div className="flex gap-[2rem] cursor-pointer border border-white p-[12px] rounded-[4px] hover:bg-slate-700">
+    <div
+      onClick={alertGoogle}
+      className="flex gap-[2rem] cursor-pointer border border-white p-[12px] rounded-[4px] hover:bg-slate-700"
+    >
       <FcGoogle size={25} />
-      <p className="text-white font-roboto">Continue with Google</p>
+      <p className="text-white select-none font-roboto">Continue with Google</p>
     </div>
   );
   const f = (
-    <div className="flex gap-[2rem] cursor-pointer border border-white p-[12px] rounded-[4px] hover:bg-slate-700">
+    <div
+      onClick={alertGoogle}
+      className="flex gap-[2rem] cursor-pointer border border-white p-[12px] rounded-[4px] hover:bg-slate-700"
+    >
       <FaFacebookF className="text-blue-600" size={25} />
-      <p className="text-white font-roboto">Continue with Facebook</p>
+      <p className="text-white select-none font-roboto">
+        Continue with Facebook
+      </p>
     </div>
   );
   return (

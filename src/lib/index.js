@@ -19,3 +19,4 @@ export { default as SelectWithDropDown } from "./components/SelectWithDropDown";
 export { default as CheckBoxSelection } from "./components/setup/CheckBoxSelection";
 export { default as SetupOutcome } from "./components/setup/SetupOutcome";
 export { default as SelectOptionIII } from "./components/setup/SelectOption";
+export { default as DarkLoader } from "./components/DarkLoader";

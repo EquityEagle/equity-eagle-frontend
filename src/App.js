@@ -8,6 +8,7 @@ import {
   Explore,
   LandingPage,
   Login,
+  Metric,
   Notification,
   SetupId,
   Setups,
@@ -18,6 +19,7 @@ import {
   MenuModal,
   MoreMenuModal,
   SetupModal,
+  TrackModal,
   TradeModal,
 } from "./modal";
 import { useSelector } from "react-redux";
@@ -47,6 +49,7 @@ function App() {
       <CreateModal />
       <SetupModal />
       <TradeModal />
+      <TrackModal />
       <Routes>
         <Route path="/" index element={<LandingPage />} />
         <Route path="/auth/login" index element={<Login />} />
@@ -57,6 +60,7 @@ function App() {
         <Route path="/ideas/statusId/:setupId" element={<SetupId />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/communities" element={<Communities />} />
+        <Route path="/dashboard/metrix/:metrixId" element={<Metric />} />
       </Routes>
       {path.pathname.includes("auth") ? "" : <Footer />}
       <MobileNav />

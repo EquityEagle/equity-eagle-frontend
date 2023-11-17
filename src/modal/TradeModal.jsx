@@ -13,7 +13,8 @@ import { FlexBetween } from "../styles/Global";
 import { type } from "../constants";
 import { SelectOptionII } from "../lib/components/SelectOption";
 // import { Input } from "@mui/joy";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { DocumentTrade } from "../redux/trade";
 
 const TradeModal = () => {
   const trademodal = useTradeModal();
@@ -25,6 +26,9 @@ const TradeModal = () => {
   }
 
   const user = useSelector((state) => state.AUTH);
+  const Docdata = useSelector((state) => state.TRADE);
+  const isLoading = Docdata.DOC_STATUS === "Loading";
+  const dispatch = useDispatch();
 
   const [data, setData] = useState({
     userId: user.id,
@@ -38,7 +42,27 @@ const TradeModal = () => {
     setup: "",
   });
 
-  console.log("data:", data);
+  function docTrade() {
+    dispatch(DocumentTrade(data));
+    // if (Docdata.Request_Status === "ok") {
+    setTimeout(() => {
+      setData(
+        {
+          userId: user.id,
+          symbol: "",
+          type: "",
+          lotSize: 0,
+          profit: 0,
+          loss: 0,
+          confluence: "",
+          why: "",
+          setup: "",
+        },
+        3000
+      );
+    });
+    // }
+  }
 
   const body = (
     <div className="flex flex-col transition-all duration-1000 h-[auto] w-[500px] max-[700px]:w-[90%] bg-black shadow shadow-slate-600">
@@ -89,7 +113,12 @@ const TradeModal = () => {
           />
         </FlexBetween>
         <SetupOutcome setData={setData} data={data} />
-        <Button text="Submit" secondary />
+        <Button
+          text="Submit"
+          secondary
+          isLoading={isLoading}
+          Onclick={docTrade}
+        />
       </div>
     </div>
   );

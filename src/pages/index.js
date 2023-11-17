@@ -7,3 +7,4 @@ export { default as Notification } from "./user/Notification";
 export { default as Setups } from "./setups/Setups";
 export { default as Explore } from "./explore/Explore";
 export { default as SetupId } from "./setups/SetupId";
+export { default as Metric } from "./profile/Metric";

@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyledLandingPage } from "../../styles/pages/styled";
 import HeroSection from "../../section/HeroSection";
 import WhySection from "../../section/WhySection";
-import Journaling from "../../section/Journaling";
 import LastSection from "../../section/LastSection";
+import Connect from "../../section/Connect";
 
 const LandingPage = () => {
+  useEffect(() => {
+    document.title = "Home - EquityEagle";
+  });
   return (
     <StyledLandingPage>
       <HeroSection />
       <WhySection />
-      <Journaling />
+      <Connect />
       <LastSection />
     </StyledLandingPage>
   );

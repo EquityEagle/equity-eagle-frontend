@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BackArrow } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginUser, SignInWithGoogle } from "../../redux/auth";
+import { toast } from "react-toastify";
 
 const Login = () => {
   useEffect(() => {
@@ -64,19 +65,32 @@ const Login = () => {
 
   const g = (
     <div
-      onClick={handleSignIn}
+      onClick={alertGoogle}
       className="flex gap-[2rem] cursor-pointer border border-white p-[12px] rounded-[4px] hover:bg-slate-700"
     >
       <FcGoogle size={25} />
-      <p className="text-white font-roboto">Continue with Google</p>
+      <p className="text-white select-none font-roboto">Continue with Google</p>
     </div>
   );
   const f = (
-    <div className="flex gap-[2rem] cursor-pointer border border-white p-[12px] rounded-[4px] hover:bg-slate-700">
+    <div
+      onClick={alertGoogle}
+      className="flex gap-[2rem] cursor-pointer border border-white p-[12px] rounded-[4px] hover:bg-slate-700"
+    >
       <FaFacebookF className="text-blue-600" size={25} />
-      <p className="text-white font-roboto">Continue with Facebook</p>
+      <p className="text-white select-none font-roboto">
+        Continue with Facebook
+      </p>
     </div>
   );
+
+  function alertGoogle() {
+    toast.info(`Coming soon`, {
+      position: "top-center",
+      className: "toast__alert",
+    });
+  }
+
   return (
     <StyledStart>
       {/* <BackArrow className="-translate-x-[10rem]" /> */}

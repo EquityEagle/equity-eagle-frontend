@@ -1,16 +1,21 @@
 import React, { useEffect } from "react";
-import { useCreateModal, useSetupModal, useTradeModal } from "../hooks";
+import {
+  useCreateModal,
+  useSetupModal,
+  useTrackModal,
+  useTradeModal,
+} from "../hooks";
 import { BackDrop } from "../lib";
 import { IoClose } from "react-icons/io5";
 import { SiLivejournal } from "react-icons/si";
 import { FaBrain } from "react-icons/fa";
-import { FaShareFromSquare } from "react-icons/fa6";
+import { FaChartBar } from "react-icons/fa";
 
 const CreateModal = () => {
   const createmodal = useCreateModal();
   const setupmodal = useSetupModal();
   const open = createmodal.isOpen;
-  const trademodal = useTradeModal();
+  const trackmodal = useTrackModal();
 
   function closeModel() {
     createmodal.onClose();
@@ -19,9 +24,9 @@ const CreateModal = () => {
     createmodal.onClose();
     setupmodal.onOpen();
   }
-  function openTradeModal() {
+  function openTrackModal() {
     createmodal.onClose();
-    trademodal.onOpen();
+    trackmodal.onOpen();
   }
 
   const body = (
@@ -38,11 +43,11 @@ const CreateModal = () => {
       <div className="bg-neutral-500 h-[1px] w-full" />
       <div className="flex flex-col mt-1 p-[6px] gap-2">
         <div
-          onClick={openTradeModal}
+          onClick={openTrackModal}
           className="flex gap-3 hover:bg-slate-800 rounded-[9px] cursor-pointer p-[13px] items-center"
         >
-          <SiLivejournal size={25} color="#fff" />
-          <p className="text-white font-kanit">Journal Your trade</p>
+          <FaChartBar size={25} color="#fff" />
+          <p className="text-white font-kanit">Track your growth</p>
         </div>
 
         <div

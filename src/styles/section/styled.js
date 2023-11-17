@@ -63,3 +63,28 @@ export const StyledLast = styled.div`
   position: relative;
   /* justify-content: center; */
 `;
+
+export const StyledConnectsection = styled.section`
+  height: 85vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 10rem 0px 5rem;
+  overflow: hidden;
+  background: linear-gradient(
+        135deg,
+        rgba(0, 64, 77, 0.9) 0%,
+        rgba(2, 12, 27, 0.8) 100%
+      )
+      0% 0% / contain,
+    url("/world.svg") center center no-repeat;
+
+  @media (max-width: 800px) {
+    padding: 1rem;
+    overflow-x: hidden;
+  }
+`;

@@ -147,6 +147,12 @@ export const FlexBox = styled.div`
   gap: 2rem;
 `;
 
+export const Flex = styled.div`
+  display: flex;
+  position: relative;
+  align-items: center;
+`;
+
 export const StyledSetupItem = styled.div`
   display: flex;
   flex-direction: column;

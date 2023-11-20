@@ -1,6 +1,6 @@
 import React from "react";
 import { StyledMobileNav } from "../../styles/components/styled";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { BsHeadsetVr } from "react-icons/bs";
 import { MdDashboard, MdTravelExplore } from "react-icons/md";
 import { IoCreate } from "react-icons/io5";
@@ -9,7 +9,11 @@ import { useCreateModal } from "../../hooks";
 
 const MobileNav = () => {
   const path = useLocation();
-  const notHome = path.pathname !== "/" && !path.pathname.includes("auth");
+  const { communityslug } = useParams();
+  const notHome =
+    path.pathname !== "/" &&
+    !path.pathname.includes("auth") &&
+    path.pathname === `/communities/${communityslug}`;
   const createmodal = useCreateModal();
 
   function createModal() {

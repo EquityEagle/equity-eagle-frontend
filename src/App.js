@@ -4,6 +4,8 @@ import { Footer, MobileNav, Navbar } from "./components";
 import { GlobalStyles, LeftBlur, Stars } from "./styles/Global";
 import "react-toastify/dist/ReactToastify.css";
 import {
+  Account,
+  Current,
   DashBoard,
   Explore,
   LandingPage,
@@ -17,6 +19,7 @@ import {
 import {
   CreateModal,
   MenuModal,
+  MobileModal,
   MoreMenuModal,
   SetupModal,
   TrackModal,
@@ -50,6 +53,7 @@ function App() {
       <SetupModal />
       <TradeModal />
       <TrackModal />
+      <MobileModal />
       <Routes>
         <Route path="/" index element={<LandingPage />} />
         <Route path="/auth/login" index element={<Login />} />
@@ -57,9 +61,11 @@ function App() {
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/notification" element={<Notification />} />
         <Route path="/ideas" element={<Setups />} />
+        <Route path="/account" element={<Account />} />
         <Route path="/ideas/statusId/:setupId" element={<SetupId />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/communities" element={<Communities />} />
+        <Route path="/communities/:communityslug" element={<Current />} />
         <Route path="/dashboard/metrix/:metrixId" element={<Metric />} />
       </Routes>
       {path.pathname.includes("auth") ? "" : <Footer />}

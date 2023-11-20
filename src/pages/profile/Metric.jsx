@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledDash } from "../../styles/pages/styled";
+import { StyledDash, StyledMetrix } from "../../styles/pages/styled";
 import {
   AccountMetricId,
   NextSideNav,
@@ -9,11 +9,10 @@ import {
 
 const Metric = () => {
   return (
-    <StyledDash>
+    <StyledMetrix>
       <SideNav />
       <AccountMetricId />
-      <NextSideNav />
-    </StyledDash>
+    </StyledMetrix>
   );
 };
 

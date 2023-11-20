@@ -159,3 +159,10 @@ export const StyledSetupItem = styled.div`
   position: relative;
   width: 100%;
 `;
+
+export const StyledCommunityHeader = styled.nav`
+  display: flex;
+  background: #000;
+  width: 100%;
+  padding: 1rem;
+`;

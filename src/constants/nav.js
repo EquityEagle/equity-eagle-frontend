@@ -13,10 +13,7 @@ import { RiAccountPinBoxFill, RiAccountPinCircleFill } from "react-icons/ri";
 
 export const navlinksdata = [
   { text: "Home", link: "/" },
-  { text: "Why Us?", link: "/" },
-  { text: "Setups", link: "/" },
-  { text: "Channels", link: "/" },
-  { text: "Signals", link: "/" },
+  // { text: "Get in touch", link: "/get-in-touch" },
 ];
 
 export const sidenavdata = [
@@ -71,6 +68,34 @@ export const moremodaldata = [
   {
     text: "Report a problem",
     icon: <BiMessageAltError size={25} color="#fff" />,
+    link: "/account/settings/?report",
+  },
+];
+
+export const mobilenavdata = [
+  {
+    text: "Account",
+    icon: <RiAccountPinBoxFill size={30} color="#fff" />,
+    link: "/account/",
+  },
+  {
+    text: "Communities",
+    link: "/communities",
+    icon: <BsFillPeopleFill size={30} color="#fff" />,
+  },
+  {
+    text: "Saved",
+    icon: <FiBookmark size={30} color="#fff" />,
+    link: "/dashboard/saved",
+  },
+  {
+    text: "Settings",
+    icon: <IoMdSettings size={30} color="#fff" />,
+    link: "/account/settings",
+  },
+  {
+    text: "Report a problem",
+    icon: <BiMessageAltError size={30} color="#fff" />,
     link: "/account/settings/?report",
   },
 ];

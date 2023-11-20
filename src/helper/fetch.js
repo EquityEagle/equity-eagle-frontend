@@ -29,3 +29,8 @@ export async function getSetupCommentLikes(commentId) {
   );
   return response?.data;
 }
+
+export async function getAccounts(trackId) {
+  const response = await axios.get(`${BASE_URL}/metrix/find/${trackId}/one`);
+  return response?.data;
+}

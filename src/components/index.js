@@ -12,3 +12,5 @@ export { default as TopHeader } from "./Layout/TopHeader";
 export { default as CommunityFeed } from "./communities/CommunityFeed";
 export { default as TradesFeed } from "./Trades/TradesFeed";
 export { default as AccountMetricId } from "./metric/AccountMetricId";
+export { default as SectionOne } from "./trade/SectionOne";
+export { default as CurrentInView } from "./communities/CurrentInView";

@@ -34,7 +34,6 @@ const SetupModal = () => {
     type: "",
     userId: auth.id,
   });
-  console.log("setupdata:", data);
 
   useEffect(() => {
     if (value) {
@@ -43,13 +42,7 @@ const SetupModal = () => {
     if (typeclick) {
       setData({ ...data, type: typeclick });
     }
-  }, [value, typeclick]);
-
-  // useEffect(() => {
-  //     if (close) {
-  //         setupmodal.onClose()
-  //     }
-  // },[close])
+  }, [value, typeclick, data]);
 
   const [photo, setPhoto] = useState("");
   const handleImage = (e) => {
@@ -79,7 +72,8 @@ const SetupModal = () => {
   }
 
   const bodyContent = (
-    <div className="flex flex-col transition-all duration-1000 h-[auto] w-[500px] max-[700px]:w-[90%] bg-black shadow shadow-slate-600">
+    // <div className="flex flex-col transition-all duration-1000 h-[auto] w-[500px] max-[700px]:w-[90%] bg-black shadow shadow-slate-600">
+    <div className="flex flex-col bg-black w-[400px] shadow shadow-slate-600 max-[700px]:bottom-0 max-[700px]:fixed max-[700px]:w-full max-[700px]:rounded-b-[0] max-[700px]:rounded-t-[12px] rounded-[10px] h-[auto] z-[150]">
       <div className="flex p-[12px] gap-[1rem] items-center">
         <MdKeyboardArrowLeft
           size={35}
@@ -87,11 +81,11 @@ const SetupModal = () => {
           onClick={backModal}
           className="cursor-pointer hover:bg-slate-800 p-1 rounded-full"
         />
-        <h1 className="font-kanit text-[22px] text-white">Share Setup</h1>
+        <h1 className="font-kanit text-[22px] text-white">Share Idea</h1>
       </div>
       <div className="bg-neutral-500 h-[1px] w-full" />
-      <div className="flex flex-col p-[12px] gap-[1rem] items-center hide-scroll overflow-y-auto">
-        <div className="flex gap-[10px] max-[800px]:flex-col">
+      <div className="flex flex-col p-[12px] gap-[1rem] items-center w-full hide-scroll overflow-y-auto">
+        <div className="flex flex-col gap-[10px] w-full">
           <SelectOption
             placeholder="Select pair"
             data={traded}
@@ -105,14 +99,14 @@ const SetupModal = () => {
         </div>
         <div
           onClick={() => imgRef.current?.click()}
-          className="bg-blue-100 w-full h-[300px] rounded-[7px] cursor-pointer flex flex-col items-center justify-center"
+          className="bg-slate-800 w-full h-[300px] rounded-[7px] cursor-pointer flex flex-col items-center justify-center"
         >
           {photo ? (
             <img className="w-full h-full rounded-[7px]" src={photo} />
           ) : (
             <>
-              <MdPhotoCamera size={25} />
-              <p className="font-kanit">Select photo</p>
+              <MdPhotoCamera size={25} color="#fff" />
+              <p className="font-kanit text-white">Select photo</p>
             </>
           )}
         </div>
@@ -127,7 +121,12 @@ const SetupModal = () => {
           minRows={2}
           variant="soft"
           size="lg"
-          sx={{ fontFamily: "'Kanit', sans-serif", width: "100%" }}
+          sx={{
+            fontFamily: "'Kanit', sans-serif",
+            width: "100%",
+            background: "rgb(30 41 59)",
+            color: "#fff",
+          }}
           placeholder="Description..."
           value={data.desc}
           onChange={(e) => setData({ ...data, desc: e.target.value })}

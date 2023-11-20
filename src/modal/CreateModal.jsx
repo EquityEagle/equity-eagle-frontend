@@ -29,8 +29,12 @@ const CreateModal = () => {
     trackmodal.onOpen();
   }
 
+  function close() {
+    createmodal.onClose();
+  }
+
   const body = (
-    <div className="flex flex-col bg-black w-[400px] shadow shadow-slate-600 max-[700px]:bottom-0 max-[700px]:fixed max-[700px]:w-full max-[700px]:rounded-b-[0] max-[700px]:rounded-t-[12px] rounded-[10px] h-[auto] z-[150]">
+    <div className="flex flex-col bg-black w-[400px] delayIn shadow shadow-slate-600 max-[700px]:bottom-0 max-[700px]:fixed max-[700px]:w-full max-[700px]:rounded-b-[0] max-[700px]:rounded-t-[12px] rounded-[10px] h-[auto] z-[150]">
       <div className="flex p-[1rem] justify-between items-center">
         <h1 className="font-kanit text-[25px] text-white">Create</h1>
         <IoClose
@@ -60,7 +64,7 @@ const CreateModal = () => {
       </div>
     </div>
   );
-  return <div>{open && <BackDrop chaild={body} />}</div>;
+  return <div>{open && <BackDrop onClick={close} chaild={body} />}</div>;
 };
 
 export default CreateModal;

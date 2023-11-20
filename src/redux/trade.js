@@ -20,19 +20,15 @@ export const DocumentTrade = createAsyncThunk(
   "trade/doc",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        `${BASE_URL}/trade/new/${data.userId}`,
-        {
-          symbol: data.symbol,
-          type: data.type,
-          lotSize: data.lotSize,
-          why: data.why,
-          profit: data.profit,
-          setup: data.setup,
-          confluence: data.confluence,
-          loss: data.loss,
-        }
-      );
+      const response = await axios.post(`${BASE_URL}/trade/new/`, {
+        trackId: data.trackId,
+        symbol: data.symbol,
+        type: data.type,
+        lotSize: data.lotSize,
+        why: data.why,
+        profit: data.profit,
+        loss: data.loss,
+      });
       return response?.data;
     } catch (error) {
       console.log(error.response.data);

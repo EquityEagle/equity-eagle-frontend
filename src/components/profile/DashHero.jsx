@@ -2,26 +2,33 @@ import React, { useEffect, useState } from "react";
 import { FlexBox, StyledHeroDash } from "../../styles/components/styled";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserById } from "../../helper/fetch";
-import { DotChart, LineChart, PriceDonutChart } from "../../lib";
+import { Error, ScaleInLoader } from "../../lib";
 import { pricedata } from "../../constants";
-import DHSOne from "../Layout/profile/DHSOne";
 import { LuLogOut } from "react-icons/lu";
 import { logOut } from "../../redux/auth";
-import DHSII from "../Layout/profile/DHSII";
-import { GoArrowRight } from "react-icons/go";
 import AccountMetric from "../metric/AccountMetric";
+import { findAllAccount } from "../../redux/accountmetrix";
+import { FlexBetween } from "../../styles/Global";
+import { Placeholder } from "../../assets";
+import { useMobileModal } from "../../hooks";
 
 const DashHero = ({ setOpenTrade }) => {
   const user = useSelector((state) => state.AUTH);
   const [userdata, setUserdata] = useState([]);
   const rate = 100;
   const dispatch = useDispatch();
-  const lost = rate - userdata.winRate;
+  const accState = useSelector((state) => state.Acc);
+  const isLoading = accState.FETCH_STATUS === "Pending";
+  const Rejected = accState.FETCH_STATUS === "Rejected";
+  const mobilemodal = useMobileModal();
 
-  // const data = {
-  //   labels: ["Jan", "Feb", "Mar", "Apr", "May", "June"],
-  //   values: [30, 40, 25, 50, 45, 20], // Sample data points
-  // };
+  useEffect(() => {
+    dispatch(findAllAccount());
+  }, []);
+
+  function refreshFetch() {
+    dispatch(findAllAccount());
+  }
 
   useEffect(() => {
     const getuser = async () => {
@@ -36,18 +43,33 @@ const DashHero = ({ setOpenTrade }) => {
   }
   return (
     <StyledHeroDash className="relative max-[700px]:mb-[5rem]">
-      <LuLogOut
-        className="hidden max-[700px]:block self-start"
-        color="#fff"
-        size={25}
-        onClick={LogOut}
-      />
+      <FlexBox className="w-full h-full">
+        <img
+          src={Placeholder}
+          alt="User profile"
+          onClick={mobilemodal.onOpen}
+          className="w-[40px] h-[40px] rounded-full hidden max-[700px]:block"
+        />
+        <LuLogOut
+          className="hidden max-[700px]:block self-start"
+          color="#fff"
+          size={25}
+          onClick={LogOut}
+        />
+      </FlexBox>
       <h1 className="text-white font-kanit text-[30px]">Hi, {user.name}</h1>
-      <div className="relative w-[90%] max-[1024px]:w-[80%] max-[800px]:w-full rounded-[9px] overflow-y-auto bg-slate-700 overflow-x-auto hide-scroll">
-        {/* <LineChart data={} /> */}
-      </div>
+      <div className="relative w-[90%] max-[1024px]:w-[80%] max-[800px]:w-full rounded-[9px] overflow-y-auto bg-slate-700 overflow-x-auto hide-scroll"></div>
       <p className="text-neutral-400 font-kanit">Trading Accounts</p>
       <AccountMetric userdata={userdata} setOpenTrade={setOpenTrade} />
+      {isLoading && <ScaleInLoader className="items-center" />}
+      {Rejected && (
+        <Error
+          network
+          btnText="Refresh"
+          text="Network error. Please try again later."
+          onClick={refreshFetch}
+        />
+      )}
     </StyledHeroDash>
   );
 };

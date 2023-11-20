@@ -49,6 +49,7 @@ const MoreMenuModal = () => {
           <Link
             to={item.link}
             key={index}
+            onClick={() => moremodal.onClose()}
             className="flex items-center gap-[10px] hover:bg-neutral-800 p-[14px] rounded-[9px]"
           >
             {item.icon}

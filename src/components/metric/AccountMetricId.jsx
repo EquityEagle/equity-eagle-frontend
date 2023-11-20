@@ -1,24 +1,41 @@
-import React from "react";
-import { FlexBox } from "../../styles/components/styled";
-import { GoArrowRight } from "react-icons/go";
-import DHSOne from "../Layout/profile/DHSOne";
-import DHSII from "../Layout/profile/DHSII";
+import React, { useEffect, useState } from "react";
+import { Flex, FlexBox } from "../../styles/components/styled";
+import AccountStatic from "./AccountStatic";
+import AccountObject from "./AccountObject";
+import TradeJournal from "./TradeJournal";
+import { useDispatch, useSelector } from "react-redux";
+import { getAccounts } from "../../helper/fetch";
+import MetrixDetails from "./MetrixDetails";
+import { ScaleInLoader } from "../../lib";
+import { findAccountMetrix } from "../../redux/accountmetrix";
 
 const AccountMetricId = ({ userdata, setOpenTrade }) => {
+  const Ids = useSelector((state) => state.Acc.Ids);
+  const metrix = useSelector((state) => state.Acc.METRIX);
+  const metrixState = useSelector((state) => state.Acc);
+  const isLoading = metrixState.METRIX_STATUS === "Pending";
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(findAccountMetrix(Ids));
+  }, []);
+
+  console.log("metrixdata:", metrix);
+
   return (
-    <FlexBox className="flex-col">
-      <FlexBox className="flex-col">
-        <DHSOne user={userdata} />
-        <DHSII user={userdata} />
-      </FlexBox>
-      <div className="h-[1px] self-center w-[80%] bg-neutral-400" />
-      <p className="text-neutral-400 font-kanit">Trades</p>
-      <GoArrowRight
-        className="p-2 cursor-pointer bg-white rounded-full hover:rounded-[8px] w-[50px] h-[50px] flex items-center justify-center "
-        size={25}
-        onClick={() => setOpenTrade(true)}
-      />
-    </FlexBox>
+    <div className="flex flex-col relative gap-[2rem]">
+      {isLoading && <ScaleInLoader />}
+      {isLoading ? "" : <MetrixDetails metrix={metrix} />}
+      {isLoading ? (
+        ""
+      ) : (
+        <FlexBox className="max-[800px]:flex-col max-[700px]:flex-col gap-[2rem]">
+          <AccountStatic />
+          <AccountObject />
+        </FlexBox>
+      )}
+      {isLoading ? "" : <TradeJournal metrix={metrix} />}
+    </div>
   );
 };
 

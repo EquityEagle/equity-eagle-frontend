@@ -3,10 +3,16 @@ import { StyledFooter } from "../../styles/components/styled";
 import { EquityEagleLogo } from "../../assets";
 import { links } from "../../constants/link";
 import { useLocation } from "react-router-dom";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa6";
 
 const Footer = () => {
   const path = useLocation();
-  const notHome = path.pathname !== "/" && !path.pathname.includes("auth");
+  const notHome =
+    path.pathname !== "/" &&
+    !path.pathname.includes("auth") &&
+    path.pathname !== "/get-in-touch";
   // const notHome = path.pathname !== "/" && path.pathname.includes("auth");
   return (
     <StyledFooter notHome={notHome} className="border-t border-t-neutral-500">
@@ -80,27 +86,27 @@ const Footer = () => {
         </a>
       </div>
       <div className="flex flex-col gap-3">
-        <h2 className="text-blue-600 font-kanit text-[18px]">Info</h2>
-        <a
-          href="#"
-          //   target="_blank"
-          //   rel="noreferrer"
-          className="text-white text-[16px] hover:opacity-75 font-kanit"
-        >
-          Get in touch
-        </a>
-        <a
-          href="#journaling"
-          className="text-white text-[16px] hover:opacity-75 font-kanit"
-        >
-          Journaling
-        </a>
-        <a
-          href="#why"
-          className="text-white text-[16px] hover:opacity-75 font-kanit"
-        >
-          Why Us?
-        </a>
+        <h2 className="text-blue-600 font-kanit text-[18px]">Get in touch</h2>
+        <div className="flex gap-4">
+          <a
+            href="#"
+            className="text-white text-[16px] hover:opacity-75 font-kanit"
+          >
+            <FaSquareXTwitter size={25} className="cursor-pointer" />
+          </a>
+          <a
+            href="#"
+            className="text-white text-[16px] hover:opacity-75 font-kanit"
+          >
+            <FaInstagram size={25} color="" className="cursor-pointer" />
+          </a>
+          <a
+            href="#"
+            className="text-white text-[16px] hover:opacity-75 font-kanit"
+          >
+            <FaWhatsapp size={25} className="cursor-pointer text-green-500" />
+          </a>
+        </div>
       </div>
     </StyledFooter>
   );

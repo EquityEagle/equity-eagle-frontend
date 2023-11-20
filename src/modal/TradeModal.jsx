@@ -1,54 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCreateModal, useTradeModal } from "../hooks";
-import {
-  BackDrop,
-  BottomDivider,
-  Button,
-  CheckBoxSelection,
-  SelectWithDropDown,
-  SetupOutcome,
-} from "../lib";
-import { MdKeyboardArrowLeft } from "react-icons/md";
-import { FlexBetween } from "../styles/Global";
+import { BackDrop, BottomDivider, Button, SetupOutcome } from "../lib";
 import { type } from "../constants";
-import { SelectOptionII } from "../lib/components/SelectOption";
-// import { Input } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { DocumentTrade } from "../redux/trade";
+import { SectionOne } from "../components";
+import { IoClose } from "react-icons/io5";
+import { useParams } from "react-router-dom";
 
 const TradeModal = () => {
   const trademodal = useTradeModal();
-  const createmodal = useCreateModal();
   const open = trademodal.isOpen;
   function backModal() {
     trademodal.onClose();
-    createmodal.onOpen();
   }
 
   const user = useSelector((state) => state.AUTH);
   const Docdata = useSelector((state) => state.TRADE);
   const isLoading = Docdata.DOC_STATUS === "Loading";
   const dispatch = useDispatch();
+  const accountId = useSelector((state) => state.Immute.Ids);
+
+  console.log("metricId:", accountId);
 
   const [data, setData] = useState({
-    userId: user.id,
+    trackId: "",
     symbol: "",
     type: "",
     lotSize: 0,
     profit: 0,
     loss: 0,
-    confluence: "",
     why: "",
-    setup: "",
   });
+
+  useEffect(() => {
+    setData({ ...data, trackId: accountId });
+  }, [accountId]);
 
   function docTrade() {
     dispatch(DocumentTrade(data));
-    // if (Docdata.Request_Status === "ok") {
     setTimeout(() => {
       setData(
         {
-          userId: user.id,
           symbol: "",
           type: "",
           lotSize: 0,
@@ -61,13 +54,12 @@ const TradeModal = () => {
         3000
       );
     });
-    // }
   }
 
   const body = (
-    <div className="flex flex-col transition-all duration-1000 h-[auto] w-[500px] max-[700px]:w-[90%] bg-black shadow shadow-slate-600">
+    <div className="flex flex-col bg-black w-[400px] shadow shadow-slate-600 max-[700px]:bottom-0 max-[700px]:fixed max-[700px]:w-full max-[700px]:rounded-b-[0] max-[700px]:rounded-t-[12px] rounded-[10px] h-[auto] z-[150]">
       <div className="flex p-[12px] gap-[1rem] items-center">
-        <MdKeyboardArrowLeft
+        <IoClose
           size={35}
           color="#fff"
           onClick={backModal}
@@ -76,42 +68,8 @@ const TradeModal = () => {
         <h1 className="font-kanit text-[22px] text-white">Trade Details</h1>
       </div>
       <BottomDivider />
-      <div className="flex flex-col p-[12px] gap-[3rem] /items-center hide-scroll overflow-y-auto">
-        <FlexBetween className="gap-[1rem]">
-          <SelectWithDropDown data={data} setData={setData} text="Pair" />
-          <SelectOptionII
-            placeholder="Trade Type"
-            data={type}
-            setTypeClick={setData}
-            stateData={data}
-          />
-        </FlexBetween>
-        <FlexBetween className="gap-[17px]">
-          <input
-            type="text"
-            value={data.setup}
-            onChange={(e) => setData({ ...data, setup: e.target.value })}
-            placeholder="Describe pattern, time frame etc."
-            className="bg-transparent font-roboto text-white outline-none w-full border-b border-b-white"
-          />
-          <input
-            type="text"
-            placeholder="Lots"
-            value={data.lotSize}
-            onChange={(e) => setData({ ...data, lotSize: e.target.value })}
-            className="bg-transparent font-roboto text-white outline-none w-full border-b border-b-white"
-          />
-        </FlexBetween>
-        <FlexBetween className="gap-[17px]">
-          <CheckBoxSelection data={data} setData={setData} />
-          <input
-            type="text"
-            value={data.why}
-            onChange={(e) => setData({ ...data, why: e.target.value })}
-            placeholder="Reason for the trade"
-            className="bg-transparent font-roboto text-white outline-none w-[300px] border-b border-b-white"
-          />
-        </FlexBetween>
+      <div className="flex flex-col p-[12px] gap-[1rem] w-full /items-center hide-scroll overflow-y-auto">
+        <SectionOne type={type} data={data} setData={setData} />
         <SetupOutcome setData={setData} data={data} />
         <Button
           text="Submit"

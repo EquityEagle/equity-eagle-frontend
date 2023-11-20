@@ -6,11 +6,11 @@ import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 const SelectOption = ({ data, placeholder, setValue }) => {
   return (
     <Select
-      className="max-[700px]:w-full"
+      className="w-full"
       placeholder={placeholder}
       indicator={<KeyboardArrowDown />}
       sx={{
-        width: 240,
+        width: "100%",
         [`& .${selectClasses.indicator}`]: {
           transition: "0.2s",
           [`&.${selectClasses.expanded}`]: {
@@ -45,11 +45,11 @@ export const SelectOptionII = ({
 }) => {
   return (
     <Select
-      className="max-[700px]:w-full"
+      className="w-full"
       placeholder={placeholder}
       indicator={<KeyboardArrowDown />}
       sx={{
-        width: 240,
+        width: `100%`,
         [`& .${selectClasses.indicator}`]: {
           transition: "0.2s",
           [`&.${selectClasses.expanded}`]: {

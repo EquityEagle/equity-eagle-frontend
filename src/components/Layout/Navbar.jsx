@@ -12,7 +12,10 @@ const Navbar = () => {
   const open = menumodal.isOpen;
   const [icon, setIcon] = useState(IoMenuSharp);
   const path = useLocation();
-  const notHome = path.pathname !== "/" && !path.pathname.includes("auth");
+  const notHome =
+    path.pathname !== "/" &&
+    !path.pathname.includes("auth") &&
+    path.pathname !== "/get-in-touch";
 
   useEffect(() => {
     if (open) {

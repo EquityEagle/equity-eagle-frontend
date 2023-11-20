@@ -60,3 +60,7 @@ code {
 .hide-scroll::-webkit-scrollbar {
   display: none;
 }
+
+.delayIn {
+  transition: 0.65s all ease-in;
+}

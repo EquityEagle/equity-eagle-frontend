@@ -20,3 +20,6 @@ export { default as CheckBoxSelection } from "./components/setup/CheckBoxSelecti
 export { default as SetupOutcome } from "./components/setup/SetupOutcome";
 export { default as SelectOptionIII } from "./components/setup/SelectOption";
 export { default as DarkLoader } from "./components/DarkLoader";
+export { default as Error } from "./components/Error";
+export { default as ProfieViewHeader } from "./components/ProfieViewHeader";
+export { default as MessageBox } from "./components/MessageBox";

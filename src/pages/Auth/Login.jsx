@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   useEffect(() => {
-    document.title = "Login - EquityEagle";
+    document.title = "Login | EquityEagle";
   });
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.AUTH);

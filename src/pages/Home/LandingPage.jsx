@@ -7,7 +7,7 @@ import Connect from "../../section/Connect";
 
 const LandingPage = () => {
   useEffect(() => {
-    document.title = "Home - EquityEagle";
+    document.title = "Home | EquityEagle";
   });
   return (
     <StyledLandingPage>

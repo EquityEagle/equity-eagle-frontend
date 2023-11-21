@@ -4,7 +4,7 @@ import { DashHero, NextSideNav, SideNav, TradesFeed } from "../../components";
 
 const Dashboard = () => {
   useEffect(() => {
-    document.title = "Dashboard - EquityEagle";
+    document.title = "Dashboard | EquityEagle";
   });
 
   const [openTrade, setOpenTrade] = useState(false);

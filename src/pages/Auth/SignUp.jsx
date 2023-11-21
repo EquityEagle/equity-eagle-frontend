@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 const SignUp = () => {
   useEffect(() => {
-    document.title = "Sign Up - EquityEagle";
+    document.title = "Sign Up | EquityEagle";
   });
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.AUTH);

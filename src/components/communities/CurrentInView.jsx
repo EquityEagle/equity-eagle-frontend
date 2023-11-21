@@ -9,7 +9,7 @@ const CurrentInView = () => {
   const community = communitydata.find((c) => c.slug === communityslug);
 
   useEffect(() => {
-    document.title = `${communityslug.toLocaleUpperCase()} - EquityEagle`;
+    document.title = `${communityslug.toLocaleUpperCase()} | EquityEagle`;
   });
   return (
     <div className="flex flex-col relative w-full">

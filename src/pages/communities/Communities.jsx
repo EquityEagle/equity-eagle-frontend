@@ -4,7 +4,7 @@ import { CommunityFeed, NextSideNav, SideNav } from "../../components";
 
 const Communities = () => {
   useEffect(() => {
-    document.title = "Community - EquityEagle";
+    document.title = "Community | EquityEagle";
   });
   return (
     <StyledDash>

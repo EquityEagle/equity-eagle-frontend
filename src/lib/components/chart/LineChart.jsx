@@ -1,52 +1,119 @@
-import React, { useEffect, useRef } from "react";
-import { Chart } from "chart.js";
+import React, { useState, useEffect } from "react";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import "chartjs-plugin-annotation";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const LineChart = ({ data }) => {
-  const chartRef = useRef(null);
+  const [timestamps, setTimestamps] = useState([]);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   useEffect(() => {
-    // Extract timestamps and profits from the data
-    const timestamps = data?.map((point) => point.timestamp);
-    const profits = data?.map((point) => point.profit);
-
-    // Get the canvas element
-    const ctx = document.getElementById("myLineChart");
-
-    // If a chart instance already exists, destroy it
-    if (chartRef.current) {
-      chartRef.current.destroy();
+    if (data) {
+      const formattedTimestamps = data.map((point) => {
+        const formattedTimestamp = new Date(point.createdAt);
+        return formattedTimestamp.toLocaleString("en-US", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        });
+      });
+      setTimestamps(formattedTimestamps);
     }
-
-    // Create the line chart
-    chartRef.current = new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: timestamps,
-        datasets: [
-          {
-            label: "Profit Data",
-            data: profits,
-            borderColor: "blue", // Customize the line color
-            fill: false, // Do not fill the area under the line
-          },
-        ],
-      },
-      options: {
-        // Customize chart options as needed
-      },
-    });
   }, [data]);
 
-  // Cleanup function to destroy the chart when the component is unmounted
-  useEffect(() => {
-    return () => {
-      if (chartRef.current) {
-        chartRef.current.destroy();
-      }
-    };
-  }, []);
+  const chartData = {
+    labels: timestamps,
+    datasets: [
+      {
+        label: "Profit",
+        data: data?.map((point) => point.profit),
+        borderColor: "rgb(37, 99, 235)",
+        borderWidth: 2,
+      },
+    ],
+  };
 
-  return <canvas id="myLineChart" width="400" height="200"></canvas>;
+  const annotationLine = {
+    type: "line",
+    mode: "horizontal",
+    scaleID: "y",
+    value: hoveredIndex !== null ? data[hoveredIndex]?.profit : null,
+    borderColor: "red",
+    borderWidth: 2,
+    borderDash: [5, 5], // Optional: Dashed line
+  };
+
+  const chartOptions = {
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        ticks: {
+          color: "white",
+        },
+      },
+      x: {
+        ticks: {
+          color: "white",
+        },
+      },
+    },
+    legend: {
+      labels: {
+        fontSize: 25,
+      },
+    },
+    plugins: {
+      tooltip: {
+        callbacks: {
+          title: (tooltipItems) => timestamps[tooltipItems[0].index], // Display timestamp as title
+        },
+      },
+      annotation: {
+        drawTime: "beforeDatasetsDraw",
+        annotations: [annotationLine],
+      },
+    },
+    onHover: (_, activeElements) => {
+      if (activeElements && activeElements.length > 0) {
+        setHoveredIndex(activeElements[0].index);
+      } else {
+        setHoveredIndex(null);
+      }
+    },
+  };
+
+  return (
+    <div className="w-full relative chart-container">
+      <Line
+        data={chartData}
+        height={400}
+        width={`100%`}
+        options={chartOptions}
+      />
+    </div>
+  );
 };
 
 export default LineChart;

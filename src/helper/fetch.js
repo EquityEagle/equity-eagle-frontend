@@ -34,3 +34,17 @@ export async function getAccounts(trackId) {
   const response = await axios.get(`${BASE_URL}/metrix/find/${trackId}/one`);
   return response?.data;
 }
+
+export async function getAccountTrades(metrixId) {
+  const response = await axios.get(
+    `${BASE_URL}/metrix/find/${metrixId}/one/trades/`
+  );
+  return response?.data;
+}
+
+export async function getAccountsProfitData(metrixId) {
+  const response = await axios.get(
+    `${BASE_URL}/metrix/find/${metrixId}/one/p/data`
+  );
+  return response?.data;
+}

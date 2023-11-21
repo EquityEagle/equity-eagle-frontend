@@ -3,10 +3,13 @@ import { Flex, FlexBox } from "../../styles/components/styled";
 import { BottomDivider } from "../../lib";
 import { formatNumberWithK } from "../../lib/functions";
 
-const AccountObject = () => {
-  const days = 7;
-  const loss = 345;
-  const profit = 956;
+const AccountObject = ({ metrix }) => {
+  const days = metrix.days;
+  const loss = metrix.totalLoss;
+  const profit = metrix.totalProfit - loss;
+  const balance = metrix.balance;
+  const gained = (profit / balance) * 100;
+  const lost = (loss / balance) * 100;
 
   const formattedloss = formatNumberWithK(loss);
   const formattedprofit = formatNumberWithK(profit);
@@ -24,12 +27,16 @@ const AccountObject = () => {
       <BottomDivider />
       <FlexBox className="p-[1rem]">
         <h2 className="text-neutral-400 font-kanit">Total Loss</h2>
-        <p className="text-red-600 font-kanit">-${formattedloss} (-0.14%)</p>
+        <p className="text-red-600 font-kanit">
+          -${formattedloss} {`(-${lost.toFixed(2)}%)`}
+        </p>
       </FlexBox>
       <BottomDivider />
       <FlexBox className="p-[1rem]">
         <h2 className="text-neutral-400 font-kanit">Total Profit</h2>
-        <p className="text-green-500 font-kanit">${formattedprofit} (1.13%)</p>
+        <p className="text-green-500 font-kanit">
+          ${formattedprofit} {`(${gained.toFixed(2)}%)`}
+        </p>
       </FlexBox>
     </div>
   );

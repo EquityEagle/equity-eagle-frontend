@@ -8,19 +8,14 @@ const CommunityItem = ({ item }) => {
   return (
     <Link
       to={`/communities/${item.slug}`}
-      className="flex flex-col bg-black rounded-t-[9px] cursor-pointer rounded-b-[9px] shadow shadow-slate-500 w-[175px] max-[700px]:w-[170px] max-[320px]:w-[145px] max-[350px]:w-[150px]"
+      className="flex gap-[1rem] p-[10px] items-center border-b border-b-black cursor-pointer w-full"
     >
-      <img
-        src={item.coverImg || Placeholder}
-        alt="Cover"
-        className="w-[175px] select-none rounded-t-[9px]"
-      />
       <img
         src={item.profie || Placeholder}
         alt="Profie"
-        className="w-[60px] h-[60px] select-none -translate-y-[1rem] relative border-2 border-black rounded-full"
+        className="w-[60px] h-[60px] select-none relative border-2 border-black rounded-full"
       />
-      <div className="flex flex-col p-2 relative cursor-pointer">
+      <div className="flex flex-col relative cursor-pointer">
         <h1
           className="text-white font-kanit"
           onMouseEnter={() => setIsHovered(true)}

@@ -51,7 +51,6 @@ function App() {
       <MoreMenuModal />
       <CreateModal />
       <SetupModal />
-      <TradeModal />
       <TrackModal />
       <MobileModal />
       <Routes>

@@ -3,13 +3,13 @@ import { Flex, FlexBox } from "../../styles/components/styled";
 import { BottomDivider } from "../../lib";
 import { formatNumberWithK } from "../../lib/functions";
 
-const AccountStatic = () => {
-  const equity = 25678;
-  const totalTrade = 1267;
+const AccountStatic = ({ metrix }) => {
+  const totalTrade = metrix.trades;
   const formattedTrade = formatNumberWithK(totalTrade);
-  const winRate = 35;
-  const totalLoss = 750;
-  const totalProfit = 1000;
+  const winRate = metrix.winrate;
+  const totalLoss = metrix.totalLoss;
+  const totalProfit = metrix.totalProfit;
+  const equity = metrix.balance + totalProfit - totalLoss;
   const rrr = totalProfit / totalLoss;
   return (
     <div className="flex-col bg-black shadow flex relative w-full rounded-[12px] max-[700px]:w-[90%]">
@@ -35,7 +35,9 @@ const AccountStatic = () => {
       <FlexBox className="p-[1rem]">
         <Flex className="gap-1 flex-col">
           <h2 className="text-neutral-400 font-kanit">Lots:</h2>
-          <p className="text-white text-[15px] font-poppins">3</p>
+          <p className="text-white text-[15px] font-poppins">
+            {metrix.totallots}
+          </p>
         </Flex>
         <Flex className="gap-1 flex-col">
           <h2 className="text-neutral-400 font-kanit">Average profit:</h2>
@@ -57,7 +59,7 @@ const AccountStatic = () => {
                 : "text-green-500"
             }`}
           >
-            85%
+            {winRate}%
           </p>
         </Flex>
         <Flex className="gap-1 flex-col">

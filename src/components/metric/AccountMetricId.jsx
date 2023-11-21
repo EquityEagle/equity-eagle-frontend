@@ -6,7 +6,7 @@ import TradeJournal from "./TradeJournal";
 import { useDispatch, useSelector } from "react-redux";
 import { getAccounts } from "../../helper/fetch";
 import MetrixDetails from "./MetrixDetails";
-import { ScaleInLoader } from "../../lib";
+import { Error, ScaleInLoader } from "../../lib";
 import { findAccountMetrix } from "../../redux/accountmetrix";
 
 const AccountMetricId = ({ userdata, setOpenTrade }) => {
@@ -20,21 +20,40 @@ const AccountMetricId = ({ userdata, setOpenTrade }) => {
     dispatch(findAccountMetrix(Ids));
   }, []);
 
-  console.log("metrixdata:", metrix);
+  useEffect(() => {
+    document.title = "Account Metrix | EquityEagle";
+  });
+
+  function tryagain() {
+    dispatch(findAccountMetrix(Ids));
+  }
+
+  const nodata = !metrix._id || !metrix;
 
   return (
-    <div className="flex flex-col relative gap-[2rem]">
-      {isLoading && <ScaleInLoader />}
-      {isLoading ? "" : <MetrixDetails metrix={metrix} />}
-      {isLoading ? (
-        ""
+    <div className="flex flex-col relative gap-[2rem] w-full h-full">
+      {nodata ? (
+        <Error
+          onClick={tryagain}
+          network
+          btnText="Try again"
+          text="Connection error, seems account was not found"
+        />
       ) : (
-        <FlexBox className="max-[800px]:flex-col max-[700px]:flex-col gap-[2rem]">
-          <AccountStatic />
-          <AccountObject />
-        </FlexBox>
+        <>
+          {isLoading ? "" : <MetrixDetails metrix={metrix && metrix} />}
+          {isLoading && <ScaleInLoader />}
+          {isLoading ? (
+            ""
+          ) : (
+            <FlexBox className="max-[800px]:flex-col max-[700px]:flex-col gap-[2rem]">
+              <AccountStatic metrix={metrix} />
+              <AccountObject metrix={metrix} />
+            </FlexBox>
+          )}
+          {isLoading ? "" : <TradeJournal metrix={metrix} />}
+        </>
       )}
-      {isLoading ? "" : <TradeJournal metrix={metrix} />}
     </div>
   );
 };

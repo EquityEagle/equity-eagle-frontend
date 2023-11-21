@@ -64,3 +64,12 @@ code {
 .delayIn {
   transition: 0.65s all ease-in;
 }
+
+.chart-container {
+  position: relative;
+}
+
+.chart-container:hover {
+  cursor: url("./plus.svg") 8 8, auto;
+  color: white;
+}

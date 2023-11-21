@@ -8,7 +8,7 @@ import { SectionOne } from "../components";
 import { IoClose } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 
-const TradeModal = () => {
+const TradeModal = ({ accountId }) => {
   const trademodal = useTradeModal();
   const open = trademodal.isOpen;
   function backModal() {
@@ -19,9 +19,6 @@ const TradeModal = () => {
   const Docdata = useSelector((state) => state.TRADE);
   const isLoading = Docdata.DOC_STATUS === "Loading";
   const dispatch = useDispatch();
-  const accountId = useSelector((state) => state.Immute.Ids);
-
-  console.log("metricId:", accountId);
 
   const [data, setData] = useState({
     trackId: "",

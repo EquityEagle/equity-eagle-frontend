@@ -1,4 +1,10 @@
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import "./App.css";
 import { Footer, MobileNav, Navbar } from "./components";
 import { GlobalStyles, LeftBlur, Stars } from "./styles/Global";
@@ -34,6 +40,7 @@ function App() {
   const user = useSelector((state) => state.AUTH);
   const navigate = useNavigate();
   const path = useLocation();
+  const { communityslug } = useParams();
 
   useEffect(() => {
     if (user.userLoaded) {
@@ -68,7 +75,7 @@ function App() {
         <Route path="/dashboard/metrix/:metrixId" element={<Metric />} />
       </Routes>
       {path.pathname.includes("auth") ? "" : <Footer />}
-      <MobileNav />
+      {path.pathname.includes("ommunities") ? "" : <MobileNav />}
     </div>
   );
 }

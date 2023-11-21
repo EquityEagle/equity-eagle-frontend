@@ -10,10 +10,9 @@ import { useCreateModal } from "../../hooks";
 const MobileNav = () => {
   const path = useLocation();
   const { communityslug } = useParams();
-  const notHome =
-    path.pathname !== "/" &&
-    !path.pathname.includes("auth") &&
-    path.pathname === `/communities/${communityslug}`;
+  const notHome = path.pathname !== "/" && !path.pathname.includes("auth");
+  // const hide = ;
+
   const createmodal = useCreateModal();
 
   function createModal() {

@@ -75,7 +75,7 @@ function App() {
         <Route path="/dashboard/metrix/:metrixId" element={<Metric />} />
       </Routes>
       {path.pathname.includes("auth") ? "" : <Footer />}
-      {path.pathname.includes("ommunities") ? "" : <MobileNav />}
+      {path.pathname.includes("communities") ? "" : <MobileNav />}
     </div>
   );
 }

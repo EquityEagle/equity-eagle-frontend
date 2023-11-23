@@ -30,7 +30,7 @@ const CommunityFeed = () => {
           className="bg-slate-800 max-[700px]:hidden outline-none pl-2 text-white font-poppins text-[14px] border-none p-1 rounded-[9px] w-full"
         />
       </StyledCommunityHeader>
-      <div className="flex flex-col gap-[1px] relative mt-[1rem] max-[700px]:mt-[5.5rem] max-[700px]:pb-[4rem] max-[350px]:pb-[5.5rem]">
+      <div className="flex flex-col gap-[1px] relative mt-[1rem] max-[700px]:mt-[4.5rem] max-[700px]:pb-[2rem] max-[350px]:pb-[3rem]">
         {communitydata.map((item, index) => (
           <CommunityItem item={item} key={index} />
         ))}

@@ -38,16 +38,13 @@ const MoreMenuModal = () => {
       moremodal.onClose();
     }
   }
-  // function Logout() {
-  //   dispatch;
-  // }
 
   const modal = (
     <StyledMoreModal className="shadow-slate-100 shadow">
       <div className="flex flex-col p-[10px] gap-[8px]">
         {moremodaldata.map((item, index) => (
           <Link
-            to={item.link}
+            to={item.isprofie ? `/account/${auth.username}` : item.link}
             key={index}
             onClick={() => moremodal.onClose()}
             className="flex items-center gap-[10px] hover:bg-neutral-800 p-[14px] rounded-[9px]"

@@ -1,7 +1,15 @@
 import React from "react";
+import { StyledDash } from "../../styles/pages/styled";
+import { AccountFeed, NextSideNav, SideNav } from "../../components";
 
 const Account = () => {
-  return <div>Account</div>;
+  return (
+    <StyledDash>
+      <SideNav />
+      <AccountFeed />
+      <NextSideNav />
+    </StyledDash>
+  );
 };
 
 export default Account;

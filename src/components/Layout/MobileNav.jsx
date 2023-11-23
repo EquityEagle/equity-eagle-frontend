@@ -2,7 +2,7 @@ import React from "react";
 import { StyledMobileNav } from "../../styles/components/styled";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { BsHeadsetVr } from "react-icons/bs";
-import { MdDashboard, MdTravelExplore } from "react-icons/md";
+import { MdAddHome, MdDashboard, MdTravelExplore } from "react-icons/md";
 import { IoCreate } from "react-icons/io5";
 import { FaBell, FaBrain } from "react-icons/fa";
 import { useCreateModal } from "../../hooks";
@@ -28,11 +28,11 @@ const MobileNav = () => {
           }
         />
       </Link>
-      <Link to="">
-        <MdTravelExplore
+      <Link to="/new-community">
+        <MdAddHome
           size={25}
           className={
-            path.pathname === "/explore" ? "text-blue-600" : "text-white"
+            path.pathname === "/new-community" ? "text-blue-600" : "text-white"
           }
         />
       </Link>

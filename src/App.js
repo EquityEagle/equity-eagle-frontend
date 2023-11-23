@@ -13,11 +13,11 @@ import {
   Account,
   Current,
   DashBoard,
-  Explore,
   LandingPage,
   Login,
   Metric,
   Notification,
+  Settings,
   SetupId,
   Setups,
   SignUp,
@@ -67,9 +67,9 @@ function App() {
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/notification" element={<Notification />} />
         <Route path="/ideas" element={<Setups />} />
-        <Route path="/account" element={<Account />} />
+        <Route path="/account/:username" element={<Account />} />
         <Route path="/ideas/statusId/:setupId" element={<SetupId />} />
-        <Route path="/explore" element={<Explore />} />
+        <Route path="/account/settings" element={<Settings />} />
         <Route path="/communities" element={<Communities />} />
         <Route path="/communities/:communityslug" element={<Current />} />
         <Route path="/dashboard/metrix/:metrixId" element={<Metric />} />

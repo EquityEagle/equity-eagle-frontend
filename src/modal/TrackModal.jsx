@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useCreateModal, useTrackModal } from "../hooks";
 import { BackDrop, BottomDivider, Button, CustomTitle } from "../lib";
 import { IoClose } from "react-icons/io5";
@@ -30,7 +30,8 @@ const TrackModal = () => {
     usetrackmodal.onClose();
   }
 
-  function trackacc() {
+  function trackacc(e) {
+    e.stopPropagation();
     dispatch(SaveTrack(data));
     setTimeout(() => {
       setData({
@@ -62,6 +63,7 @@ const TrackModal = () => {
               color="#fff"
               onMouseEnter={() => setHoverType(true)}
               onMouseLeave={() => setHoverType(false)}
+              onClick={(e) => e.stopPropagation()}
             />
             {HoverType && (
               <CustomTitle title="Demo, Propfirm or Live account" />
@@ -70,7 +72,10 @@ const TrackModal = () => {
           <input
             type="text"
             value={data.accounttype}
-            onChange={(e) => setData({ ...data, accounttype: e.target.value })}
+            onClick={(e) => e.stopPropagation()}
+            onChange={(e) => {
+              setData({ ...data, accounttype: e.target.value });
+            }}
             disabled={isLoading}
             className="bg-slate-800 w-full outline-none caret-blue-600 text-white focus:border-blue-600 focus:border rounded-[8px] p-2"
           />
@@ -80,7 +85,10 @@ const TrackModal = () => {
           <input
             type="number"
             value={data.accountsize}
-            onChange={(e) => setData({ ...data, accountsize: e.target.value })}
+            onClick={(e) => e.stopPropagation()}
+            onChange={(e) => {
+              setData({ ...data, accountsize: e.target.value });
+            }}
             disabled={isLoading}
             className="bg-slate-800 w-full outline-none caret-blue-600 text-white focus:border-blue-600 focus:border rounded-[8px] p-2"
           />

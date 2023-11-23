@@ -14,3 +14,7 @@ export { default as TradesFeed } from "./Trades/TradesFeed";
 export { default as AccountMetricId } from "./metric/AccountMetricId";
 export { default as SectionOne } from "./trade/SectionOne";
 export { default as CurrentInView } from "./communities/CurrentInView";
+export { default as AccountFeed } from "./profile/AccountFeed";
+export { default as ProfileView } from "./communities/ProfileView";
+export { default as MemberMenuModal } from "./communities/MemberMenuModal";
+export { default as AdminMenuModal } from "./communities/AdminMenuModal";

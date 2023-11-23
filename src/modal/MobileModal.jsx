@@ -5,17 +5,23 @@ import { Placeholder } from "../assets";
 import { FlexBetween } from "../styles/Global";
 import { PiDotsThreeCircleVerticalDuotone } from "react-icons/pi";
 import { Flex } from "../styles/components/styled";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { mobilenavdata } from "../constants/nav";
 import { Link } from "react-router-dom";
+import { LuLogOut } from "react-icons/lu";
+import { logOut } from "../redux/auth";
 
 const MobileModal = () => {
   const mobilemodal = useMobileModal();
   const open = mobilemodal.isOpen;
   const user = useSelector((state) => state.AUTH);
+  const dispatch = useDispatch();
 
   function close() {
     mobilemodal.onClose();
+  }
+  function LogOut() {
+    dispatch(logOut());
   }
 
   const body = (
@@ -24,7 +30,6 @@ const MobileModal = () => {
         <img
           src={Placeholder}
           alt="User profile"
-          //   onClick={mobilemodal.onOpen}
           className="w-[40px] h-[40px] rounded-full hidden max-[700px]:block"
         />
         <PiDotsThreeCircleVerticalDuotone size={20} color="#fff" />
@@ -39,7 +44,7 @@ const MobileModal = () => {
       <div className="flex flex-col gap-[1.5rem] relative p-[10px] mt-2">
         {mobilenavdata.map((item, index) => (
           <Link
-            to={item.link}
+            to={item.isprofie ? `/account/${user.username}` : item.link}
             className="flex items-center gap-[10px]"
             key={index}
           >
@@ -48,6 +53,12 @@ const MobileModal = () => {
           </Link>
         ))}
       </div>
+      <LuLogOut
+        className="hidden max-[700px]:block absolute left-4 bottom-10"
+        color="#fff"
+        size={30}
+        onClick={LogOut}
+      />
     </div>
   );
 

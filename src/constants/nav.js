@@ -1,5 +1,6 @@
 import { BsFillPeopleFill, BsHeadsetVr } from "react-icons/bs";
 import {
+  MdAddHome,
   MdDashboard,
   MdOutlineExplore,
   MdOutlineLightMode,
@@ -24,10 +25,10 @@ export const sidenavdata = [
     icon: <FaBrain size={25} />,
   },
   {
-    text: "Explore",
-    link: "/explore",
-    label: "Explore",
-    icon: <MdTravelExplore size={25} />,
+    text: "New Community",
+    link: "/new-community",
+    label: "New Community",
+    icon: <MdAddHome size={25} />,
   },
   {
     text: "Notification",
@@ -64,6 +65,7 @@ export const moremodaldata = [
     text: "Account",
     icon: <RiAccountPinBoxFill size={25} color="#fff" />,
     link: "/account/",
+    isprofie: true,
   },
   {
     text: "Report a problem",
@@ -77,6 +79,7 @@ export const mobilenavdata = [
     text: "Account",
     icon: <RiAccountPinBoxFill size={30} color="#fff" />,
     link: "/account/",
+    isprofie: true,
   },
   {
     text: "Communities",

@@ -67,6 +67,7 @@ const LineChart = ({ data }) => {
 
   const chartOptions = {
     maintainAspectRatio: false,
+    responsive: true, // Enable responsiveness
     scales: {
       y: {
         ticks: {
@@ -76,6 +77,7 @@ const LineChart = ({ data }) => {
       x: {
         ticks: {
           color: "white",
+          display: window.innerWidth > 800, // Show x-axis labels only if window width is greater than 700px
         },
       },
     },
@@ -105,11 +107,22 @@ const LineChart = ({ data }) => {
   };
 
   return (
-    <div className="w-full relative chart-container">
+    <div
+      className="w-full relative chart-container"
+      style={{ overflowX: "auto", maxWidth: "100%" }}
+    >
       <Line
         data={chartData}
         height={400}
         width={`100%`}
+        getElement={(chart) => {
+          // Check if the chart object exists and if the canvas element exists
+          if (chart && chart.canvas) {
+            // Apply additional styles directly to the canvas
+            chart.canvas.style.width = "100%";
+            chart.canvas.style.height = "400px"; // Set the desired height
+          }
+        }}
         options={chartOptions}
       />
     </div>

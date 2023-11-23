@@ -6,6 +6,7 @@ import { Link, Router, useLocation } from "react-router-dom";
 import { Button, ClickOpacity } from "../../lib";
 import { IoClose, IoMenuSharp } from "react-icons/io5";
 import useMenuModel from "../../hooks/useMenuModel";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const menumodal = useMenuModel();

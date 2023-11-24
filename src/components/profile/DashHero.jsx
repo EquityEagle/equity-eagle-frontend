@@ -27,7 +27,7 @@ const DashHero = ({ setOpenTrade }) => {
   }, []);
 
   function refreshFetch() {
-    dispatch(findAllAccount());
+    dispatch(findAllAccount(userId));
   }
 
   useEffect(() => {

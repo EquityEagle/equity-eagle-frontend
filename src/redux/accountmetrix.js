@@ -45,9 +45,9 @@ export const SaveTrack = createAsyncThunk(
 
 export const findAllAccount = createAsyncThunk(
   "account/find",
-  async (data, { rejectWithValue }) => {
+  async (userId, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${BASE_URL}/metrix/find/all`);
+      const response = await axios.get(`${BASE_URL}/metrix/find/${userId}/all`);
       return response?.data;
     } catch (error) {
       console.log(error.response.data);

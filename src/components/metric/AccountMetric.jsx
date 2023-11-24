@@ -11,8 +11,6 @@ import { MdAddCircleOutline } from "react-icons/md";
 import { useTradeModal } from "../../hooks";
 
 const AccountMetric = ({ userdata, setOpenTrade }) => {
-  // const equity = 5905;
-  const [hidden, setHidden] = useState(false);
   const data = useSelector((state) => state.Acc);
   const trademodal = useTradeModal();
 

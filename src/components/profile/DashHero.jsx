@@ -15,7 +15,7 @@ import { useMobileModal } from "../../hooks";
 const DashHero = ({ setOpenTrade }) => {
   const user = useSelector((state) => state.AUTH);
   const [userdata, setUserdata] = useState([]);
-  const rate = 100;
+  const userId = user.id;
   const dispatch = useDispatch();
   const accState = useSelector((state) => state.Acc);
   const isLoading = accState.FETCH_STATUS === "Pending";
@@ -23,7 +23,7 @@ const DashHero = ({ setOpenTrade }) => {
   const mobilemodal = useMobileModal();
 
   useEffect(() => {
-    dispatch(findAllAccount());
+    dispatch(findAllAccount(userId));
   }, []);
 
   function refreshFetch() {

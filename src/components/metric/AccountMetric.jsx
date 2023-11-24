@@ -11,7 +11,7 @@ import { MdAddCircleOutline } from "react-icons/md";
 import { useTradeModal } from "../../hooks";
 
 const AccountMetric = ({ userdata, setOpenTrade }) => {
-  const equity = 5905;
+  // const equity = 5905;
   const [hidden, setHidden] = useState(false);
   const data = useSelector((state) => state.Acc);
   const trademodal = useTradeModal();
@@ -26,6 +26,17 @@ const AccountMetric = ({ userdata, setOpenTrade }) => {
     <div className="flex-col gap-[1.5rem] flex relative w-full">
       {data.ACCOUNTS?.map((item, index) => {
         const checked = data.UNVISIBLE.find((id) => id === item._id);
+        const profits = item.trades.map((trade) => trade.profit);
+        const Loss = item.trades.map((trade) => trade.loss);
+        const totalProfit =
+          profits.length === 0
+            ? 0
+            : profits.reduce((max, value) => Math.max(max, value), 0);
+        const totalLoss =
+          Loss.length === 0
+            ? 0
+            : Loss.reduce((max, value) => Math.max(max, value), 0);
+        const equity = item.accountsize + totalProfit - totalLoss;
 
         return (
           <div
@@ -63,7 +74,7 @@ const AccountMetric = ({ userdata, setOpenTrade }) => {
                 <div className="flex gap-1 items-center">
                   <p className="text-neutral-400 font-kanit">Equity:</p>
                   <p className="text-white font-kanit">
-                    ${equity.toLocaleString()}
+                    ${equity?.toLocaleString()}
                   </p>
                 </div>
               </Flex>

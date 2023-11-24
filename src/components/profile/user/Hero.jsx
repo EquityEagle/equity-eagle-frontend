@@ -27,13 +27,13 @@ const Hero = ({
   return (
     <div className="flex items-center w-full relative gap-10 p-2 mt-10 pb-8 max-[700px]:gap-5 select-none">
       <img
-        src={Placeholder}
+        src={user.profile?.url || Placeholder}
         onClick={(e) => {
           setOpenProfileModal(true);
           e.stopPropagation();
         }}
         alt="User profile"
-        className="w-[150px] h-[150px] cursor-pointer rounded-full max-[800px]:w-[90px] max-[800px]:h-[90px] max-[700px]:w-[80px] max-[700px]:h-[80px]"
+        className="w-[150px] h-[150px] border-2 border-blue-600 cursor-pointer rounded-full max-[800px]:w-[90px] max-[800px]:h-[90px] max-[700px]:w-[80px] max-[700px]:h-[80px]"
       />
       <div className="flex flex-col items-start w-full relative">
         <h1 className="text-white font-kanit text-[30px] max-[700px]:text-[25px]">
@@ -52,7 +52,7 @@ const Hero = ({
           <div className="flex flex-col items-center gap-2">
             <GiThreeFriends size={20} className="text-neutral-500" />
             <p className="text-neutral-500 font-kanit text-[14px] -mt-2">
-              {user.networks.length}
+              {user.networks?.length}
             </p>
           </div>
           <div className="flex flex-col items-center gap-2">
@@ -61,13 +61,13 @@ const Hero = ({
               className="text-neutral-500"
             />
             <p className="text-neutral-500 font-kanit text-[14px] -mt-2">
-              {user.community.length}
+              {user.community?.length}
             </p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <FaBrain size={20} className="text-neutral-500" />
             <p className="text-neutral-500 font-kanit text-[14px] -mt-2">
-              {user.ideas.length}
+              {user.ideas?.length}
             </p>
           </div>
           <Button
@@ -85,6 +85,7 @@ const Hero = ({
       )}
       {openProfileModal && (
         <ProfileModal
+          user={user}
           open={openProfileModal}
           closeModal={setOpenProfileModal}
           setOpenUpdateModal={setOpenUpdateModal}

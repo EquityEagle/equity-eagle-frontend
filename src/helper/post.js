@@ -28,3 +28,11 @@ export async function LikeSetupcomments(commentId, userId) {
   );
   return response?.data;
 }
+
+export async function ProfileUpdate(userId, photo) {
+  const response = await axios.patch(
+    `${BASE_URL}/user/edit/profile/${userId}`,
+    { profile: photo }
+  );
+  return response?.data;
+}

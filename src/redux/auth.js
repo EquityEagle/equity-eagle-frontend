@@ -10,6 +10,7 @@ const initialState = {
   name: "",
   email: "",
   username: "",
+  profile: "",
   loginStatus: null,
   loginError: null,
   regStatus: null,
@@ -97,6 +98,7 @@ const AuthSlice = createSlice({
           name: user.name,
           id: user.id,
           username: user.username,
+          profile: user.profile,
           email: user.email,
           userLoaded: true,
         };
@@ -116,6 +118,7 @@ const AuthSlice = createSlice({
         name: "",
         id: "",
         username: "",
+        profile: "",
         email: "",
         userLoaded: false,
       };
@@ -137,6 +140,7 @@ const AuthSlice = createSlice({
         name: user.name,
         email: user.email,
         username: user.username,
+        profile: user.profile,
         id: user.id,
         loginStatus: "success",
         userLoaded: true,

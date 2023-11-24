@@ -3,10 +3,20 @@ import { BackDrop, Button } from "../../../lib";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
+import { ProfileUpdate } from "../../../helper/post";
+import { useSelector } from "react-redux";
 
 const ProfileUpdateModal = ({ open, keepOpen }) => {
+  const userId = useSelector((state) => state.AUTH.id);
   const [photo, setPhoto] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const imgRef = useRef();
+
+  async function update() {
+    setIsLoading(true);
+    await ProfileUpdate(userId, photo);
+    setIsLoading(false);
+  }
 
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -26,7 +36,12 @@ const ProfileUpdateModal = ({ open, keepOpen }) => {
   }
 
   const body = (
-    <div className="flex flex-col bg-neutral-700 rounded-[9px] w-[280px] z-[200] fixed h-auto p-2 shadow shadow-slate-600">
+    <div
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+      className="flex flex-col bg-neutral-700 rounded-[9px] w-[280px] z-[200] fixed h-auto p-2 shadow shadow-slate-600"
+    >
       {photo ? (
         <div className="flex flex-col gap-3 relative">
           <IoClose
@@ -48,7 +63,13 @@ const ProfileUpdateModal = ({ open, keepOpen }) => {
             alt="Selected photo"
             className="rounded-[9px] cursor-pointer"
           />
-          <Button secondary text="Save" />
+          <Button
+            secondary
+            text="Save"
+            disabled={isLoading}
+            isLoading={isLoading}
+            Onclick={update}
+          />
         </div>
       ) : (
         <div

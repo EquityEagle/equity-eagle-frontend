@@ -4,13 +4,14 @@ import { BottomDivider, Button } from "../../lib";
 import { useNavigate } from "react-router-dom";
 import { GoArrowLeft } from "react-icons/go";
 
-const AccountFeed = () => {
+const AccountFeed = ({ user }) => {
   const navigate = useNavigate();
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   useEffect(() => {
-    document.title = `Profile | EquityEagle`;
+    document.title = `@${user.username} | EquityEagle`;
   });
+
   return (
     <div
       className="flex flex-col w-full relative"
@@ -33,6 +34,7 @@ const AccountFeed = () => {
         setOpenProfileModal={setOpenProfileModal}
         setOpenUpdateModal={setOpenUpdateModal}
         openUpdateModal={openUpdateModal}
+        user={user}
       />
       <BottomDivider />
     </div>

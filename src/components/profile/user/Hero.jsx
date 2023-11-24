@@ -14,14 +14,15 @@ const Hero = ({
   setOpenProfileModal,
   setOpenUpdateModal,
   openUpdateModal,
+  user,
 }) => {
-  const user = useSelector((state) => state.AUTH);
+  // const user = useSelector((state) => state.AUTH);
   const [photoHover, setPhotoHover] = useState(false);
-  const joined = "11-22-2023";
-  const timestamp = new Date(joined);
+  const timestamp = new Date(user.createdAt);
   const formattedDate = timestamp.toLocaleString("en-US", {
     month: "short",
     year: "numeric",
+    day: "2-digit",
   });
   return (
     <div className="flex items-center w-full relative gap-10 p-2 mt-10 pb-8 max-[700px]:gap-5 select-none">
@@ -50,23 +51,25 @@ const Hero = ({
           </div>
           <div className="flex flex-col items-center gap-2">
             <GiThreeFriends size={20} className="text-neutral-500" />
-            <p className="text-neutral-500 font-kanit text-[14px] -mt-2">207</p>
+            <p className="text-neutral-500 font-kanit text-[14px] -mt-2">
+              {user.networks.length}
+            </p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <SiHomeassistantcommunitystore
               size={20}
               className="text-neutral-500"
             />
-            <p className="text-neutral-500 font-kanit text-[14px] -mt-2">20</p>
+            <p className="text-neutral-500 font-kanit text-[14px] -mt-2">
+              {user.community.length}
+            </p>
           </div>
           <div className="flex flex-col items-center gap-2">
             <FaBrain size={20} className="text-neutral-500" />
-            <p className="text-neutral-500 font-kanit text-[14px] -mt-2">102</p>
+            <p className="text-neutral-500 font-kanit text-[14px] -mt-2">
+              {user.ideas.length}
+            </p>
           </div>
-          {/* <div className="flex flex-col items-center gap-2">
-            <FaStar size={20} className="text-neutral-500" />
-            <p className="text-neutral-500 font-kanit text-[14px] -mt-2">340</p>
-          </div> */}
           <Button
             secondary
             text="Connect"

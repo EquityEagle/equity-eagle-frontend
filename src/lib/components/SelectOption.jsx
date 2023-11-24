@@ -23,10 +23,7 @@ const SelectOption = ({ data, placeholder, setValue }) => {
         <Option
           className="max-[700px]:w-full"
           value={item.pair}
-          onClick={() => {
-            setValue(item.pair);
-            console.log(item.pair);
-          }}
+          onClick={() => setValue(item.pair)}
         >
           {item.pair}
         </Option>
@@ -62,9 +59,7 @@ export const SelectOptionII = ({
         <Option
           className="max-[700px]:w-full"
           value={item.pair}
-          onClick={() => {
-            setTypeClick({ ...stateData, type: item.pair });
-          }}
+          onClick={() => setTypeClick(item.pair)}
         >
           {item.pair}
         </Option>

@@ -28,7 +28,6 @@ const ProfileUpdateModal = ({ open, keepOpen }) => {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         setPhoto(reader.result);
-        // setData({ ...data, image: reader.result });
       };
     } else {
       setPhoto("");

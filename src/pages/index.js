@@ -10,3 +10,4 @@ export { default as SetupId } from "./setups/SetupId";
 export { default as Metric } from "./profile/Metric";
 export { default as Current } from "./communities/Current";
 export { default as Account } from "./profile/Account";
+export { default as NewCommunity } from "./communities/NewCommunity";

@@ -7,3 +7,4 @@ export { default as TradeModal } from "./TradeModal";
 export { default as TrackModal } from "./TrackModal";
 export { default as EditTradeModal } from "./EditTradeModal";
 export { default as MobileModal } from "./MobileModal";
+export { default as NewCommunityModal } from "./NewCommunityModal";

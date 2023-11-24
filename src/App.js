@@ -16,6 +16,7 @@ import {
   LandingPage,
   Login,
   Metric,
+  NewCommunity,
   Notification,
   Settings,
   SetupId,
@@ -71,6 +72,7 @@ function App() {
         <Route path="/ideas/statusId/:setupId" element={<SetupId />} />
         <Route path="/account/settings" element={<Settings />} />
         <Route path="/communities" element={<Communities />} />
+        <Route path="/new-community" element={<NewCommunity />} />
         <Route path="/communities/:communityslug" element={<Current />} />
         <Route path="/dashboard/metrix/:metrixId" element={<Metric />} />
       </Routes>

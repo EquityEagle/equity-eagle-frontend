@@ -14,7 +14,7 @@ const MetrixDetails = ({ metrix }) => {
     if (metrix._id) {
       gettrades();
     } else return;
-  }, [profitdata]);
+  }, []);
 
   return (
     <div className="flex">{profitdata && <LineChart data={profitdata} />}</div>

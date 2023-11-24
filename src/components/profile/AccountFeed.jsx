@@ -4,12 +4,14 @@ import { BottomDivider, Button } from "../../lib";
 import { useNavigate } from "react-router-dom";
 import { GoArrowLeft } from "react-icons/go";
 
-const AccountFeed = ({ user }) => {
+const AccountFeed = ({ user, isLoading }) => {
   const navigate = useNavigate();
   const [openProfileModal, setOpenProfileModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   useEffect(() => {
-    document.title = `@${user.username} | EquityEagle`;
+    document.title = `${
+      isLoading ? "Loading..." : `@${user.username} `
+    }| EquityEagle`;
   });
 
   return (

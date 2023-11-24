@@ -35,16 +35,19 @@ const SetupModal = () => {
     userId: auth.id,
   });
 
+  const [photo, setPhoto] = useState("");
   useEffect(() => {
     if (value) {
       setData({ ...data, pair: value });
     }
+    if (value) {
+      setData({ ...data, pair: photo });
+    }
     if (typeclick) {
       setData({ ...data, type: typeclick });
     }
-  }, [value, typeclick, data]);
+  }, [value, typeclick, data, photo]);
 
-  const [photo, setPhoto] = useState("");
   const handleImage = (e) => {
     const file = e.target.files[0];
     TransFormFile(file);

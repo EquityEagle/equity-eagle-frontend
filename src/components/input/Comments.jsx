@@ -20,7 +20,6 @@ const Comments = ({ item }) => {
   const [isVideoHovered, setIsVideoHovered] = useState(false);
   const [isAudioHovered, setIsAudioHovered] = useState(false);
   const [isEmojiHovered, setIsEmojiHovered] = useState(false);
-  const [user, setUser] = useState([]);
   const [photo, setPhoto] = useState("");
   const imgRef = useRef();
   const dispatch = useDispatch();
@@ -30,14 +29,6 @@ const Comments = ({ item }) => {
     desc: "",
     image: "",
   });
-
-  useEffect(() => {
-    const getuser = async () => {
-      const data = await getUserById(auth.id);
-      setUser(data);
-    };
-    getuser();
-  }, [user]);
 
   async function share() {
     dispatch(commentSetup(data));
@@ -69,7 +60,7 @@ const Comments = ({ item }) => {
       <BottomDivider />
       <FlexBetween className="p-2 gap-1">
         <img
-          src={user?.profile?.url || Placeholder}
+          src={auth.profile?.url || Placeholder}
           alt="User Image"
           className="w-[50px] h-[50px] rounded-full"
         />

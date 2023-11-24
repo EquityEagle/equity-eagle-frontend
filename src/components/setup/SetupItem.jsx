@@ -60,9 +60,12 @@ const SetupItem = ({ item }) => {
     <StyledSetupItem>
       <BottomDivider />
       <FlexBetween className="p-[10px] max-[700px]:p-0 max-[700px]:mt-3">
-        <div className="flex gap-2 items-center cursor-pointer">
+        <div
+          className="flex gap-2 items-center cursor-pointer"
+          onClick={() => navigate(`/account/${item.username}`)}
+        >
           <img
-            src={Placeholder}
+            src={item.profile?.url || Placeholder}
             alt="placeholder"
             className="w-10 rounded-full max-[700px]:ml-2"
           />

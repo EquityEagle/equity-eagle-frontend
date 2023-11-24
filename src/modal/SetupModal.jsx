@@ -34,19 +34,27 @@ const SetupModal = () => {
     type: "",
     userId: auth.id,
   });
+  console.log("ideas-data:", data.pair);
 
   const [photo, setPhoto] = useState("");
+
+  useEffect(() => {
+    if (value) {
+      setData({ ...data, image: photo });
+    }
+  }, [data, photo]);
+
+  useEffect(() => {
+    if (typeclick) {
+      setData({ ...data, type: typeclick });
+    }
+  }, [data, typeclick]);
+
   useEffect(() => {
     if (value) {
       setData({ ...data, pair: value });
     }
-    if (value) {
-      setData({ ...data, pair: photo });
-    }
-    if (typeclick) {
-      setData({ ...data, type: typeclick });
-    }
-  }, [value, typeclick, data, photo]);
+  }, [value, data]);
 
   const handleImage = (e) => {
     const file = e.target.files[0];

@@ -9,7 +9,7 @@ import {
 import { FaBell, FaBrain } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { FiBookmark } from "react-icons/fi";
-import { BiMessageAltError } from "react-icons/bi";
+import { BiMessageAltError, BiSolidMessageAltDetail } from "react-icons/bi";
 import { RiAccountPinBoxFill, RiAccountPinCircleFill } from "react-icons/ri";
 
 export const navlinksdata = [
@@ -36,6 +36,13 @@ export const sidenavdata = [
     label: "Notification",
     icon: <FaBell size={25} />,
     isNote: true,
+  },
+  {
+    text: "Messages",
+    link: "/messages",
+    label: "Messages",
+    icon: <BiSolidMessageAltDetail size={25} />,
+    isMsg: true,
   },
   {
     text: "Communities",
@@ -81,6 +88,11 @@ export const mobilenavdata = [
     icon: <RiAccountPinBoxFill size={30} color="#fff" />,
     link: "/account/",
     isprofie: true,
+  },
+  {
+    text: "New Community",
+    link: "/new-community",
+    icon: <MdAddHome size={30} color="#fff" />,
   },
   {
     text: "Communities",

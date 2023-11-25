@@ -9,6 +9,7 @@ import { useCreateModal } from "../../hooks";
 import { NoteIcon } from "../../lib";
 import { useSelector } from "react-redux";
 import { getUnreadNotifications } from "../../helper/fetch";
+import { BiSolidMessageAltDetail } from "react-icons/bi";
 
 const MobileNav = () => {
   const path = useLocation();
@@ -39,11 +40,11 @@ const MobileNav = () => {
           }
         />
       </Link>
-      <Link to="/new-community">
-        <MdAddHome
-          size={25}
+      <Link to="/messages">
+        <BiSolidMessageAltDetail
+          size={27}
           className={
-            path.pathname === "/new-community" ? "text-blue-600" : "text-white"
+            path.pathname === "/messages" ? "text-blue-600" : "text-white"
           }
         />
       </Link>

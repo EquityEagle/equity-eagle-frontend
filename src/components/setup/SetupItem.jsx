@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyledSetupItem } from "../../styles/components/styled";
+import { Flex, StyledSetupItem } from "../../styles/components/styled";
 import { Placeholder } from "../../assets";
 import { ActionButton, BackDrop, BottomDivider, CustomTitle } from "../../lib";
 import { FlexBetween } from "../../styles/Global";
@@ -73,7 +73,6 @@ const SetupItem = ({ item }) => {
             className="w-10 rounded-full max-[700px]:ml-2"
           />
           <div className="flex flex-col">
-            <p className="text-white font-roboto">{item?.username}</p>
             <p className="text-neutral-300 font-kanit text-[13px]">
               {formattedDate}
             </p>
@@ -96,13 +95,18 @@ const SetupItem = ({ item }) => {
         </div>
       </FlexBetween>
       <div className="flex flex-col relative gap-3 h-full p-[12px] max-[700px]:p-[10px]">
-        <TruncatedText
-          text={item?.desc}
-          className="text-neutral-200 font-[300] cursor-pointer flex text-sm font-poppins"
-          maxLength={max}
-          underText={less ? h : s}
-          onClick={goToSetup}
-        />
+        <Flex className="gap-2">
+          <p className="text-white font-kanit p-1 bg-slate-600 rounded-[7px]">
+            {item.pair}
+          </p>
+          <TruncatedText
+            text={item?.desc}
+            className="text-neutral-200 font-[300] cursor-pointer flex text-sm font-poppins"
+            maxLength={max}
+            underText={less ? h : s}
+            onClick={goToSetup}
+          />
+        </Flex>
       </div>
       <img
         src={item?.image?.url}

@@ -18,17 +18,17 @@ const Messages = ({ message }) => {
           alt="user profie"
           className="w-[35px] h-[35px] rounded-full self-end"
         />
-        <div className="flex flex-col gap-[-2px] bg-slate-800 w-[auto] h-auto p-2 relative rounded-t-[12px] rounded-br-[12px]">
-          <p className="text-blue-600 font-kanit text-[14px] translate-y-[2px]">
+        <div className="flex flex-col gap-[-2px] bg-slate-800 w-[auto] h-auto p-3 relative message">
+          {/* <p className="text-blue-600 font-kanit text-[14px] translate-y-[2px]">
             Kingrashy
-          </p>
+          </p> */}
           <div className="flex gap-3">
             <p className="font-poppins text-white font-[400px] text-[14px]">
               How is the challenage going on
             </p>
-            <p className="text-neutral-500 font-kanit text-[12px] self-end mt-2">
+            {/* <p className="text-neutral-500 font-kanit text-[12px] self-end mt-2">
               {formattedDate}
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

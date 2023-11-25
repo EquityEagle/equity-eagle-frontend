@@ -7,7 +7,8 @@ import NotificationItem from "./NotificationItem";
 import { fetchNotifications } from "../../redux/notification";
 
 const NotificationFeed = () => {
-  const userId = useSelector((state) => state.id);
+  //   const userId = useSelector((state) => state.id);
+  const userId = "6556ee59988fc26f5416cb87";
   const dispatch = useDispatch();
   const noteState = useSelector((state) => state.NOTIFICATION);
   const notifications = noteState.NOTIFICATIONS;

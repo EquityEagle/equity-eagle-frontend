@@ -14,7 +14,7 @@ const BackArrow = ({ className, isTrade, setOpenTrade, title }) => {
   return (
     <div
       onClick={isTrade ? closeTrade : back}
-      className={`${className} flex gap-5`}
+      className={`${className} flex gap-5 pb-1 items-center`}
     >
       <BsArrowLeftShort size={30} color="#fff" className="cursor-pointer" />
       <h2 className="text-white font-kanit">{title}</h2>

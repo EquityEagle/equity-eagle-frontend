@@ -36,3 +36,10 @@ export async function ProfileUpdate(userId, photo) {
   );
   return response?.data;
 }
+
+export async function ReadNotification(userId, noteId) {
+  const response = await axios.patch(
+    `${BASE_URL}/notification/mark/${userId}/${noteId}`
+  );
+  return response?.data;
+}

@@ -7,16 +7,15 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ReadNotification } from "../../helper/post";
 import { toast } from "react-toastify";
+import { formatDate } from "../../lib/functions";
 
 const NotificationItem = ({ notification }) => {
   const timestamp = new Date(notification.createdAt);
   // const navigate = useNavigate();
   const userId = useSelector((state) => state.AUTH.id);
   const noteId = notification._id;
-  const formattedDate = timestamp.toLocaleString("en-US", {
-    month: "short",
-    day: "2-digit",
-  });
+
+  const formattedDate = formatDate(timestamp);
 
   async function read(e) {
     await ReadNotification(userId, noteId);

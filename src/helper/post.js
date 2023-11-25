@@ -43,3 +43,10 @@ export async function ReadNotification(userId, noteId) {
   );
   return response?.data;
 }
+
+export async function ConnectUser(userId, connectorsId) {
+  const response = await axios.patch(
+    `${BASE_URL}/user/connect/${userId}/${connectorsId}`
+  );
+  return response?.data;
+}

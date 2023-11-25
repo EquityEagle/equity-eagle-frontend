@@ -8,6 +8,8 @@ import { GiThreeFriends } from "react-icons/gi";
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 import ProfileModal from "./ProfieModal";
 import ProfileUpdateModal from "./ProfileUpdateModal";
+import { ConnectUser } from "../../../helper/post";
+import { toast } from "react-toastify";
 
 const Hero = ({
   openProfileModal,
@@ -16,8 +18,28 @@ const Hero = ({
   openUpdateModal,
   user,
 }) => {
-  // const user = useSelector((state) => state.AUTH);
   const [photoHover, setPhotoHover] = useState(false);
+  const [Loading, setIsLoading] = useState(false);
+  const userId = user._id;
+  const connectorsId = useSelector((state) => state.AUTH.id);
+
+  async function connect() {
+    try {
+      setIsLoading(true);
+      await ConnectUser(userId, connectorsId);
+    } catch (error) {
+      toast.error(error.message, {
+        position: "top-center",
+        className: "toast__alert",
+      });
+    } finally {
+      toast.success(`Success`, {
+        position: "top-center",
+        className: "toast__alert",
+      });
+      setIsLoading(false);
+    }
+  }
   const timestamp = new Date(user.createdAt);
   const formattedDate = timestamp.toLocaleString("en-US", {
     month: "short",
@@ -73,6 +95,9 @@ const Hero = ({
           <Button
             secondary
             text="Connect"
+            isLoading={Loading}
+            disabled={Loading}
+            Onclick={connect}
             className="max-[700px]:hidden absolute -right-[9rem]"
           />
         </Flex>

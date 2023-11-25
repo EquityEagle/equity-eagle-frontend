@@ -5,12 +5,15 @@ import { FlexBetween } from "../../styles/Global";
 import { Placeholder } from "../../assets";
 import TruncatedText from "../../lib/components/TruncatedText";
 import { TestText } from "../../constants";
+import { formatDate } from "../../lib/functions";
 
 const SetupCommentsList = ({ comment }) => {
   const [max, setMax] = useState(80);
   const [less, setLess] = useState(false);
   const [openViewImg, setOpenViewImg] = useState(false);
   const [clickedImg, setClickedImg] = useState("");
+  const timestamp = new Date(comment.createdAt);
+  const formattedDate = formatDate(timestamp);
 
   function show(event) {
     event.stopPropagation();
@@ -43,13 +46,18 @@ const SetupCommentsList = ({ comment }) => {
     <StyledSetupItem>
       <BottomDivider />
       <FlexBetween>
-        <div className="flex gap-2 items-center cursor-pointer p-[1rem] max-[700px]:p-[10px]">
+        <div className="flex gap-4 items-center cursor-pointer p-[1rem] max-[700px]:p-[10px]">
           <img
             src={comment.profile?.url || Placeholder}
             alt="placeholder"
             className="w-10 rounded-full max-[700px]:ml-2"
           />
-          <p className="text-white font-roboto">{comment.username}</p>
+          <div className="flex flex-col">
+            <p className="text-white font-roboto">{comment.username}</p>
+            <p className="text-neutral-300 font-kanit text-[13px]">
+              {formattedDate}
+            </p>
+          </div>
         </div>
       </FlexBetween>
       <div className="flex flex-col relative gap-3 h-full p-[12px] max-[700px]:p-[10px]">

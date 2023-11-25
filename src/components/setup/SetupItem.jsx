@@ -8,6 +8,7 @@ import TruncatedText from "../../lib/components/TruncatedText";
 import { TestText } from "../../constants";
 import { useLocation, useNavigate } from "react-router-dom";
 import SetupMenuModal from "../../modal/SetupMenuModal";
+import { formatDate } from "../../lib/functions";
 
 const SetupItem = ({ item }) => {
   const setupId = item?._id;
@@ -55,13 +56,15 @@ const SetupItem = ({ item }) => {
       See less
     </p>
   );
+  const timestamp = new Date(item.createdAt);
+  const formattedDate = formatDate(timestamp);
 
   return (
     <StyledSetupItem onClick={() => setOpen(false)}>
       <BottomDivider />
       <FlexBetween className="p-[10px] max-[700px]:p-0 max-[700px]:mt-3">
         <div
-          className="flex gap-2 items-center cursor-pointer"
+          className="flex gap-4 items-center cursor-pointer"
           onClick={() => navigate(`/account/${item.username}`)}
         >
           <img
@@ -69,7 +72,12 @@ const SetupItem = ({ item }) => {
             alt="placeholder"
             className="w-10 rounded-full max-[700px]:ml-2"
           />
-          <p className="text-white font-roboto">{item?.username}</p>
+          <div className="flex flex-col">
+            <p className="text-white font-roboto">{item?.username}</p>
+            <p className="text-neutral-300 font-kanit text-[13px]">
+              {formattedDate}
+            </p>
+          </div>
         </div>
         <div className="flex flex-col relative">
           <HiDotsHorizontal

@@ -5,6 +5,7 @@ import TradeReducer from "./trade";
 import AccountReducer from "./accountmetrix";
 import UseAbleReducer from "./useableSlice";
 import UserReducer from "./user";
+import NotificationReducer from "./notification";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     TRADE: TradeReducer,
     Acc: AccountReducer,
     Immute: UseAbleReducer,
+    NOTIFICATION: NotificationReducer,
   },
 });
 

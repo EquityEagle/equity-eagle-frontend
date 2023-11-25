@@ -57,7 +57,7 @@ const SetupItem = ({ item }) => {
   );
 
   return (
-    <StyledSetupItem>
+    <StyledSetupItem onClick={() => setOpen(false)}>
       <BottomDivider />
       <FlexBetween className="p-[10px] max-[700px]:p-0 max-[700px]:mt-3">
         <div
@@ -77,7 +77,10 @@ const SetupItem = ({ item }) => {
             color="#fff"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            onClick={() => setOpen(!open)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setOpen(!open);
+            }}
             className="p-1 rounded-full hover:bg-slate-700 cursor-pointer max-[700px]:mr-2"
           />
           {isHovered && <CustomTitle title="More" className="/top-[35px]" />}
@@ -92,13 +95,13 @@ const SetupItem = ({ item }) => {
           underText={less ? h : s}
           onClick={goToSetup}
         />
-        <img
-          src={item?.image?.url}
-          alt="Image"
-          className="w-full h-[400px] rounded-[9px] cursor-pointer max-[700px]:h-[300px]"
-          onClick={viewImg}
-        />
       </div>
+      <img
+        src={item?.image?.url}
+        alt="Image"
+        className="w-full h-[400px] /rounded-[9px] cursor-pointer max-[700px]:h-[300px]"
+        onClick={viewImg}
+      />
       <div className="flex flex-col">
         <ActionButton setup={item} />
       </div>

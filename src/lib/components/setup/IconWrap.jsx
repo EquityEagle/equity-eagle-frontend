@@ -14,7 +14,7 @@ const IconWrap = ({ className, icon, text, color, bg, title, onClick }) => {
         {icon}
         <p className={`font-roboto ${color} text-sm`}>{text}</p>
       </div>
-      {isHoverd && <CustomTitle title={title} className="top-[35px]" />}
+      {isHoverd && <CustomTitle title={title} className="top-[25px] z-[120]" />}
     </div>
   );
 };

@@ -35,6 +35,7 @@ export const sidenavdata = [
     link: "/notification",
     label: "Notification",
     icon: <FaBell size={25} />,
+    isNote: true,
   },
   {
     text: "Communities",

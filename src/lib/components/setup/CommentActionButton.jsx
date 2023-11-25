@@ -45,7 +45,7 @@ const CommentActionButton = ({ comment }) => {
         title="Likes"
         onClick={likeSetupComments}
       />
-      <IconWrap
+      {/* <IconWrap
         icon={
           stared ? (
             <FaStar className="text-yellow-400 cursor-pointer" size={25} />
@@ -61,7 +61,7 @@ const CommentActionButton = ({ comment }) => {
         bg="hover:bg-yellow-700 max-[800px]:hover:bg-transparent"
         title="Star"
         // onClick={}
-      />
+      /> */}
     </FlexBetween>
   );
 };

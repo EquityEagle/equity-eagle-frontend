@@ -48,3 +48,13 @@ export async function getAccountsProfitData(metrixId) {
   );
   return response?.data;
 }
+
+export async function getNotifications(userId) {
+  const response = await axios.get(`${BASE_URL}/notification/${userId}`);
+  return response?.data;
+}
+
+export async function getUnreadNotifications(userId) {
+  const response = await axios.get(`${BASE_URL}/notification/unread/${userId}`);
+  return response?.data;
+}

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 const NoteIcon = ({ item, className }) => {
   return (
     <>
-      {item.length === 0 ? (
+      {item.length === 0 || item.length < 1 ? (
         ""
       ) : (
         <div

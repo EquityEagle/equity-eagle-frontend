@@ -14,7 +14,7 @@ const MobileNav = () => {
   const path = useLocation();
   const notHome = path.pathname !== "/" && !path.pathname.includes("auth");
   const [notifications, setNotifications] = useState([]);
-  const userId = useSelector((state) => state.id);
+  const userId = useSelector((state) => state.AUTH.id);
 
   useEffect(() => {
     const getNotes = async () => {

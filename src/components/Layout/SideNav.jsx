@@ -20,7 +20,7 @@ const SideNav = () => {
   const path = useLocation();
   const createmodal = useCreateModal();
   const [notifications, setNotifications] = useState([]);
-  const userId = useSelector((state) => state.id);
+  const userId = useSelector((state) => state.AUTH.id);
 
   useEffect(() => {
     const getNotes = async () => {

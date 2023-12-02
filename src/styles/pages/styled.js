@@ -20,7 +20,6 @@ export const StyledStart = styled.section`
 `;
 
 export const StyledDash = styled.div`
-  /* display: flex; */
   display: grid;
   grid-template-columns: 25rem auto 25rem;
   width: 100%;
@@ -28,8 +27,15 @@ export const StyledDash = styled.div`
   position: relative;
   gap: 2rem;
 
+  @media (max-width: 1024px) {
+    grid-template-columns: 7rem auto 20rem;
+    gap: 0;
+  }
   @media (max-width: 800px) {
-    /* grid-template-columns: 100px auto; */
+    grid-template-columns: 7rem auto 3rem;
+    gap: 0;
+  }
+  @media (max-width: 700px) {
     display: flex;
     gap: 1rem;
   }
@@ -53,9 +59,23 @@ export const StyledMetrix = styled.div`
   gap: 2rem;
   padding-right: 2rem;
 
+  @media (max-width: 1024px) {
+    grid-template-columns: 8rem auto;
+    gap: 0;
+    overflow: hidden;
+  }
+
   @media (max-width: 800px) {
-    display: flex;
-    gap: 1rem;
+    grid-template-columns: 8rem auto;
+    display: grid;
+    gap: 0;
     padding-left: 0;
+  }
+
+  @media (max-width: 700px) {
+    display: flex;
+    gap: 0;
+    padding-left: 0;
+    position: relative;
   }
 `;

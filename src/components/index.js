@@ -19,3 +19,4 @@ export { default as ProfileView } from "./communities/ProfileView";
 export { default as MemberMenuModal } from "./communities/MemberMenuModal";
 export { default as AdminMenuModal } from "./communities/AdminMenuModal";
 export { default as NotificationFeed } from "./notification/NotificationFeed";
+export { default as ConnectWith } from "./users/ConnectWith";

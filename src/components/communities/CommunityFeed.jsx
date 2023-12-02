@@ -1,36 +1,65 @@
 import React from "react";
-import { StyledCommunityHeader } from "../../styles/components/styled";
+import {
+  Flex,
+  MobileCommunityHeader,
+  StyledCommunityHeader,
+} from "../../styles/components/styled";
 import { communitydata } from "../../constants/community";
 import { Placeholder } from "../../assets";
 import CommunityItem from "./CommunityItem";
-import { useMobileModal } from "../../hooks";
+import { useCommunitySearch, useMobileModal } from "../../hooks";
 import { FlexBetween } from "../../styles/Global";
+import { IoSearch } from "react-icons/io5";
+import { BsArrowLeftShort } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CommunityFeed = () => {
   const mobilemodal = useMobileModal();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.AUTH);
+  const communityModal = useCommunitySearch();
+
   return (
     <div className="flex flex-col relative w-full">
-      <StyledCommunityHeader className="max-[700px]:fixed z-[100]">
-        <div className="max-[700px]:flex hidden justify-between gap-[10px] w-full">
-          <img
-            src={Placeholder}
-            alt="User profile"
-            onClick={mobilemodal.onOpen}
-            className="w-[40px] h-[40px] rounded-full hidden max-[700px]:block"
+      <StyledCommunityHeader className="z-[100]">
+        <MobileCommunityHeader>
+          <Flex className="gap-3">
+            <BsArrowLeftShort
+              size={35}
+              color="#fff"
+              className="cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(-1);
+              }}
+            />
+            <img
+              src={user.profile?.url || Placeholder}
+              alt="User profile"
+              onClick={mobilemodal.onOpen}
+              className="w-[40px] h-[40px] rounded-full"
+            />
+          </Flex>
+          <IoSearch
+            color="#fff"
+            size={30}
+            onClick={() => communityModal.onOpen()}
+            className="cursor-pointer fixed right-3 z-[100]"
           />
-          <input
-            type="text"
-            placeholder="Search"
-            className="bg-slate-800 outline-none pl-2 text-white font-poppins text-[14px] border-none p-1 rounded-[9px] w-full"
-          />
+        </MobileCommunityHeader>
+        <div className="flex flex-col relative w-full">
+          <div className="flex max-[700px]:hidden p-1 bg-slate-600 rounded-[9px] w-full w z-[100] items-center">
+            <IoSearch color="#fff" size={25} className="cursor-pointer" />
+            <input
+              type="text"
+              className="bg-transparent font-kanit w-full p-1 text-white outline-none border-none"
+              placeholder="Search"
+            />
+          </div>
         </div>
-        <input
-          type="text"
-          placeholder="Search"
-          className="bg-slate-800 max-[700px]:hidden outline-none pl-2 text-white font-poppins text-[14px] border-none p-1 rounded-[9px] w-full"
-        />
       </StyledCommunityHeader>
-      <div className="flex flex-col gap-[1px] relative mt-[1rem] max-[700px]:mt-[4.5rem] max-[700px]:pb-[2rem] max-[350px]:pb-[3rem]">
+      <div className="flex flex-col gap-[1px] mt-[72px] relative max-[700px]:mt-[4.5rem] max-[700px]:pb-[2rem] max-[350px]:pb-[3rem]">
         {communitydata.map((item, index) => (
           <CommunityItem item={item} key={index} />
         ))}

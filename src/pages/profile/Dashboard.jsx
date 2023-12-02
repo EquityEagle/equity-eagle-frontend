@@ -11,11 +11,7 @@ const Dashboard = () => {
   return (
     <StyledDash>
       <SideNav />
-      {openTrade ? (
-        <TradesFeed setOpenTrade={setOpenTrade} />
-      ) : (
-        <DashHero setOpenTrade={setOpenTrade} />
-      )}
+      <DashHero setOpenTrade={setOpenTrade} />
       <NextSideNav />
     </StyledDash>
   );

@@ -24,3 +24,4 @@ export { default as Error } from "./components/Error";
 export { default as ProfieViewHeader } from "./components/ProfieViewHeader";
 export { default as MessageBox } from "./components/MessageBox";
 export { default as NoteIcon } from "./components/NoteIcon";
+export { default as FixedHeader } from "./components/FixedHeader";

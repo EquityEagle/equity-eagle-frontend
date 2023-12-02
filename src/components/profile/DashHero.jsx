@@ -45,7 +45,7 @@ const DashHero = ({ setOpenTrade }) => {
     <StyledHeroDash className="relative max-[700px]:mb-[5rem]">
       <FlexBox className="w-full h-full">
         <img
-          src={Placeholder}
+          src={user.profile?.url || Placeholder}
           alt="User profile"
           onClick={mobilemodal.onOpen}
           className="w-[40px] h-[40px] rounded-full hidden max-[700px]:block"

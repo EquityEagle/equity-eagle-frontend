@@ -163,6 +163,36 @@ export const StyledSetupItem = styled.div`
 export const StyledCommunityHeader = styled.nav`
   display: flex;
   background: #000;
-  width: 100%;
+  width: 725px;
+  height: 70px;
   padding: 1rem;
+  position: fixed;
+  border-bottom: 1px solid rgb(82 82 82);
+
+  @media (max-width: 1024px) {
+    width: 615px;
+  }
+
+  @media (max-width: 800px) {
+    width: 600px;
+  }
+
+  @media (max-width: 700px) {
+    width: 100%;
+    padding: 10px;
+    height: 60px;
+    justify-content: space-between;
+  }
+`;
+
+export const MobileCommunityHeader = styled.div`
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+
+  @media (max-width: 700px) {
+    display: flex;
+  }
 `;

@@ -12,7 +12,7 @@ const CommunityItem = ({ item }) => {
   return (
     <Link
       to={`/communities/${item.slug}`}
-      className="flex gap-[1rem] p-[10px] items-center border-b border-b-black cursor-pointer w-full"
+      className="flex gap-[1rem] p-[10px] items-center hover:bg-slate-800 border-b border-b-black cursor-pointer w-full"
     >
       <img
         src={item.profie || Placeholder}

@@ -3,22 +3,20 @@ import { BsEmojiFrown } from "react-icons/bs";
 import { TbPhotoPlus } from "react-icons/tb";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-// import "emoji-mart/css/emoji-mart.css";
 
 const MessageBox = ({ message, setMessage }) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
-  const handleEmojiSelect = (emoji) => {
+  function addEmoji(emoji) {
     setMessage((prevMessage) => prevMessage + emoji.native);
-    setShowEmojiPicker(false);
-  };
+  }
 
   return (
     <div className="fixed flex flex-col w-full bottom-0">
       {showEmojiPicker && (
         <Picker
           data={data}
-          onSelect={handleEmojiSelect}
+          onEmojiSelect={addEmoji}
           style={{
             position: "relative",
           }}
@@ -28,8 +26,8 @@ const MessageBox = ({ message, setMessage }) => {
         <div className="flex gap-[10px] items-center w-full">
           <BsEmojiFrown
             size={25}
-            onMouseEnter={() => setShowEmojiPicker(true)}
-            onMouseLeave={() => setShowEmojiPicker(false)}
+            // onMouseEnter={() => setShowEmojiPicker(true)}
+            // onMouseLeave={() => setShowEmojiPicker(false)}
             className={`${
               showEmojiPicker ? "text-blue-600" : "text-neutral-600"
             } cursor-pointer hover:text-blue-600`}

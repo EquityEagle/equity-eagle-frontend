@@ -11,6 +11,7 @@ import { GlobalStyles, LeftBlur, Stars } from "./styles/Global";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Account,
+  Connect,
   Current,
   DashBoard,
   LandingPage,
@@ -24,6 +25,7 @@ import {
   SignUp,
 } from "./pages";
 import {
+  CommunitySearch,
   CreateModal,
   MenuModal,
   MobileModal,
@@ -31,6 +33,7 @@ import {
   SetupModal,
   TrackModal,
   TradeModal,
+  UserSearchModal,
 } from "./modal";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -55,12 +58,15 @@ function App() {
       <GlobalStyles />
       <Navbar />
       <ToastContainer draggable bodyClassName="toast__alert" />
+      {/* Modals */}
       <MenuModal />
       <MoreMenuModal />
       <CreateModal />
       <SetupModal />
       <TrackModal />
       <MobileModal />
+      <CommunitySearch />
+      <UserSearchModal />
       <Routes>
         <Route path="/" index element={<LandingPage />} />
         <Route path="/auth/login" index element={<Login />} />
@@ -73,6 +79,7 @@ function App() {
         <Route path="/account/settings" element={<Settings />} />
         <Route path="/communities" element={<Communities />} />
         <Route path="/new-community" element={<NewCommunity />} />
+        <Route path="/connect" element={<Connect />} />
         <Route path="/new-community" element={<NewCommunity />} />
         <Route path="/communities/:communityslug" element={<Current />} />
         <Route path="/dashboard/metrix/:metrixId" element={<Metric />} />

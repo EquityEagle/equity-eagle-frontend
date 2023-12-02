@@ -98,7 +98,7 @@ const Hero = ({
             isLoading={Loading}
             disabled={Loading}
             Onclick={connect}
-            className="max-[700px]:hidden absolute -right-[9rem]"
+            className="max-[700px]:hidden absolute -right-[9rem] max-[1024px]:-right-[5rem] max-[800px]:-right-[10rem]"
           />
         </Flex>
       </div>

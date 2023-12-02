@@ -66,7 +66,9 @@ const SideNav = () => {
                 path.pathname === item.link
                   ? "bg-neutral-800 text-blue-600"
                   : "text-white"
-              } flex gap-2 items-center hover:bg-neutral-800 p-[11px] rounded-[6px]`}
+              } ${
+                item.showOnTab ? "hidden max-[800px]:flex" : "flex"
+              } gap-2 items-center hover:bg-neutral-800 p-[11px] rounded-[6px]`}
               key={index}
             >
               {item.isNote && (

@@ -11,3 +11,4 @@ export { default as Current } from "./communities/Current";
 export { default as Account } from "./profile/Account";
 export { default as NewCommunity } from "./communities/NewCommunity";
 export { default as Notification } from "./Notification/Notification";
+export { default as Connect } from "./users/Connect";

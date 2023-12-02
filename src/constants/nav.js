@@ -2,6 +2,7 @@ import { BsFillPeopleFill, BsHeadsetVr } from "react-icons/bs";
 import {
   MdAddHome,
   MdDashboard,
+  MdOutlineConnectWithoutContact,
   MdOutlineExplore,
   MdOutlineLightMode,
   MdTravelExplore,
@@ -49,6 +50,13 @@ export const sidenavdata = [
     link: "/communities",
     label: "Communities",
     icon: <BsFillPeopleFill size={25} />,
+  },
+  {
+    text: "Connect with traders",
+    link: "/connect",
+    label: "Connect",
+    showOnTab: true,
+    icon: <MdOutlineConnectWithoutContact size={30} color="#fff" />,
   },
   {
     text: "Dashboard",
@@ -108,6 +116,11 @@ export const mobilenavdata = [
     text: "Settings",
     icon: <IoMdSettings size={30} color="#fff" />,
     link: "/account/settings",
+  },
+  {
+    text: "Connect with traders",
+    link: "/connect",
+    icon: <MdOutlineConnectWithoutContact size={30} color="#fff" />,
   },
   {
     text: "Report a problem",

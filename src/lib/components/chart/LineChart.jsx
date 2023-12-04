@@ -112,7 +112,7 @@ const LineChart = ({ data }) => {
         data={chartData}
         height={400}
         width={`100%`}
-        style={{ overflowX: "auto", position: "relative", maxWidth: "100%" }}
+        style={{ overflowX: "auto", position: "relative", width: "100%" }}
         getElement={(chart) => {
           // Check if the chart object exists and if the canvas element exists
           if (chart && chart.canvas) {

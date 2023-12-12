@@ -111,13 +111,13 @@ const LineChart = ({ data }) => {
       <Line
         data={chartData}
         height={400}
-        width={`100%`}
-        style={{ overflowX: "auto", position: "relative", width: "100%" }}
+        // width={`100%`}
+        style={{ overflowX: "auto", position: "relative" }}
         getElement={(chart) => {
           // Check if the chart object exists and if the canvas element exists
           if (chart && chart.canvas) {
             // Apply additional styles directly to the canvas
-            chart.canvas.style.width = "100%";
+            // chart.canvas.style.width = "100%";
             chart.canvas.style.height = "400px"; // Set the desired height
           }
         }}

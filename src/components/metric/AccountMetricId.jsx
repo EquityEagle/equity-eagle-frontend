@@ -31,7 +31,7 @@ const AccountMetricId = ({ userdata, setOpenTrade }) => {
   const nodata = !metrix._id || !metrix;
 
   return (
-    <div className="flex flex-col relative gap-[2rem] w-full h-full">
+    <div className="flex flex-col relative gap-[2rem] w-full h-full overflow-x-hidden">
       {nodata ? (
         <Error
           onClick={tryagain}

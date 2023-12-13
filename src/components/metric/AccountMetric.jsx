@@ -6,8 +6,6 @@ import { GoGraph } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { saveId, uncheck } from "../../redux/accountmetrix";
-import { IoMdAddCircleOutline } from "react-icons/io";
-import { MdAddCircleOutline } from "react-icons/md";
 import { useTradeModal } from "../../hooks";
 
 const AccountMetric = ({ userdata, setOpenTrade }) => {
@@ -83,8 +81,8 @@ const AccountMetric = ({ userdata, setOpenTrade }) => {
               ) : (
                 <div className="flex gap-3 items-center">
                   <Link
-                    to={`/dashboard/metrix/${item._id}`}
-                    onClick={() => dispatch(saveId(item._id))}
+                    to={`/dashboard/metrix/${item.accounthash}`}
+                    onClick={() => dispatch(saveId(item.accounthash))}
                   >
                     <Flex className="cursor-pointer gap-2">
                       <GoGraph

@@ -50,3 +50,16 @@ export async function ConnectUser(userId, connectorsId) {
   );
   return response?.data;
 }
+
+export async function journal(data, accounthash) {
+  const response = await axios.post(`${BASE_URL}/trade/new/${accounthash}/`, {
+    // accounthash: data.trackId,
+    symbol: data.symbol,
+    type: data.type,
+    lotSize: data.lotSize,
+    why: data.why,
+    profit: data.profit,
+    loss: data.loss,
+  });
+  return response?.data;
+}

@@ -4,10 +4,12 @@ import AccountStatic from "./AccountStatic";
 import AccountObject from "./AccountObject";
 import TradeJournal from "./TradeJournal";
 import { useDispatch, useSelector } from "react-redux";
-import { getAccounts } from "../../helper/fetch";
+import { getAccountTrades, getAccounts } from "../../helper/fetch";
 import MetrixDetails from "./MetrixDetails";
 import { Error, ScaleInLoader } from "../../lib";
 import { findAccountMetrix } from "../../redux/accountmetrix";
+import MetrixHeader from "./MetrixHeader";
+import { MetrixDeleteModel } from "../../modal";
 
 const AccountMetricId = ({ userdata, setOpenTrade }) => {
   const Ids = useSelector((state) => state.Acc.Ids);
@@ -15,6 +17,17 @@ const AccountMetricId = ({ userdata, setOpenTrade }) => {
   const metrixState = useSelector((state) => state.Acc);
   const isLoading = metrixState.METRIX_STATUS === "Pending";
   const dispatch = useDispatch();
+
+  const [trades, setTrades] = useState([]);
+  useEffect(() => {
+    const gettrades = async () => {
+      const data = await getAccountTrades(metrix._id);
+      setTrades(data);
+    };
+    if (metrix._id) {
+      gettrades();
+    } else return;
+  }, [trades]);
 
   useEffect(() => {
     dispatch(findAccountMetrix(Ids));
@@ -32,6 +45,7 @@ const AccountMetricId = ({ userdata, setOpenTrade }) => {
 
   return (
     <div className="flex flex-col relative gap-[2rem] w-full h-full overflow-x-auto/">
+      {isLoading ? "" : <MetrixHeader />}
       {nodata ? (
         <Error
           onClick={tryagain}
@@ -47,13 +61,14 @@ const AccountMetricId = ({ userdata, setOpenTrade }) => {
             ""
           ) : (
             <FlexBox className="max-[800px]:flex-col max-[700px]:flex-col gap-[2rem]">
-              <AccountStatic metrix={metrix} />
+              <AccountStatic metrix={metrix} trades={trades} />
               <AccountObject metrix={metrix} />
             </FlexBox>
           )}
-          {isLoading ? "" : <TradeJournal metrix={metrix} />}
+          {isLoading ? "" : <TradeJournal metrix={metrix} trades={trades} />}
         </>
       )}
+      <MetrixDeleteModel />
     </div>
   );
 };

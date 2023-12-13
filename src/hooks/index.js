@@ -7,3 +7,4 @@ export { default as useTrackModal } from "./useTrackModal";
 export { default as useMobileModal } from "./useMobileModal";
 export { default as useUserSearchModal } from "./useUsersSearchModal";
 export { default as useCommunitySearch } from "./useCommunitySearchModal";
+export { default as useDeleteModelMetrix } from "./useDeleteModelMetrix";

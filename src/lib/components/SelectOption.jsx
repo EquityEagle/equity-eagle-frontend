@@ -59,7 +59,7 @@ export const SelectOptionII = ({
         <Option
           className="max-[700px]:w-full"
           value={item.pair}
-          onClick={() => setTypeClick(item.pair)}
+          onClick={() => setTypeClick({ ...stateData, type: item.pair })}
         >
           {item.pair}
         </Option>

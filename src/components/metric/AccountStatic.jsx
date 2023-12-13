@@ -2,15 +2,23 @@ import React from "react";
 import { Flex, FlexBox } from "../../styles/components/styled";
 import { BottomDivider } from "../../lib";
 import { formatNumberWithK } from "../../lib/functions";
+import {
+  calTotalLoss,
+  calTotalProfit,
+  calWinrate,
+} from "../../lib/functions/metrix";
 
-const AccountStatic = ({ metrix }) => {
-  const totalTrade = metrix.trades;
+const AccountStatic = ({ metrix, trades }) => {
+  const totalTrade = trades.length;
   const formattedTrade = formatNumberWithK(totalTrade);
-  const winRate = metrix.winrate;
-  const totalLoss = metrix.totalLoss;
-  const totalProfit = metrix.totalProfit;
+  const winRate = calWinrate(trades);
+  const totalLoss = calTotalLoss(trades);
+  const totalProfit = calTotalProfit(trades);
   const equity = metrix.balance + totalProfit - totalLoss;
-  const rrr = totalProfit / totalLoss;
+  const rrr = totalLoss;
+
+  // console.log("rr:", rrr);
+
   return (
     <div className="flex-col bg-black shadow flex relative w-full rounded-[12px] max-[700px]:w-[90%]">
       <FlexBox className="p-[1rem]">

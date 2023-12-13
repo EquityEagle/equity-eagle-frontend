@@ -17,7 +17,7 @@ const MetrixDetails = ({ metrix }) => {
   }, []);
 
   return (
-    <div className="flex flex-col w-full overflow-x-auto border-[6px] rounded-[9px] border-blue-600 relative">
+    <div className="flex flex-col w-full overflow-x-auto border-[6px] rounded-[1px] border-blue-600 relative">
       {profitdata && <LineChart data={profitdata} />}
     </div>
   );

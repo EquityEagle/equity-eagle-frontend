@@ -62,7 +62,7 @@ export const StyledMetrix = styled.div`
   @media (max-width: 1024px) {
     grid-template-columns: 8rem auto;
     gap: 0;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
   @media (max-width: 800px) {
@@ -74,8 +74,13 @@ export const StyledMetrix = styled.div`
 
   @media (max-width: 700px) {
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
     gap: 0;
     padding-left: 0;
     position: relative;
+    margin-right: 0;
+    padding-right: 0;
   }
 `;

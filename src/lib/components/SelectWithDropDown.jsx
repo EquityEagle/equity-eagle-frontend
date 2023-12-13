@@ -48,12 +48,12 @@ const SelectWithDropDown = ({ text, data, setData }) => {
               .map((item, index) => (
                 <p
                   className="text-white cursor-pointer font-roboto"
+                  key={index}
                   onClick={() => {
                     setSelectedText(item.pair);
                     setOpenSelect(false);
                     setData({ ...data, symbol: item.pair });
                   }}
-                  key={index}
                 >
                   {item.pair}
                 </p>

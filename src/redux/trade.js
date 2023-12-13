@@ -20,19 +20,22 @@ export const DocumentTrade = createAsyncThunk(
   "trade/doc",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${BASE_URL}/trade/new/`, {
-        trackId: data.trackId,
-        symbol: data.symbol,
-        type: data.type,
-        lotSize: data.lotSize,
-        why: data.why,
-        profit: data.profit,
-        loss: data.loss,
-      });
+      const response = await axios.post(
+        `${BASE_URL}/trade/new/${data.trackId}/`,
+        {
+          accounthash: data.trackId,
+          symbol: data.symbol,
+          type: data.type,
+          lotSize: data.lotSize,
+          why: data.why,
+          profit: data.profit,
+          loss: data.loss,
+        }
+      );
       return response?.data;
     } catch (error) {
       console.log(error.response.data);
-      toast.error(error.response.data, {
+      toast.error(error.response.data || error || error.message, {
         position: "top-center",
         className: "toast__alert",
       });

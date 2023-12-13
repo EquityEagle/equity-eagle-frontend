@@ -7,21 +7,26 @@ import { DocumentTrade } from "../redux/trade";
 import { SectionOne } from "../components";
 import { IoClose } from "react-icons/io5";
 import { useParams } from "react-router-dom";
+import { journal } from "../helper/post";
+import { toast } from "react-toastify";
 
-const TradeModal = ({ accountId }) => {
+const TradeModal = () => {
   const trademodal = useTradeModal();
   const open = trademodal.isOpen;
+  const metrixId = useSelector((state) => state.Acc.Ids);
+  const accounthash = metrixId;
   function backModal() {
     trademodal.onClose();
   }
 
   const user = useSelector((state) => state.AUTH);
   const Docdata = useSelector((state) => state.TRADE);
-  const isLoading = Docdata.DOC_STATUS === "Loading";
+  // const isLoading = Docdata.DOC_STATUS === "Loading";
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const [data, setData] = useState({
-    trackId: "",
+    // trackId: metrixId,
     symbol: "",
     type: "",
     lotSize: 0,
@@ -31,26 +36,36 @@ const TradeModal = ({ accountId }) => {
   });
 
   useEffect(() => {
-    setData({ ...data, trackId: accountId });
-  }, [accountId]);
+    console.log("data:", data);
+  }, [data]);
 
-  function docTrade() {
-    dispatch(DocumentTrade(data));
-    setTimeout(() => {
-      setData(
-        {
-          symbol: "",
-          type: "",
-          lotSize: 0,
-          profit: 0,
-          loss: 0,
-          confluence: "",
-          why: "",
-          setup: "",
-        },
-        3000
-      );
-    });
+  async function docTrade() {
+    // dispatch(DocumentTrade(data));
+    setIsLoading(true);
+    try {
+      await journal(data, accounthash);
+      toast.success("Trade saved", { position: "top-center" });
+    } catch (error) {
+      console.log(error.message);
+      toast.error(error.message, { position: "top-center" });
+    } finally {
+      setIsLoading(false);
+    }
+    // setTimeout(() => {
+    //   setData(
+    //     {
+    //       symbol: "",
+    //       type: "",
+    //       lotSize: 0,
+    //       profit: 0,
+    //       loss: 0,
+    //       confluence: "",
+    //       why: "",
+    //       setup: "",
+    //     },
+    //     3000
+    //   );
+    // });
   }
 
   const body = (

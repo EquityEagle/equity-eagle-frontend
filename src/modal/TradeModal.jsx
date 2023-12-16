@@ -51,21 +51,21 @@ const TradeModal = () => {
     } finally {
       setIsLoading(false);
     }
-    // setTimeout(() => {
-    //   setData(
-    //     {
-    //       symbol: "",
-    //       type: "",
-    //       lotSize: 0,
-    //       profit: 0,
-    //       loss: 0,
-    //       confluence: "",
-    //       why: "",
-    //       setup: "",
-    //     },
-    //     3000
-    //   );
-    // });
+    setTimeout(() => {
+      setData(
+        {
+          symbol: "",
+          type: "",
+          lotSize: 0,
+          profit: 0,
+          loss: 0,
+          confluence: "",
+          why: "",
+          setup: "",
+        },
+        3000
+      );
+    });
   }
 
   const body = (

@@ -56,6 +56,12 @@ const SetupModal = () => {
     }
   }, [value, data]);
 
+  useEffect(() => {
+    if (photo) {
+      setData({ ...data, image: photo });
+    }
+  }, [photo, data]);
+
   const handleImage = (e) => {
     const file = e.target.files[0];
     TransFormFile(file);

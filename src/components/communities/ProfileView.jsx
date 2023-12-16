@@ -31,18 +31,18 @@ const ProfileView = ({ setViewProfie }) => {
     >
       <div className="flex max-[700px]:w-full w-[700px] fixed bg-[rgb(0,0,0,0.5)] items-center z-[100] justify-between p-2">
         <IoMdArrowBack
-          size={25}
-          className="cursor-pointer"
+          size={35}
+          className="cursor-pointer hover:bg-neutral-800 p-2 rounded-[9px]"
           color="#fff"
           onClick={() => setViewProfie(false)}
         />
         <BsThreeDotsVertical
-          size={25}
+          size={35}
           onClick={(e) => {
             setOpenMenu(!openMenu);
             e.stopPropagation();
           }}
-          className="cursor-pointer"
+          className="cursor-pointer hover:bg-neutral-800 p-2 rounded-[9px]"
           color="#fff"
         />
       </div>

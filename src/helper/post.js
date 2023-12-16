@@ -63,3 +63,14 @@ export async function journal(data, accounthash) {
   });
   return response?.data;
 }
+
+export async function editTrade(tradeId, data) {
+  const response = await axios.patch(`${BASE_URL}/trade/edit/${tradeId}`, {
+    setupImg: data.setupImg,
+    entrysty: data.entrySty,
+    exitsty: data.exitSty,
+    comments: data.comments,
+  });
+
+  return response?.data;
+}

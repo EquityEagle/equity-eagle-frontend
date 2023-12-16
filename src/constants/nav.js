@@ -1,21 +1,19 @@
-import { BsFillPeopleFill, BsHeadsetVr } from "react-icons/bs";
+import { BsFillPeopleFill } from "react-icons/bs";
 import {
   MdAddHome,
   MdDashboard,
   MdOutlineConnectWithoutContact,
-  MdOutlineExplore,
-  MdOutlineLightMode,
-  MdTravelExplore,
 } from "react-icons/md";
 import { FaBell, FaBrain } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { FiBookmark } from "react-icons/fi";
 import { BiMessageAltError, BiSolidMessageAltDetail } from "react-icons/bi";
-import { RiAccountPinBoxFill, RiAccountPinCircleFill } from "react-icons/ri";
+import { RiAccountPinBoxFill } from "react-icons/ri";
 
 export const navlinksdata = [
   { text: "Home", link: "/" },
-  // { text: "Get in touch", link: "/get-in-touch" },
+  { text: "Sign Up", link: "/auth/sign-up" },
+  { text: "Login", link: "/auth/login" },
 ];
 
 export const sidenavdata = [

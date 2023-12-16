@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import TopHeader from "../Layout/TopHeader";
 import { ScaleInLoader } from "../../lib";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import SetupItem from "./SetupItem";
 import { useParams } from "react-router-dom";
-import { viewSetup } from "../../redux/setup";
 import Comments from "../input/Comments";
 import SetupComments from "../comments/SetupComments";
 import { getViewdSetup } from "../../helper/fetch";
 
 const ViewedSetup = () => {
-  const dispatch = useDispatch();
   const { setupId } = useParams();
   const user = useSelector((state) => state.AUTH);
   const [loading, setLoading] = useState(false);
@@ -25,7 +23,7 @@ const ViewedSetup = () => {
       setLoading(false);
     };
     getViewd();
-  }, [setupId]);
+  }, [setupId, user.id]);
 
   return (
     <div

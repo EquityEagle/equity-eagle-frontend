@@ -64,9 +64,9 @@ const DashHero = ({ setOpenTrade }) => {
       {isLoading && <ScaleInLoader className="items-center" />}
       {Rejected && (
         <Error
-          network
-          btnText="Refresh"
-          text="Network error. Please try again later."
+          // network
+          btnText="Retry"
+          text="Cannot retieve accounts at this time. Please try again later"
           onClick={refreshFetch}
         />
       )}

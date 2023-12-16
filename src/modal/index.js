@@ -11,3 +11,4 @@ export { default as NewCommunityModal } from "./NewCommunityModal";
 export { default as CommunitySearch } from "./CommunitySearch";
 export { default as UserSearchModal } from "./UserSearchModal";
 export { default as MetrixDeleteModel } from "./MetrixDeleteModel";
+export { default as TradeDetails } from "./TradeDetails";

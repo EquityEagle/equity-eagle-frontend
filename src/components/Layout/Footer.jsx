@@ -89,19 +89,25 @@ const Footer = () => {
         <h2 className="text-blue-600 font-kanit text-[18px]">Get in touch</h2>
         <div className="flex gap-4">
           <a
-            href="#"
+            href="https://twitter.com/kingrashy64"
+            target="_blank"
+            rel="noreferrer"
             className="text-white text-[16px] hover:opacity-75 font-kanit"
           >
             <FaSquareXTwitter size={25} className="cursor-pointer" />
           </a>
           <a
-            href="#"
+            href="https://instagram.com/iamkingrashy"
+            target="_blank"
+            rel="noreferrer"
             className="text-white text-[16px] hover:opacity-75 font-kanit"
           >
             <FaInstagram size={25} color="" className="cursor-pointer" />
           </a>
           <a
-            href="#"
+            href="/"
+            target="_blank"
+            rel="noreferrer"
             className="text-white text-[16px] hover:opacity-75 font-kanit"
           >
             <FaWhatsapp size={25} className="cursor-pointer text-green-500" />

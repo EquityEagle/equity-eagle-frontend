@@ -27,9 +27,9 @@ const Account = () => {
       ) : error ? (
         <div className="flex flex-col w-full h-full translate-y-32">
           <Error
-            network
+            text="Cannot retieve user at this time. Please try again later"
             btnText="Retry"
-            text="Error fetching user, try again"
+            className="translate-y-52"
             onClick={() => dispatch(getAvailbleUser(username))}
           />
         </div>

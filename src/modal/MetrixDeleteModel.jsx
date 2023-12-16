@@ -1,22 +1,48 @@
 import React, { useState } from "react";
 import { useDeleteModelMetrix } from "../hooks";
-import { BackDrop, BottomDivider, Button, StyledInput } from "../lib";
+import {
+  BackDrop,
+  BottomDivider,
+  Button,
+  ScaleInLoader,
+  StyledInput,
+} from "../lib";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { deleteMetrix } from "../helper/delete";
 
 const MetrixDeleteModel = () => {
   const metrixmodel = useDeleteModelMetrix();
   const open = metrixmodel.isOpen;
-  const metrix = useSelector((state) => state.Acc.METRIX);
+  const metrix = useSelector((state) => state.Acc);
   const [value, setValue] = useState("");
   const [throwError, setThrowErro] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const accounthash = metrix.Ids;
+
+  const del = async () => {
+    setDeleting(true);
+    setTimeout(() => {
+      setDeleting(false);
+    }, 3000);
+    try {
+      await deleteMetrix(accounthash);
+      toast.success("Account deleted", { position: "top-center" });
+      window.location = "/dashboard";
+    } catch (error) {
+      toast.error(error.message || error);
+    } finally {
+      setDeleting(false);
+    }
+  };
 
   function Delete() {
-    if (value !== metrix.type) {
+    if (value !== metrix.METRIX.type) {
       setThrowErro(true);
       toast.error("Input your exact type", { position: "top-center" });
-    } else if (value === metrix.type) {
+    } else if (value === metrix.METRIX.type) {
       toast.success("Type correct", { position: "top-center" });
+      del();
     }
   }
 
@@ -43,6 +69,8 @@ const MetrixDeleteModel = () => {
         />
         <Button secondary text="Delete" Onclick={Delete} />
       </div>
+
+      {deleting && <BackDrop chaild={<ScaleInLoader />} />}
     </div>
   );
 

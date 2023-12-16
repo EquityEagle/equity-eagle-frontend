@@ -38,7 +38,7 @@ const TrackModal = () => {
         accountsize: "",
         accounttype: "",
       });
-    }, 2000);
+    }, 5000);
   }
 
   const body = (

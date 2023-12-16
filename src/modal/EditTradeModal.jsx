@@ -3,28 +3,55 @@ import { IoClose } from "react-icons/io5";
 import { BackDrop, BottomDivider, Button, CustomTitle } from "../lib";
 import { MdAddCircleOutline } from "react-icons/md";
 import { BsInfoCircleFill } from "react-icons/bs";
+import { TransformImage } from "../lib/functions";
+import { toast } from "react-toastify";
+import { editTrade } from "../helper/post";
 
 const EditTradeModal = ({ setOpen, open, tradeId }) => {
   const imgRef = useRef();
   const [isLoading, setIsLoading] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [photo, setPhoto] = useState("");
+
+  console.log("photo:", photo);
 
   const [data, setData] = useState({
-    tradeId: "",
     setupImg: "",
     entrySty: "",
     exitSty: "",
     comments: "",
   });
 
-  useEffect(() => {
-    setData({ ...data, tradeId: tradeId });
-  }, [tradeId]);
+  const { handleImageUpload } = TransformImage(setPhoto);
 
-  function handleImageUpload() {}
+  useEffect(() => {
+    setData({ ...data, setupImg: photo });
+  }, [photo, data]);
+
+  async function edit() {
+    setIsLoading(true);
+    try {
+      await editTrade(tradeId, data);
+      toast.success("Trade edited", { position: "top-center" });
+      setData({
+        ...data,
+        setupImg: "",
+        entrySty: "",
+        exitSty: "",
+        comments: "",
+      });
+    } catch (error) {
+      toast.error(error.message || error, { position: "top-center" });
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const body = (
-    <div className="flex flex-col bg-black relative w-[400px] shadow shadow-slate-600 max-[700px]:bottom-0 max-[700px]:fixed max-[700px]:w-full max-[700px]:rounded-b-[0] max-[700px]:rounded-t-[12px] rounded-[10px] h-[auto] z-[150]">
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="flex flex-col bg-black relative w-[400px] shadow shadow-slate-600 max-[700px]:bottom-0 max-[700px]:fixed max-[700px]:w-full max-[700px]:rounded-b-[0] max-[700px]:rounded-t-[12px] rounded-[10px] h-[auto] z-[150]"
+    >
       <div className="flex p-[1rem] justify-between items-center">
         <h1 className="font-kanit text-[25px] text-white">Edit trade</h1>
         <IoClose
@@ -42,8 +69,12 @@ const EditTradeModal = ({ setOpen, open, tradeId }) => {
             className="flex bg-slate-700 gap-1 p-2 w-full rounded-[7px] cursor-pointer"
             onClick={() => imgRef.current.click()}
           >
-            <MdAddCircleOutline size={25} color="#fff" />
-            <p className="text-white font-poppins">Select file</p>
+            {photo ? "" : <MdAddCircleOutline size={25} color="#fff" />}
+            {photo ? (
+              <img src={photo} alt="Chart" className="w-full h-[250px]" />
+            ) : (
+              <p className="text-white font-poppins">Select file</p>
+            )}
           </div>
         </div>
         <div className="flex-col flex gap-[6px] items-start">
@@ -96,11 +127,21 @@ const EditTradeModal = ({ setOpen, open, tradeId }) => {
             onChange={handleImageUpload}
           />
         </div>
-        <Button secondary text="Save" />
+        <Button
+          secondary
+          text="Save"
+          isLoading={isLoading}
+          disabled={isLoading}
+          Onclick={edit}
+        />
       </div>
     </div>
   );
-  return <div>{open && <BackDrop chaild={body} />}</div>;
+  return (
+    <div>
+      {open && <BackDrop chaild={body} onClick={() => setOpen(false)} />}
+    </div>
+  );
 };
 
 export default EditTradeModal;

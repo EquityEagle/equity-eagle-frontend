@@ -4,7 +4,7 @@ import { StyledDash } from "../../styles/pages/styled";
 
 const Setups = () => {
   useEffect(() => {
-    document.title = "Trade Ideas - EquityEagle";
+    document.title = "Ideas - EquityEagle";
   });
 
   return (

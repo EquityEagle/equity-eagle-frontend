@@ -18,10 +18,10 @@ const Messages = ({ message }) => {
           alt="user profie"
           className="w-[35px] h-[35px] rounded-full self-end"
         />
-        <div className="flex flex-col gap-[-2px] bg-slate-800 w-[auto] h-auto p-3 relative message">
-          {/* <p className="text-blue-600 font-kanit text-[14px] translate-y-[2px]">
+        <div className="flex flex-col gap-[-2px] w-[auto] h-auto p-3 relative sender">
+          <p className="text-black font-kanit text-[14px] translate-y-[2px]/ font-semibold">
             Kingrashy
-          </p> */}
+          </p>
           <div className="flex gap-3">
             <p className="font-poppins text-white font-[400px] text-[14px]">
               How is the challenage going on

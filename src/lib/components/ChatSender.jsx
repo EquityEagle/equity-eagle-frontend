@@ -5,8 +5,9 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { AiFillAudio } from "react-icons/ai";
 
-const MessageBox = ({ message, setMessage }) => {
+const ChatSender = ({ message, setMessage }) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  // const [message, setMessage] = useState("");
 
   function addEmoji(emoji) {
     setMessage((prevMessage) => prevMessage + emoji.native);
@@ -24,7 +25,7 @@ const MessageBox = ({ message, setMessage }) => {
           }}
         />
       )}
-      <div className="max-[700px]:flex max-[700px]:w-full justify-between pr-[17px] w-[700px] flex pl-[15px] items-center border-t border-neutral-700 bottom-0 bg-black p-[10px]">
+      <div className="max-[700px]:flex max-[700px]:w-full justify-between pr-[17px] w-[850px] flex pl-[15px] items-center border-t border-neutral-700 bottom-0 bg-black p-[10px]">
         <div className="flex gap-[10px] items-center w-full">
           <BsEmojiFrown
             size={38}
@@ -57,4 +58,4 @@ const MessageBox = ({ message, setMessage }) => {
   );
 };
 
-export default MessageBox;
+export default ChatSender;

@@ -3,7 +3,15 @@ import { ImFileEmpty } from "react-icons/im";
 import { MdSignalWifiStatusbarNotConnected } from "react-icons/md";
 import Button from "./Button";
 
-const Error = ({ network, empty, tryAgain, text, onClick, btnText }) => {
+const Error = ({
+  network,
+  empty,
+  className,
+  tryAgain,
+  text,
+  onClick,
+  btnText,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   function loadBeforeClick() {
     setIsLoading(true);
@@ -13,7 +21,9 @@ const Error = ({ network, empty, tryAgain, text, onClick, btnText }) => {
     }, 2000);
   }
   return (
-    <div className="flex flex-col relative gap-[2rem] items-center h-full justify-center">
+    <div
+      className={`flex ${className} flex-col relative gap-[2rem] items-center h-full justify-center`}
+    >
       {network && (
         <MdSignalWifiStatusbarNotConnected
           size={100}
@@ -21,7 +31,7 @@ const Error = ({ network, empty, tryAgain, text, onClick, btnText }) => {
         />
       )}
       {empty && <ImFileEmpty size={100} className="text-neutral-500" />}
-      <p className="text-white font-poppins">{text}</p>
+      <p className="text-neutral-500 font-poppins">{text}</p>
       <Button
         width="150px"
         Onclick={loadBeforeClick}

@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { saveId, uncheck } from "../../redux/accountmetrix";
 import { useTradeModal } from "../../hooks";
+import { getEquity } from "../../lib/functions/metrix";
 
 const AccountMetric = ({ userdata, setOpenTrade }) => {
   const data = useSelector((state) => state.Acc);
@@ -23,6 +24,7 @@ const AccountMetric = ({ userdata, setOpenTrade }) => {
       {data.ACCOUNTS?.map((item, index) => {
         const checked = data.UNVISIBLE.find((id) => id === item._id);
         const profits = item.trades.map((trade) => trade.profit);
+        const trades = item.trades;
         const Loss = item.trades.map((trade) => trade.loss);
         const totalProfit =
           profits.length === 0
@@ -32,7 +34,7 @@ const AccountMetric = ({ userdata, setOpenTrade }) => {
           Loss.length === 0
             ? 0
             : Loss.reduce((max, value) => Math.max(max, value), 0);
-        const equity = item.accountsize + totalProfit - totalLoss;
+        const equity = getEquity(trades, item.accountsize);
 
         return (
           <div

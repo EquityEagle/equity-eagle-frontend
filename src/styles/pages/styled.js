@@ -84,3 +84,24 @@ export const StyledMetrix = styled.div`
     padding-right: 0;
   }
 `;
+
+export const StyledMessg = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  gap: 6rem;
+
+  @media (max-width: 1024px) {
+    display: flex;
+    gap: 10px;
+  }
+  @media (max-width: 800px) {
+    display: flex;
+    gap: 10px;
+  }
+  @media (max-width: 700px) {
+    display: flex;
+    gap: 1rem;
+  }
+`;

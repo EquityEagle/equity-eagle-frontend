@@ -11,8 +11,8 @@ const ProfieViewHeader = ({ data, setViewProfie, openMenu, setOpenMenu }) => {
   return (
     <div className="flex gap-[10px] fixed items-center z-[120] border-b border-neutral-800 max-[700px]:w-full w-[700px] bg-black p-[10px]">
       <IoMdArrowBack
-        size={25}
-        className="cursor-pointer"
+        size={35}
+        className="cursor-pointer hover:bg-neutral-800 p-2 rounded-[9px]"
         color="#fff"
         onClick={() => navigate(-1)}
       />
@@ -30,12 +30,12 @@ const ProfieViewHeader = ({ data, setViewProfie, openMenu, setOpenMenu }) => {
       </p>
       <div className="flex flex-col absolute right-4">
         <BsThreeDotsVertical
-          size={25}
+          size={35}
           onClick={(e) => {
             setOpenMenu(!openMenu);
             e.stopPropagation();
           }}
-          className="cursor-pointer"
+          className="cursor-pointer hover:bg-neutral-800 p-2 rounded-[9px]"
           color="#fff"
         />
         {openMenu && <MemberMenuModal setViewProfie={setViewProfie} />}

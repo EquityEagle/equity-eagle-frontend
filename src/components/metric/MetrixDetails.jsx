@@ -14,10 +14,10 @@ const MetrixDetails = ({ metrix }) => {
     if (metrix._id) {
       gettrades();
     } else return;
-  }, []);
+  }, [metrixId, metrix._id]);
 
   return (
-    <div className="flex flex-col w-full overflow-x-auto border-[6px] rounded-[1px] border-blue-600 relative">
+    <div className="flex flex-col w-full overflow-x-auto border-[6px] /border-blue-600 relative">
       {profitdata && <LineChart data={profitdata} />}
     </div>
   );

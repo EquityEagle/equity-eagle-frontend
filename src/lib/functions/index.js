@@ -30,3 +30,24 @@ export const formatDate = (timestamp) => {
     return `${seconds} second${seconds !== 1 ? "s" : ""} ago`;
   }
 };
+
+export function TransformImage(setPhoto) {
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    transformFile(file);
+  };
+
+  function transformFile(file) {
+    const reader = new FileReader();
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setPhoto(reader.result);
+      };
+    } else {
+      setPhoto("");
+    }
+  }
+
+  return { handleImageUpload };
+}

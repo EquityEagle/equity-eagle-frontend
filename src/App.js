@@ -1,13 +1,7 @@
-import {
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import { Footer, MobileNav, Navbar } from "./components";
-import { GlobalStyles, LeftBlur, Stars } from "./styles/Global";
+import { GlobalStyles } from "./styles/Global";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Account,
@@ -16,6 +10,7 @@ import {
   DashBoard,
   LandingPage,
   Login,
+  Messages,
   Metric,
   NewCommunity,
   Notification,
@@ -32,7 +27,6 @@ import {
   MoreMenuModal,
   SetupModal,
   TrackModal,
-  TradeModal,
   UserSearchModal,
 } from "./modal";
 import { useSelector } from "react-redux";
@@ -44,7 +38,6 @@ function App() {
   const user = useSelector((state) => state.AUTH);
   const navigate = useNavigate();
   const path = useLocation();
-  const { communityslug } = useParams();
 
   useEffect(() => {
     if (user.userLoaded) {
@@ -74,6 +67,7 @@ function App() {
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/notification" element={<Notification />} />
         <Route path="/ideas" element={<Setups />} />
+        <Route path="/messages" element={<Messages />} />
         <Route path="/account/:username" element={<Account />} />
         <Route path="/ideas/statusId/:setupId" element={<SetupId />} />
         <Route path="/account/settings" element={<Settings />} />
@@ -85,7 +79,12 @@ function App() {
         <Route path="/dashboard/metrix/:metrixId" element={<Metric />} />
       </Routes>
       {path.pathname.includes("auth") ? "" : <Footer />}
-      {path.pathname.includes("communities") ? "" : <MobileNav />}
+      {path.pathname.includes("communities") ||
+      path.pathname === "/messages" ? (
+        ""
+      ) : (
+        <MobileNav />
+      )}
     </div>
   );
 }

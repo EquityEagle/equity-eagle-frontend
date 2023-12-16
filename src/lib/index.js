@@ -26,3 +26,7 @@ export { default as MessageBox } from "./components/MessageBox";
 export { default as NoteIcon } from "./components/NoteIcon";
 export { default as FixedHeader } from "./components/FixedHeader";
 export { default as StyledInput } from "./components/StyledInput";
+export { default as MessageIcon } from "./components/MessageIcon";
+export { default as ChatSender } from "./components/ChatSender";
+export { default as MobileHeader } from "./components/MobileHeader";
+export { default as TypingEffect } from "./components/TypingEffect";

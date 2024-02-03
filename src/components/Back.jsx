@@ -1,6 +1,6 @@
 import React from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
-import { IoSearch } from "react-icons/io5";
+// import { IoSearch } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 const BackArrow = ({ className, isTrade, setOpenTrade, title }) => {

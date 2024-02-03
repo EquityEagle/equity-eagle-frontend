@@ -42,7 +42,7 @@ const SetupModal = () => {
     if (value) {
       setData({ ...data, image: photo });
     }
-  }, [data, photo]);
+  }, [data, photo, value]);
 
   useEffect(() => {
     if (typeclick) {
@@ -119,7 +119,11 @@ const SetupModal = () => {
           className="bg-slate-800 w-full h-[300px] rounded-[7px] cursor-pointer flex flex-col items-center justify-center"
         >
           {photo ? (
-            <img className="w-full h-full rounded-[7px]" src={photo} />
+            <img
+              className="w-full h-full rounded-[7px]"
+              src={photo}
+              alt="Selected"
+            />
           ) : (
             <>
               <MdPhotoCamera size={25} color="#fff" />

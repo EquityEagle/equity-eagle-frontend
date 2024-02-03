@@ -13,7 +13,7 @@ const MoreMenuModal = () => {
   const open = moremodal.isOpen;
   const login = <MdLogin size={25} color="#fff" />;
   const logout = <TbLogout2 size={25} color="#fff" />;
-  const [icon, setIcon] = useState(login);
+  // const [icon, setIcon] = useState(login);
   const [text, setText] = useState("Login");
   const navigate = useNavigate();
   const auth = useSelector((state) => state.AUTH);
@@ -21,10 +21,8 @@ const MoreMenuModal = () => {
 
   useEffect(() => {
     if (auth.userLoaded) {
-      setIcon(logout);
       setText("Logout");
     } else {
-      setIcon(login);
       setText("Login");
     }
   }, [auth]);
@@ -57,7 +55,7 @@ const MoreMenuModal = () => {
       <div className="bg-neutral-700 w-full h-[7px]" />
       <div className="p-[10px]" onClick={Login}>
         <div className="flex items-center gap-[10px] hover:bg-neutral-800 p-[14px] rounded-[9px] cursor-pointer">
-          {icon}
+          {auth.userLoaded ? logout : login}
           <p className="text-white font-kanit">{text}</p>
         </div>
       </div>

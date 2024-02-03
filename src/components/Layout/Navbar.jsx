@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { StyledNav } from "../../styles/components/styled";
 import Logo from "./Logo";
 import { navlinksdata } from "../../constants/nav";
-import { Link, Router, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button, ClickOpacity } from "../../lib";
 import { IoClose, IoMenuSharp } from "react-icons/io5";
 import useMenuModel from "../../hooks/useMenuModel";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const menumodal = useMenuModel();

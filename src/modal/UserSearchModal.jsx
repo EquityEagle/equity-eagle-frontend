@@ -3,12 +3,12 @@ import { useUserSearchModal } from "../hooks";
 import { BackDrop } from "../lib";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { Flex } from "../styles/components/styled";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const UserSearchModal = () => {
   const usersearch = useUserSearchModal();
   const open = usersearch.isOpen;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   function close() {
     usersearch.onClose();

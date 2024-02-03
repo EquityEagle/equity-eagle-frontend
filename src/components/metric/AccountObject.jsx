@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, FlexBox } from "../../styles/components/styled";
+import { FlexBox } from "../../styles/components/styled";
 import { BottomDivider } from "../../lib";
 import { formatNumberWithK } from "../../lib/functions";
 import { getAccountTrades } from "../../helper/fetch";
@@ -20,7 +20,7 @@ const AccountObject = ({ metrix }) => {
     if (metrix._id) {
       gettrades();
     } else return;
-  }, [trades]);
+  }, [trades, metrix._id, metrixId]);
 
   const days = metrix.days;
   const loss = calTotalLoss(trades);
@@ -33,7 +33,7 @@ const AccountObject = ({ metrix }) => {
   const isDrawdown = isDrawdownBelowOnePercent(trades, balance);
 
   const formattedloss = formatNumberWithK(loss);
-  const formattedprofit = formatNumberWithK(profit);
+  // const formattedprofit = formatNumberWithK(profit);
   return (
     <div className="flex-col bg-black shadow flex relative w-full rounded-[12px] max-[700px]:w-[90%]">
       <FlexBox className="p-[1rem]">

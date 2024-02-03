@@ -58,3 +58,13 @@ export async function getUnreadNotifications(userId) {
   const response = await axios.get(`${BASE_URL}/notification/unread/${userId}`);
   return response?.data;
 }
+
+export async function getMessages(chatId) {
+  const response = await axios.get(`${BASE_URL}/message/all/${chatId}`);
+  return response?.data;
+}
+
+export async function getUnreadMessage(chatId) {
+  const response = await axios.get(`${BASE_URL}/message/msg/unread/${chatId}`);
+  return response?.data;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import SideNav from "./SideNav";
+// import SideNav from "./SideNav";
 import { BottomDivider, Button, ScaleInLoader } from "../../lib";
 import { useSelector } from "react-redux";
 import ConnectWithTraders from "../users/ConnectWithTraders";
@@ -10,6 +10,7 @@ const NextSideNav = () => {
   const userState = useSelector((state) => state.USERS);
   const traders = userState.TRADES;
   const isLoading = userState.FETCH_STATUS === "Pending";
+  const userId = useSelector((state) => state.AUTH.id);
   return (
     <StyledSideNav className="border border-l-neutral-900">
       <h1 className="text-white font-kanit text-[20px] p-[16px]">
@@ -21,9 +22,11 @@ const NextSideNav = () => {
           <ScaleInLoader className="translate-y-36" />
         ) : (
           traders &&
-          traders.map((user, index) => (
-            <ConnectWithTraders user={user} key={index} />
-          ))
+          traders
+            .filter((user) => user._id !== userId)
+            .map((user, index) => (
+              <ConnectWithTraders user={user} key={index} />
+            ))
         )}
       </div>
       <Link to="/connect">

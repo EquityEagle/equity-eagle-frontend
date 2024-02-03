@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getNotifications } from "../../helper/fetch";
+// import { getNotifications } from "../../helper/fetch";
 import BackArrow from "../Back";
 import { BottomDivider, Error, ScaleInLoader } from "../../lib";
 import NotificationItem from "./NotificationItem";
@@ -16,7 +16,7 @@ const NotificationFeed = () => {
 
   useEffect(() => {
     dispatch(fetchNotifications(userId));
-  }, []);
+  }, [dispatch, userId]);
 
   useEffect(() => {
     document.title = "Notification | EquityEagle";

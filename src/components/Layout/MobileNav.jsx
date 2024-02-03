@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { StyledMobileNav } from "../../styles/components/styled";
-import { Link, useLocation, useParams } from "react-router-dom";
-import { BsHeadsetVr } from "react-icons/bs";
-import { MdAddHome, MdDashboard, MdTravelExplore } from "react-icons/md";
+import { Link, useLocation } from "react-router-dom";
+import { MdDashboard } from "react-icons/md";
 import { IoCreate } from "react-icons/io5";
 import { FaBell, FaBrain } from "react-icons/fa";
 import { useCreateModal } from "../../hooks";
@@ -23,7 +22,7 @@ const MobileNav = () => {
       setNotifications(data);
     };
     getNotes();
-  }, [notifications]);
+  }, [notifications, userId]);
 
   const createmodal = useCreateModal();
 

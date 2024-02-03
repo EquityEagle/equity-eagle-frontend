@@ -74,3 +74,21 @@ export async function editTrade(tradeId, data) {
 
   return response?.data;
 }
+
+export async function ChatUser(senderId, receiverId) {
+  const response = await axios.post(`${BASE_URL}/chat/new`, {
+    senderId: senderId,
+    receiverId: receiverId,
+  });
+
+  return response?.data;
+}
+
+export async function sendMsg(chatId, senderId, text) {
+  const response = await axios.post(`${BASE_URL}/message/msg`, {
+    chatId: chatId,
+    senderId: senderId,
+    text: text,
+  });
+  return response?.data;
+}

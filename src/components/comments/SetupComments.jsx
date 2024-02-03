@@ -4,7 +4,7 @@ import { getSetupComments } from "../../helper/fetch";
 
 const SetupComments = ({ item }) => {
   const [comment, setComment] = useState([]);
-  const empty = comment.length === 0;
+  // const empty = comment.length === 0;
 
   useEffect(() => {
     const getcomments = async () => {
@@ -12,7 +12,7 @@ const SetupComments = ({ item }) => {
       setComment(data);
     };
     getcomments();
-  }, [comment]);
+  }, [comment, item._id]);
 
   return (
     <div className="flex flex-col w-full relative max-[700px]:pb-[5rem]">

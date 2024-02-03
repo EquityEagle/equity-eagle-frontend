@@ -51,3 +51,9 @@ export function TransformImage(setPhoto) {
 
   return { handleImageUpload };
 }
+
+export function getChatUser(chat, userid) {
+  const person = chat.people?.find((id) => id !== userid);
+
+  return person;
+}

@@ -13,7 +13,7 @@ const initialState = {
 };
 
 const ok = "ok";
-const bad = "failed";
+// const bad = "failed";
 const pending = "pending";
 
 export const DocumentTrade = createAsyncThunk(

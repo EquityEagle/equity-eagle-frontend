@@ -1,9 +1,9 @@
 import React from "react";
-import { StyledDash, StyledMetrix } from "../../styles/pages/styled";
+import { StyledMetrix } from "../../styles/pages/styled";
 import {
   AccountMetricId,
-  NextSideNav,
-  SetupFeed,
+  // NextSideNav,
+  // SetupFeed,
   SideNav,
 } from "../../components";
 

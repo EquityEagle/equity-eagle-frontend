@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Flex, FlexBox } from "../../styles/components/styled";
 import { FlexBetween } from "../../styles/Global";
 import { Switch } from "@mui/joy";
 import { GoGraph } from "react-icons/go";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { saveId, uncheck } from "../../redux/accountmetrix";
-import { useTradeModal } from "../../hooks";
+// import { useTradeModal } from "../../hooks";
 import { getEquity } from "../../lib/functions/metrix";
 
 const AccountMetric = ({ userdata, setOpenTrade }) => {
   const data = useSelector((state) => state.Acc);
-  const trademodal = useTradeModal();
+  // const trademodal = useTradeModal();
 
   const dispatch = useDispatch();
 
@@ -23,17 +23,17 @@ const AccountMetric = ({ userdata, setOpenTrade }) => {
     <div className="flex-col gap-[1.5rem] flex relative w-full">
       {data.ACCOUNTS?.map((item, index) => {
         const checked = data.UNVISIBLE.find((id) => id === item._id);
-        const profits = item.trades.map((trade) => trade.profit);
         const trades = item.trades;
-        const Loss = item.trades.map((trade) => trade.loss);
-        const totalProfit =
-          profits.length === 0
-            ? 0
-            : profits.reduce((max, value) => Math.max(max, value), 0);
-        const totalLoss =
-          Loss.length === 0
-            ? 0
-            : Loss.reduce((max, value) => Math.max(max, value), 0);
+        // const profits = item.trades.map((trade) => trade.profit);
+        // const Loss = item.trades.map((trade) => trade.loss);
+        // const totalProfit =
+        //   profits.length === 0
+        //     ? 0
+        //     : profits.reduce((max, value) => Math.max(max, value), 0);
+        // const totalLoss =
+        //   Loss.length === 0
+        //     ? 0
+        //     : Loss.reduce((max, value) => Math.max(max, value), 0);
         const equity = getEquity(trades, item.accountsize);
 
         return (

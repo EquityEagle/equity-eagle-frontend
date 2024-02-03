@@ -3,7 +3,7 @@ import { Flex } from "../../styles/components/styled";
 import { Placeholder } from "../../assets";
 import { FlexBetween } from "../../styles/Global";
 import { BottomDivider } from "../../lib";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ReadNotification } from "../../helper/post";
 import { toast } from "react-toastify";
@@ -36,7 +36,7 @@ const NotificationItem = ({ notification }) => {
         <Flex className="gap-2">
           <img
             src={notification.image?.url || Placeholder}
-            alt="Image"
+            alt="Not"
             className="w-[45px] h-[45px] rounded-full"
           />
           <p className="text-white font-poppins text-[16px]">

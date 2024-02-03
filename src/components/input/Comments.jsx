@@ -1,14 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { BottomDivider, Button, CustomTitle } from "../../lib";
 import { FlexBetween } from "../../styles/Global";
 import { Placeholder } from "../../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { commentSetup } from "../../redux/setup";
 import { GoImage } from "react-icons/go";
-import { FaFileAudio, FaFileVideo, FaVideo } from "react-icons/fa";
+import { FaVideo } from "react-icons/fa";
 import { AiFillAudio } from "react-icons/ai";
 import { RiEmojiStickerFill } from "react-icons/ri";
-import { getUserById } from "../../helper/fetch";
+// import { getUserById } from "../../helper/fetch";
 import { IoClose } from "react-icons/io5";
 
 const Comments = ({ item }) => {
@@ -61,7 +61,7 @@ const Comments = ({ item }) => {
       <FlexBetween className="p-2 gap-1">
         <img
           src={auth.profile?.url || Placeholder}
-          alt="User Image"
+          alt="User"
           className="w-[50px] h-[50px] rounded-full"
         />
         <input
@@ -76,7 +76,7 @@ const Comments = ({ item }) => {
         <div className="flex flex-col items-center justify-center relative w-full">
           <img
             src={photo}
-            alt="Selected Image"
+            alt="Selected"
             className="rounded-[15px] w-[85%] h-[500px] max-[700px]:h-[400px]"
           />
           <div className="flex flex-col top-[10px] gap-3 items-center right-[4rem] z-[100] absolute">

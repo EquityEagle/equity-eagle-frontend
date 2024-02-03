@@ -94,9 +94,8 @@ code {
   left: 0;
   width: 20px;
   height: 11px;
-  transform: translateX(-3px);
+  transform: translateX(-6px);
   background: rgb(115 115 115);
-  /* background: red; */
   border-bottom-left-radius: 5px; /* Adjusted to match the height */
   border-top-left-radius: 50px;
   z-index: 1; /* Move the pseudo-element behind the content */

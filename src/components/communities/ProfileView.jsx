@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { communitydata, memebersdata } from "../../constants/community";
 import { Placeholder } from "../../assets";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
 import { HiMiniUserGroup } from "react-icons/hi2";
 import { FaRegCalendarAlt } from "react-icons/fa";

@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Placeholder } from "../../assets";
 import { CustomTitle } from "../../lib";
 import { Link } from "react-router-dom";
-import { formatDate } from "../../lib/functions";
+// import { formatDate } from "../../lib/functions";
 
 const CommunityItem = ({ item }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const timestamp = new Date(item.createdAt);
-  const formattedDate = formatDate(timestamp);
+  // const timestamp = new Date(item.createdAt);
+  // const formattedDate = formatDate(timestamp);
 
   return (
     <Link

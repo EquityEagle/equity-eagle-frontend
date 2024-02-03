@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SelectOptionIII from "./SelectOption";
 import { outcomedata } from "../../../constants/setup";
 import { IoClose } from "react-icons/io5";

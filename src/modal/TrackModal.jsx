@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useCreateModal, useTrackModal } from "../hooks";
 import { BackDrop, BottomDivider, Button, CustomTitle } from "../lib";
 import { IoClose } from "react-icons/io5";

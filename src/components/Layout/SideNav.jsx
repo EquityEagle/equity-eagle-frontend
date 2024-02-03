@@ -28,7 +28,7 @@ const SideNav = () => {
       setNotifications(data);
     };
     getNotes();
-  }, [notifications]);
+  }, [notifications, userId]);
 
   function openMore() {
     if (!open) {

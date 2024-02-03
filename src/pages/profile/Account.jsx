@@ -15,7 +15,7 @@ const Account = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAvailbleUser(username));
-  }, [username]);
+  }, [username, dispatch]);
 
   return (
     <StyledDash>

@@ -14,6 +14,7 @@ const AccountFeed = ({ user, isLoading }) => {
   const [Loading, setIsLoading] = useState(false);
   const userId = user._id;
   const connectorsId = useSelector((state) => state.AUTH.id);
+  const hasConnect = user?.networks?.includes(connectorsId);
   useEffect(() => {
     document.title = `${
       isLoading ? "Loading..." : `@${user.username} `
@@ -53,13 +54,17 @@ const AccountFeed = ({ user, isLoading }) => {
           className=""
           onClick={() => navigate(-1)}
         />
-        <Button
-          secondary
-          text="Connect"
-          isLoading={Loading}
-          disabled={Loading}
-          Onclick={connect}
-        />
+        {hasConnect || user._id === connectorsId ? (
+          ""
+        ) : (
+          <Button
+            secondary
+            text="Connect"
+            isLoading={Loading}
+            disabled={Loading}
+            Onclick={connect}
+          />
+        )}
       </div>
       <Hero
         openProfileModal={openProfileModal}

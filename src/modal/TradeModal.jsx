@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useCreateModal, useTradeModal } from "../hooks";
+import { useTradeModal } from "../hooks";
 import { BackDrop, BottomDivider, Button, SetupOutcome } from "../lib";
 import { type } from "../constants";
-import { useDispatch, useSelector } from "react-redux";
-import { DocumentTrade } from "../redux/trade";
+import { useSelector } from "react-redux";
+// import { DocumentTrade } from "../redux/trade";
+// import { useParams } from "react-router-dom";
 import { SectionOne } from "../components";
 import { IoClose } from "react-icons/io5";
-import { useParams } from "react-router-dom";
 import { journal } from "../helper/post";
 import { toast } from "react-toastify";
 
@@ -19,11 +19,11 @@ const TradeModal = () => {
     trademodal.onClose();
   }
 
-  const user = useSelector((state) => state.AUTH);
-  const Docdata = useSelector((state) => state.TRADE);
+  // const user = useSelector((state) => state.AUTH);
+  // const Docdata = useSelector((state) => state.TRADE);
   // const isLoading = Docdata.DOC_STATUS === "Loading";
   const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [data, setData] = useState({
     // trackId: metrixId,

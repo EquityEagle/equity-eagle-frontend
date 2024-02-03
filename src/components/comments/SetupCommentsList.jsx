@@ -4,7 +4,7 @@ import { BackDrop, BottomDivider, CommentActionButton } from "../../lib";
 import { FlexBetween } from "../../styles/Global";
 import { Placeholder } from "../../assets";
 import TruncatedText from "../../lib/components/TruncatedText";
-import { TestText } from "../../constants";
+// import { TestText } from "../../constants";
 import { formatDate } from "../../lib/functions";
 
 const SetupCommentsList = ({ comment }) => {
@@ -70,7 +70,7 @@ const SetupCommentsList = ({ comment }) => {
         {comment.image && (
           <img
             src={comment.image?.url}
-            alt="Image"
+            alt="Comment"
             className="w-full h-[400px] rounded-[9px] cursor-pointer max-[700px]:h-[300px]"
             onClick={viewImg}
           />
@@ -86,6 +86,7 @@ const SetupCommentsList = ({ comment }) => {
           chaild={
             <img
               src={clickedImg}
+              alt="Comment"
               className="w-[70%] max-[700px]:w-full max-[700px]:h-[50%] z-[200] relative cursor-pointer"
               //   onClick={() => setOpenViewImg(false)}
             />

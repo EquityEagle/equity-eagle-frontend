@@ -13,7 +13,7 @@ const TradeDetails = ({ setOpen, open, trade }) => {
         {trade.setupImg && (
           <img
             src={trade.setupImg?.url}
-            alt="Setup Image"
+            alt="Setup"
             className="w-full rounded-[9px]"
           />
         )}

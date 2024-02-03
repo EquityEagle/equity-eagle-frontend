@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Flex, FlexBox } from "../../styles/components/styled";
+import { FlexBox } from "../../styles/components/styled";
 import AccountStatic from "./AccountStatic";
 import AccountObject from "./AccountObject";
 import TradeJournal from "./TradeJournal";
 import { useDispatch, useSelector } from "react-redux";
-import { getAccountTrades, getAccounts } from "../../helper/fetch";
+import { getAccountTrades } from "../../helper/fetch";
 import MetrixDetails from "./MetrixDetails";
 import { Error, ScaleInLoader } from "../../lib";
 import { findAccountMetrix } from "../../redux/accountmetrix";
@@ -27,11 +27,11 @@ const AccountMetricId = ({ userdata, setOpenTrade }) => {
     if (metrix._id) {
       gettrades();
     } else return;
-  }, [trades]);
+  }, [trades, metrix._id]);
 
   useEffect(() => {
     dispatch(findAccountMetrix(Ids));
-  }, []);
+  }, [dispatch, Ids]);
 
   useEffect(() => {
     document.title = "Account Metrix | EquityEagle";

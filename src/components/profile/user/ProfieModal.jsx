@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { BackDrop, BottomDivider } from "../../../lib";
-import ProfileUpdateModal from "./ProfileUpdateModal";
+// import ProfileUpdateModal from "./ProfileUpdateModal";
 import { useSelector } from "react-redux";
 
 const ProfileModal = ({ open, closeModal, setOpenUpdateModal, user }) => {

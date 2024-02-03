@@ -8,7 +8,7 @@ import { communitydata } from "../../constants/community";
 import { Placeholder } from "../../assets";
 import CommunityItem from "./CommunityItem";
 import { useCommunitySearch, useMobileModal } from "../../hooks";
-import { FlexBetween } from "../../styles/Global";
+// import { FlexBetween } from "../../styles/Global";
 import { IoSearch } from "react-icons/io5";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";

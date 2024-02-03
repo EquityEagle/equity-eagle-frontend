@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { BackDrop, Button } from "../../../lib";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import { MdCancel } from "react-icons/md";
+// import { MdCancel } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { ProfileUpdate } from "../../../helper/post";
 import { useSelector } from "react-redux";
@@ -59,7 +59,7 @@ const ProfileUpdateModal = ({ open, keepOpen }) => {
               imgRef.current.click();
               keepOpen(true);
             }}
-            alt="Selected photo"
+            alt="Selected"
             className="rounded-[9px] cursor-pointer"
           />
           <Button

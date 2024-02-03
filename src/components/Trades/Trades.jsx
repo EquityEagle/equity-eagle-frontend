@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyledSetupItem } from "../../styles/components/styled";
 import Table from "@mui/joy/Table";
 import Sheet from "@mui/joy/Sheet";
 import { tradesdata } from "../../constants/test";
 import { FiEdit } from "react-icons/fi";
-import { CustomTitle } from "../../lib";
+// import { CustomTitle } from "../../lib";
 import { FaEye } from "react-icons/fa";
 
 const Trades = () => {
-  const [isHoverd, setIsHovered] = useState(false);
+  // const [isHoverd, setIsHovered] = useState(false);
   return (
     <StyledSetupItem className="mt-[5rem]">
       <Sheet variant="outlined">

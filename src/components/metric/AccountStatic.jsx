@@ -3,8 +3,8 @@ import { Flex, FlexBox } from "../../styles/components/styled";
 import { BottomDivider } from "../../lib";
 import { formatNumberWithK } from "../../lib/functions";
 import {
-  calTotalLoss,
-  calTotalProfit,
+  // calTotalLoss,
+  // calTotalProfit,
   calWinrate,
   getAverageLoss,
   getAverageProfit,
@@ -26,7 +26,7 @@ const AccountStatic = ({ metrix }) => {
     if (metrix._id) {
       gettrades();
     } else return;
-  }, [trades]);
+  }, [trades, metrix._id, metrixId]);
 
   const totalTrade = trades.length;
   const formattedTrade = formatNumberWithK(totalTrade);

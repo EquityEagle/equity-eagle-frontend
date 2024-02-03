@@ -2,7 +2,7 @@ import React from "react";
 import { StyledWhySection } from "../styles/section/styled";
 import { whydata } from "../constants";
 import { BottomDivider } from "../lib";
-import { SiLivejournal } from "react-icons/si";
+// import { SiLivejournal } from "react-icons/si";
 import { BsJournals } from "react-icons/bs";
 
 const WhySection = () => {

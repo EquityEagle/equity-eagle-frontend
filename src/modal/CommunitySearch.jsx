@@ -2,13 +2,13 @@ import React from "react";
 import { useCommunitySearch } from "../hooks";
 import { BackDrop } from "../lib";
 import { Flex } from "../styles/components/styled";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { BsArrowLeftShort } from "react-icons/bs";
 
 const CommunitySearch = () => {
   const communityModal = useCommunitySearch();
   const open = communityModal.isOpen;
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   function close() {
     communityModal.onClose();

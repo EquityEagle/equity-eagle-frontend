@@ -7,7 +7,7 @@ const FixedHeader = ({ className, hasSearchBar, barClick }) => {
   const navigate = useNavigate();
   return (
     <div
-      className={`${className} flex fixed w-full gap-5 p-2 items-center bg-[rgb(0,0,0,0.5)] border-b border-b-neutral-700`}
+      className={`${className} flex fixed w-[700px] max-[700px]:w-full gap-5 p-2 items-center bg-[rgb(0,0,0,0.5)] border-b border-b-neutral-700`}
     >
       <BsArrowLeftShort
         size={35}

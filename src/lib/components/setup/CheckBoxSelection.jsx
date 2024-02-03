@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { setupconfirmationdata } from "../../../constants/setup";
-import { Box, Checkbox } from "@mui/joy";
+import { Checkbox } from "@mui/joy";
 
 const CheckBoxSelection = ({ data, setData }) => {
   const [checkedItems, setCheckedItems] = useState([]);
@@ -10,7 +10,7 @@ const CheckBoxSelection = ({ data, setData }) => {
 
   useEffect(() => {
     setData({ ...data, confluence: checkedItems });
-  }, [selectedItem]);
+  }, [selectedItem, checkedItems, setData, data]);
 
   // const handleCheckboxChange = (value) => {
   //   setCheckedItems({

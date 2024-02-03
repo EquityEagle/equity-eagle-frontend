@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Placeholder } from "../../../assets";
-import { Button, CustomTitle } from "../../../lib";
-import { FaBrain, FaRegCalendarAlt, FaStar } from "react-icons/fa";
+import { Button } from "../../../lib";
+import { FaBrain, FaRegCalendarAlt } from "react-icons/fa";
 import { Flex } from "../../../styles/components/styled";
 import { GiThreeFriends } from "react-icons/gi";
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 import ProfileModal from "./ProfieModal";
 import ProfileUpdateModal from "./ProfileUpdateModal";
-import { ConnectUser } from "../../../helper/post";
+import { ChatUser, ConnectUser } from "../../../helper/post";
 import { toast } from "react-toastify";
+import { IoMdChatbubbles } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const Hero = ({
   openProfileModal,
@@ -18,10 +20,22 @@ const Hero = ({
   openUpdateModal,
   user,
 }) => {
-  const [photoHover, setPhotoHover] = useState(false);
+  // const [photoHover, setPhotoHover] = useState(false);
   const [Loading, setIsLoading] = useState(false);
   const userId = user._id;
   const connectorsId = useSelector((state) => state.AUTH.id);
+  const hasConnect = user?.networks?.includes(connectorsId);
+  const navigate = useNavigate();
+
+  const senderId = connectorsId;
+  const receiverId = user._id;
+
+  async function Chat() {
+    await ChatUser(senderId, receiverId);
+    setTimeout(() => {
+      navigate("/messages");
+    }, 2000);
+  }
 
   async function connect() {
     try {
@@ -92,13 +106,23 @@ const Hero = ({
               {user.ideas?.length}
             </p>
           </div>
-          <Button
-            secondary
-            text="Connect"
-            isLoading={Loading}
-            disabled={Loading}
-            Onclick={connect}
-            className="max-[700px]:hidden absolute -right-[9rem] max-[1024px]:-right-[5rem] max-[800px]:-right-[10rem]"
+          {hasConnect || user._id === connectorsId ? (
+            ""
+          ) : (
+            <Button
+              secondary
+              text="Connect"
+              isLoading={Loading}
+              disabled={Loading}
+              Onclick={connect}
+              className="max-[700px]:hidden absolute -right-[9rem] max-[1024px]:-right-[5rem] max-[800px]:-right-[10rem]"
+            />
+          )}
+          <IoMdChatbubbles
+            onClick={Chat}
+            size={40}
+            color="#fff"
+            className="p-2 rounded-[9px] hover:bg-neutral-800 cursor-pointer -left-4"
           />
         </Flex>
       </div>

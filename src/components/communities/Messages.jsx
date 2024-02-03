@@ -1,14 +1,14 @@
 import React from "react";
-import { Flex } from "../../styles/components/styled";
+// import { Flex } from "../../styles/components/styled";
 import { Placeholder } from "../../assets";
 
 const Messages = ({ message }) => {
-  const sent = "11-22-2023";
-  const timestamp = new Date(sent);
-  const formattedDate = timestamp.toLocaleString("en-US", {
-    month: "short",
-    year: "numeric",
-  });
+  // const sent = "11-22-2023";
+  // const timestamp = new Date(sent);
+  // const formattedDate = timestamp.toLocaleString("en-US", {
+  //   month: "short",
+  //   year: "numeric",
+  // });
 
   return (
     <div className="flex flex-col p-3 relative overflow-y-auto mt-16 z-0">

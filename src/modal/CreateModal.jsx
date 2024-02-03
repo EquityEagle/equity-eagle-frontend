@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   useCreateModal,
   useSetupModal,
   useTrackModal,
-  useTradeModal,
+  // useTradeModal,
 } from "../hooks";
 import { BackDrop } from "../lib";
 import { IoClose } from "react-icons/io5";
-import { SiLivejournal } from "react-icons/si";
+// import { SiLivejournal } from "react-icons/si";
 import { FaBrain } from "react-icons/fa";
 import { FaChartBar } from "react-icons/fa";
 

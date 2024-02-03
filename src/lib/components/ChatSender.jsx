@@ -5,7 +5,7 @@ import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { AiFillAudio } from "react-icons/ai";
 
-const ChatSender = ({ message, setMessage }) => {
+const ChatSender = ({ message, setMessage, handleKeyDown }) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   // const [message, setMessage] = useState("");
 
@@ -45,6 +45,7 @@ const ChatSender = ({ message, setMessage }) => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type message"
+            onKeyDown={handleKeyDown}
             className="bg-transparent p-1 outline-none border-none text-white w-full"
           />
           <AiFillAudio

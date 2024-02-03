@@ -7,4 +7,6 @@ export async function LoginWithMail(email) {
   const response = await axios.post(`${BASE_URL}/auth/mail-login`, {
     email: email,
   });
+
+  return response?.data;
 }

@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { StyledDash } from "../../styles/pages/styled";
-import { DashHero, NextSideNav, SideNav, TradesFeed } from "../../components";
+import { DashHero, NextSideNav, SideNav } from "../../components";
 
 const Dashboard = () => {
   useEffect(() => {
     document.title = "Dashboard | EquityEagle";
   });
 
-  const [openTrade, setOpenTrade] = useState(false);
+  // const [openTrade, setOpenTrade] = useState(false);
+
   return (
     <StyledDash>
       <SideNav />
-      <DashHero setOpenTrade={setOpenTrade} />
+      <DashHero setOpenTrade={null} />
       <NextSideNav />
     </StyledDash>
   );

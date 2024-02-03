@@ -1,10 +1,10 @@
 import React from "react";
 import { useMobileModal } from "../hooks";
-import { BackDrop, BottomDivider } from "../lib";
+import { BackDrop } from "../lib";
 import { Placeholder } from "../assets";
 import { FlexBetween } from "../styles/Global";
 import { PiDotsThreeCircleVerticalDuotone } from "react-icons/pi";
-import { Flex } from "../styles/components/styled";
+// import { Flex } from "../styles/components/styled";
 import { useDispatch, useSelector } from "react-redux";
 import { mobilenavdata } from "../constants/nav";
 import { Link } from "react-router-dom";

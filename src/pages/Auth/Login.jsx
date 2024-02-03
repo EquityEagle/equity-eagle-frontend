@@ -4,9 +4,9 @@ import { AuthDivider, Button, Input, PasswordInput } from "../../lib";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { BackArrow } from "../../components";
+// import { BackArrow } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
-import { LoginUser, SignInWithGoogle } from "../../redux/auth";
+import { LoginUser } from "../../redux/auth";
 import { toast } from "react-toastify";
 
 const Login = () => {
@@ -22,7 +22,7 @@ const Login = () => {
     if (auth.userLoaded) {
       navigate("/dashboard");
     }
-  }, [auth]);
+  }, [auth, navigate]);
 
   const [user, setUser] = useState({
     email: "",
@@ -45,23 +45,23 @@ const Login = () => {
     return () => {
       document.removeEventListener("keypress", handleKeyPress);
     };
-  }, [user]);
+  }, [user, dispatch]);
 
-  function handleSignIn() {
-    console.log("Before signIn");
-    // signIn()
-    //   .then((userData) => {
-    //     console.log("After signIn");
-    //     if (userData) {
-    //       const email = userData.email;
-    //       dispatch(SignInWithGoogle(email));
-    //       console.log("Logged in as:", userData);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error("Sign-in error:", error);
-    //   });
-  }
+  // function handleSignIn() {
+  //   console.log("Before signIn");
+  //   // signIn()
+  //   //   .then((userData) => {
+  //   //     console.log("After signIn");
+  //   //     if (userData) {
+  //   //       const email = userData.email;
+  //   //       dispatch(SignInWithGoogle(email));
+  //   //       console.log("Logged in as:", userData);
+  //   //     }
+  //   //   })
+  //   //   .catch((error) => {
+  //   //     console.error("Sign-in error:", error);
+  //   //   });
+  // }
 
   const g = (
     <div

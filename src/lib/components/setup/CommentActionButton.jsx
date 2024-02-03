@@ -3,7 +3,7 @@ import { FlexBetween } from "../../../styles/Global";
 import IconWrap from "./IconWrap";
 import { formatNumberWithK } from "../../functions";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { FaStar } from "react-icons/fa";
+// import { FaStar } from "react-icons/fa";
 import { getSetupCommentLikes } from "../../../helper/fetch";
 import { LikeSetupcomments } from "../../../helper/post";
 import { useSelector } from "react-redux";
@@ -18,7 +18,7 @@ const CommentActionButton = ({ comment }) => {
       setLikes(data);
     };
     getlikes();
-  }, [Likes]);
+  }, [Likes, commentId]);
 
   async function likeSetupComments() {
     await LikeSetupcomments(commentId, userId);
@@ -27,7 +27,7 @@ const CommentActionButton = ({ comment }) => {
   const likes = Likes?.length;
   const formattedLikes = formatNumberWithK(likes);
   const liked = Likes.includes(userId);
-  const stared = true;
+  // const stared = true;
 
   return (
     <FlexBetween className="p-[12px] max-[700px]:p-[9px]">

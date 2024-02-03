@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { StyledStart } from "../../styles/pages/styled";
 import { AuthDivider, Button, Input, PasswordInput } from "../../lib";
 import { FcGoogle } from "react-icons/fc";
@@ -21,7 +21,7 @@ const SignUp = () => {
     if (auth.userLoaded) {
       navigate("/dashboard");
     }
-  }, [auth]);
+  }, [auth, navigate]);
 
   const [user, setUser] = useState({
     name: "",
@@ -30,9 +30,9 @@ const SignUp = () => {
     password: "",
   });
 
-  function SignUp() {
+  const SignUp = useCallback(() => {
     dispatch(RegUser(user));
-  }
+  }, [dispatch, user]);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
@@ -46,7 +46,7 @@ const SignUp = () => {
     return () => {
       document.removeEventListener("keypress", handleKeyPress);
     };
-  }, [user]);
+  }, [user, dispatch, SignUp]);
 
   function alertGoogle() {
     toast.info(`Coming soon`, {

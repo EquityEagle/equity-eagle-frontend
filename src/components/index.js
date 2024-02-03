@@ -22,3 +22,4 @@ export { default as NotificationFeed } from "./notification/NotificationFeed";
 export { default as ConnectWith } from "./users/ConnectWith";
 export { default as ChatBoxConatiner } from "./chat/ChatBoxConatiner";
 export { default as ChatContainer } from "./chat/ChatContainer";
+export { default as SearchedUser } from "./users/SearchedUser";

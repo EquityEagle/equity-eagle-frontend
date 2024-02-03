@@ -60,7 +60,7 @@ const SetupCommentsList = ({ comment }) => {
           </div>
         </div>
       </FlexBetween>
-      <div className="flex flex-col relative gap-3 h-full p-[12px] max-[700px]:p-[10px]">
+      <div className="flex flex-col relative gap-3 h-full p-[12px] max-[700px]:p-[10px] w-full">
         <TruncatedText
           text={comment.desc}
           className="text-neutral-200 font-[300] cursor-pointer flex text-sm font-poppins"
@@ -71,7 +71,7 @@ const SetupCommentsList = ({ comment }) => {
           <img
             src={comment.image?.url}
             alt="Comment"
-            className="w-full h-[400px] rounded-[9px] cursor-pointer max-[700px]:h-[300px]"
+            className="w-[75%] self-center relative h-[600px] rounded-[9px] cursor-pointer max-[700px]:h-[350px]"
             onClick={viewImg}
           />
         )}
@@ -87,7 +87,7 @@ const SetupCommentsList = ({ comment }) => {
             <img
               src={clickedImg}
               alt="Comment"
-              className="w-[70%] max-[700px]:w-full max-[700px]:h-[50%] z-[200] relative cursor-pointer"
+              className="w-[50%] self-center max-[700px]:w-full max-[700px]:h-[50%] z-[200] relative cursor-pointer"
               //   onClick={() => setOpenViewImg(false)}
             />
           }

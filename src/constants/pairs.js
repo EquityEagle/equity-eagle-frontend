@@ -157,9 +157,9 @@ export const traded = [
   { pair: "CH20" }, // Swiss Market Index
 
   // Metals
-  { pair: "XAUUSD" }, // Gold
   { pair: "XAGUSD" }, // Silver
   { pair: "XPTUSD" }, // Platinum
+  { pair: "XAUUSD" }, // Gold
   { pair: "XPDUSD" }, // Palladium
   { pair: "XAUEUR" }, // Gold/EUR
   { pair: "XAGEUR" }, // Silver/EUR

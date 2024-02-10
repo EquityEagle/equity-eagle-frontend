@@ -16,7 +16,7 @@ const PiarOptionsModal = ({ data, setData, setSelectedPair }) => {
   const body = (
     <div
       onClick={(e) => e.preventDefault()}
-      className="bg-black w-[400px] h-[480px] rounded-[9px] flex flex-col gap-3 relative overflow-y-auto hide-scroll shadow shadow-slate-600"
+      className="bg-black w-[400px] h-[480px] rounded-[9px] max-[700px]:w-[95%] flex flex-col gap-3 relative overflow-y-auto hide-scroll shadow shadow-slate-600"
     >
       <div className="flex p-3 w-[400px] fixed -translate-y-1 h-auto z-50 bg-black border-b border-b-neutral-700">
         <div className="bg-slate-800 rounded-[8px] items-center flex p-3 gap-2 w-full relative justify-between">

@@ -13,7 +13,7 @@ const TypeModal = ({ setSelectedType, data, setData }) => {
   const body = (
     <div
       onClick={(e) => e.preventDefault()}
-      className="bg-black w-[400px] h-auto max-[700px]:bottom-0 max-[700px]:w-full max-[700px]:fixed rounded-[9px] flex flex-col gap-3 relative shadow shadow-slate-600"
+      className="bg-black w-[400px] h-auto max-[700px]:bottom-0 max-[700px]:rounded-b-none max-[700px]:w-full max-[700px]:fixed rounded-[9px] flex flex-col gap-3 relative shadow shadow-slate-600"
     >
       <div
         onClick={() => {

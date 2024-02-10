@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useCreateModal, useSetupModal } from "../hooks";
-import { BackDrop, Button, PairOptions, SelectOption } from "../lib";
+import {
+  BackDrop,
+  Button,
+  PairOptions,
+  SelectOption,
+  TypeOptions,
+} from "../lib";
 import { MdKeyboardArrowLeft, MdPhotoCamera } from "react-icons/md";
 import { traded } from "../constants/pairs";
 import { type } from "../constants";
@@ -82,9 +88,9 @@ const SetupModal = () => {
   function shareSetup() {
     dispatch(publishSetup(data));
     setTimeout(() => {
-      if (close) {
-        setupmodal.onClose();
-      }
+      // if (close) {
+      setupmodal.onClose();
+      // }
     }, 4000);
   }
 
@@ -103,11 +109,7 @@ const SetupModal = () => {
       <div className="flex flex-col p-[12px] gap-[1rem] items-center w-full hide-scroll overflow-y-auto">
         <div className="flex flex-col gap-[10px] w-full">
           <PairOptions data={data} setData={setData} />
-          <SelectOptionII
-            placeholder="Setup type"
-            data={type}
-            setTypeClick={setTypeClick}
-          />
+          <TypeOptions data={data} setData={setData} />
         </div>
         <div
           onClick={() => imgRef.current?.click()}
@@ -138,7 +140,7 @@ const SetupModal = () => {
           variant="soft"
           size="lg"
           sx={{
-            fontFamily: "'Kanit', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
             width: "100%",
             background: "rgb(30 41 59)",
             color: "#fff",

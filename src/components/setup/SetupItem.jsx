@@ -109,9 +109,9 @@ const SetupItem = ({ item }) => {
         </Flex>
       </div>
       <img
-        src={item?.image}
+        src={item?.image.url}
         alt="Idea"
-        className="w-full h-[400px] /rounded-[9px] cursor-pointer max-[700px]:h-[300px]"
+        className="w-[75%] self-center relative h-full rounded-[9px] cursor-pointer max-[700px]:h-[300px]"
         onClick={viewImg}
       />
       <div className="flex flex-col">

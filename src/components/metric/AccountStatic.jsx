@@ -9,6 +9,8 @@ import {
   getAverageLoss,
   getAverageProfit,
   getEquity,
+  getLargestLoss,
+  getLargestProfit,
   getLots,
   getRRR,
 } from "../../lib/functions/metrix";
@@ -36,6 +38,8 @@ const AccountStatic = ({ metrix }) => {
   const averageprofit = getAverageProfit(trades);
   const averageloss = getAverageLoss(trades);
   const lots = getLots(trades);
+  const largeprofit = getLargestProfit(trades);
+  const largeloss = getLargestLoss(trades);
 
   return (
     <div className="flex-col bg-black shadow flex relative w-full rounded-[12px] max-[700px]:w-[90%]">
@@ -100,12 +104,25 @@ const AccountStatic = ({ metrix }) => {
         <Flex className="gap-1 flex-col">
           <h2 className="text-neutral-400 font-kanit">Average RRR:</h2>
           <p className={`text-[15px] font-poppins text-white`}>
-            {rrr?.toFixed(2) || rrr}
-            {/* {rrr} */}
+            {rrr?.toFixed(2) || rrr || 0}
+          </p>
+        </Flex>
+        <Flex className="gap-1 flex-col">
+          <h2 className="text-neutral-400 font-kanit">Largest profit</h2>
+          <p className="text-green-500 text-[15px] font-poppins">
+            ${largeprofit.toLocaleString()}
           </p>
         </Flex>
       </FlexBox>
-      {/* <BottomDivider /> */}
+      <BottomDivider />
+      <FlexBox className="p-[1rem]">
+        <Flex className="gap-1 flex-col">
+          <h2 className="text-neutral-400 font-kanit">Largest loss</h2>
+          <p className="text-red-500 text-[15px] font-poppins">
+            -${largeloss.toLocaleString()}
+          </p>
+        </Flex>
+      </FlexBox>
     </div>
   );
 };

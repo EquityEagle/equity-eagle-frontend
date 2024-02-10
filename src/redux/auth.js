@@ -4,6 +4,10 @@ import { BASE_URL } from "../helper/url";
 import jwtDecode from "jwt-decode";
 import { toast } from "react-toastify";
 
+const accounts = localStorage.getItem("accounts")
+  ? JSON.parse(localStorage.getItem("accounts"))
+  : [];
+
 const initialState = {
   token: localStorage.getItem("eeToken"),
   id: "",
@@ -18,7 +22,30 @@ const initialState = {
   G_LOG_STATUS: null,
   G_LOG_ERROR: null,
   userLoaded: false,
+  Accounts: accounts,
+  add_status: null,
+  add_error: null,
 };
+
+export const AddUser = createAsyncThunk(
+  "auth/add",
+  async (data, { rejectWithValue }) => {
+    try {
+      const token = await axios.post(`${BASE_URL}/auth/login`, {
+        email: data.email,
+        password: data.password,
+      });
+      return token?.data;
+    } catch (error) {
+      console.log(error.response.data);
+      toast.error(error.response.data, {
+        position: "top-center",
+        className: "toast__alert",
+      });
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const LoginUser = createAsyncThunk(
   "auth/login",
@@ -123,6 +150,39 @@ const AuthSlice = createSlice({
         userLoaded: false,
       };
     },
+    checkUser: (state, action) => {
+      // Ensure state.Accounts is initialized as an array
+      if (!Array.isArray(state.Accounts)) {
+        state.Accounts = [];
+      }
+
+      const userExists = state.Accounts.find(
+        (user) => user.id === action.payload.id
+      );
+      if (userExists) {
+        return state; // No need to modify the state if the user already exists
+      } else {
+        // Update the Accounts array by appending the new user to a new copy of the array
+        const updatedAccounts = [...state.Accounts, action.payload];
+        // Store the updated Accounts array in localStorage
+        localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
+        // Return the updated state
+        return { ...state, Accounts: updatedAccounts };
+      }
+    },
+    switchAccount: (state, action) => {
+      localStorage.setItem("eeToken", action.payload.token);
+      return {
+        ...state,
+        token: action.payload.token,
+        name: action.payload.name,
+        id: action.payload.id,
+        username: action.payload.username,
+        profile: action.payload.profile,
+        email: action.payload.email,
+        userLoaded: true,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(LoginUser.pending, (state, action) => {
@@ -194,8 +254,36 @@ const AuthSlice = createSlice({
     builder.addCase(SignInWithGoogle.rejected, (state, action) => {
       return { ...state, G_LOG_STATUS: "failed", G_LOG_ERROR: action.payload };
     });
+    builder.addCase(AddUser.pending, (state, action) => {
+      return { ...state, add_status: "Loading" };
+    });
+    builder.addCase(AddUser.fulfilled, (state, action) => {
+      const user = jwtDecode(action.payload);
+      toast.success(`@${user.username}has been added to device`, {
+        position: "top-center",
+        className: "toast__alert",
+      });
+      const processedUser = {
+        token: action.payload,
+        name: user.name,
+        email: user.email,
+        username: user.username,
+        profile: user.profile,
+        id: user.id,
+        userLoaded: true,
+      };
+      const updatedAccounts = Array.isArray(state.Accounts)
+        ? [...state.Accounts, processedUser]
+        : [processedUser];
+      localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
+
+      return { ...state, add_status: "Success", Accounts: updatedAccounts };
+    });
+    builder.addCase(AddUser.rejected, (state, action) => {
+      return { ...state, add_status: "Failed", add_error: action.payload };
+    });
   },
 });
 
 export default AuthSlice.reducer;
-export const { loadUser, logOut } = AuthSlice.actions;
+export const { loadUser, logOut, checkUser, switchAccount } = AuthSlice.actions;

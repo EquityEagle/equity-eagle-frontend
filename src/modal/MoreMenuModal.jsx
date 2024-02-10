@@ -37,6 +37,10 @@ const MoreMenuModal = () => {
     }
   }
 
+  function close() {
+    moremodal.onClose();
+  }
+
   const modal = (
     <StyledMoreModal className="shadow-slate-100 shadow">
       <div className="flex flex-col p-[10px] gap-[8px]">
@@ -61,7 +65,15 @@ const MoreMenuModal = () => {
       </div>
     </StyledMoreModal>
   );
-  return <div>{open && modal}</div>;
+  return (
+    <div>
+      {open && (
+        <div onClick={close} className="fixed z-[200] w-full top-0 bottom-0">
+          {modal}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default MoreMenuModal;

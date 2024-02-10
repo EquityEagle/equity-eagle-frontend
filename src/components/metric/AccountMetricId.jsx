@@ -10,6 +10,7 @@ import { Error, ScaleInLoader } from "../../lib";
 import { findAccountMetrix } from "../../redux/accountmetrix";
 import MetrixHeader from "./MetrixHeader";
 import { MetrixDeleteModel } from "../../modal";
+import PairPerformance from "./PairPerformance";
 
 const AccountMetricId = ({ userdata, setOpenTrade }) => {
   const Ids = useSelector((state) => state.Acc.Ids);
@@ -56,13 +57,16 @@ const AccountMetricId = ({ userdata, setOpenTrade }) => {
       ) : (
         <>
           {isLoading ? "" : <MetrixDetails metrix={metrix && metrix} />}
-          {isLoading && <ScaleInLoader />}
+          {isLoading && <ScaleInLoader className="translate-y-96" />}
           {isLoading ? (
             ""
           ) : (
             <FlexBox className="max-[800px]:flex-col max-[700px]:flex-col gap-[2rem]">
               <AccountStatic metrix={metrix} trades={trades} />
-              <AccountObject metrix={metrix} />
+              <div className="flex flex-col gap-[1.5rem] w-full">
+                <PairPerformance trades={trades} />
+                <AccountObject metrix={metrix} />
+              </div>
             </FlexBox>
           )}
           {isLoading ? "" : <TradeJournal metrix={metrix} trades={trades} />}

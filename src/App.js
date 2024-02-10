@@ -20,6 +20,8 @@ import {
   SignUp,
 } from "./pages";
 import {
+  AccountSwitchModal,
+  AddAccountModal,
   CommunitySearch,
   CreateModal,
   MenuModal,
@@ -29,29 +31,46 @@ import {
   TrackModal,
   UserSearchModal,
 } from "./modal";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useCallback, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import Communities from "./pages/communities/Communities";
+import { checkUser } from "./redux/auth";
 
 function App() {
   const user = useSelector((state) => state.AUTH);
   const navigate = useNavigate();
   const path = useLocation();
+  const dispatch = useDispatch();
 
-  useEffect(() => {
+  useCallback(() => {
     if (user.userLoaded) {
       navigate("/dashboard");
     } else {
       navigate("/auth/login");
     }
-  }, [user]);
+  }, [user, navigate]);
+
+  useEffect(() => {
+    const processedUser = {
+      token: user.token,
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      username: user.username,
+      profile: user.profile,
+      userLoaded: user.userLoaded,
+    };
+
+    dispatch(checkUser(processedUser));
+  }, [user, dispatch]);
   return (
     <div>
       <GlobalStyles />
       <Navbar />
       <ToastContainer draggable bodyClassName="toast__alert" />
       {/* Modals */}
+      <AddAccountModal />
       <MenuModal />
       <MoreMenuModal />
       <CreateModal />
@@ -60,6 +79,7 @@ function App() {
       <MobileModal />
       <CommunitySearch />
       <UserSearchModal />
+      <AccountSwitchModal />
       <Routes>
         <Route path="/" index element={<LandingPage />} />
         <Route path="/auth/login" index element={<Login />} />

@@ -13,6 +13,7 @@ import { useCreateModal, useMoreMenuModel } from "../../hooks";
 import { NoteIcon } from "../../lib";
 import { getUnreadNotifications } from "../../helper/fetch";
 import { useSelector } from "react-redux";
+import AccountSitch from "./AccountSitch";
 
 const SideNav = () => {
   const moremodal = useMoreMenuModel();
@@ -81,7 +82,7 @@ const SideNav = () => {
             </Link>
           ))}
         </StyledNavLinksContainer>
-        <div className="flex flex-col gap-[12px] absolute ml-[3rem] max-[1024px]:ml-0 bottom-[2rem] w-[200px]">
+        <div className="flex flex-col gap-[12px] absolute ml-[3rem] max-[1024px]:ml-0 bottom-[8rem] w-[200px]">
           <div
             onClick={createModal}
             className="flex gap-2 items-center relative hover:bg-neutral-800 p-[12px] max-[1024px]:w-[55px] rounded-[6px] cursor-pointer"
@@ -99,6 +100,11 @@ const SideNav = () => {
           >
             <HiMenu size={30} />
             <p className="text-[17px] font-poppins max-[1024px]:hidden">More</p>
+          </div>
+        </div>
+        <div className="flex flex-col absolute ml-[3rem] max-[1024px]:ml-0 bottom-[12px] w-auto">
+          <div className="w-full relative hover:bg-neutral-800 p-[8px] max-[1024px]:w-[55px] rounded-[6px] cursor-pointer">
+            <AccountSitch />
           </div>
         </div>
       </StyledSideNavContainer>

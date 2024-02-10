@@ -14,6 +14,8 @@ const initialState = {
   VIEWD_ERROR: null,
   COMMENT_STATUS: null,
   COMMENT_ERROR: null,
+  DELETE_STATUS: null,
+  DELETE_ERROR: null,
 };
 
 export const getSetups = createAsyncThunk(
@@ -101,6 +103,23 @@ export const commentSetup = createAsyncThunk(
   }
 );
 
+export const deleteIdea = createAsyncThunk(
+  "idea/delete",
+  async (ideaId, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`${BASE_URL}/setup/${ideaId}/delete`);
+      return response?.data;
+    } catch (error) {
+      console.log(error.response.data);
+      toast.error(error.response.data, {
+        position: "top-center",
+        className: "toast__alert",
+      });
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const SetupSlice = createSlice({
   name: "setup",
   initialState,
@@ -153,6 +172,23 @@ const SetupSlice = createSlice({
     [commentSetup.rejected]: (state, action) => {
       state.COMMENT_STATUS = "failed";
       state.COMMENT_ERROR = action.payload;
+    },
+    [deleteIdea.pending]: (state, action) => {
+      state.DELETE_STATUS = "Pending";
+    },
+    [deleteIdea.fulfilled]: (state, action) => {
+      state.DELETE_STATUS = "Successful";
+      state.IDEAS = state.IDEAS.filter(
+        (idea) => idea._id !== action.payload.deletedIdea._id
+      );
+      toast.success("Idea deleted", {
+        position: "top-center",
+        className: "toast__alert",
+      });
+    },
+    [deleteIdea.rejected]: (state, action) => {
+      state.DELETE_ERROR = action.payload;
+      state.DELETE_STATUS = "Rejected";
     },
   },
 });

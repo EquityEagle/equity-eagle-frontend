@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Error, ScaleInLoader } from "../../lib";
+import { BackDrop, Error, ScaleInLoader } from "../../lib";
 import { useDispatch, useSelector } from "react-redux";
 import { getSetups } from "../../redux/setup";
 import SetupItem from "./SetupItem";
@@ -12,10 +12,11 @@ const SetupFeed = () => {
   const data = useSelector((state) => state.SETUPS);
   const loading = data.FETCH_STATUS === "loading";
   const empty = data.IDEAS.length === 0;
-  // const setupmodal = useSetupModal();
+  const delState = useSelector((state) => state.SETUPS);
+  const isLoading = delState.DELETE_STATUS === "Pending";
   return (
     <div
-      className={`flex flex-col relative w-full h-full overflow-x-hidden max-[700px]:pb-[4rem] ${
+      className={`flex flex-col relative w-full h-full hide-scroll overflow-x-hidden max-[700px]:pb-[4rem] ${
         loading
           ? ""
           : "border-l border-l-neutral-700 border-r border-r-neutral-700"
@@ -35,6 +36,7 @@ const SetupFeed = () => {
       ) : (
         data.IDEAS.map((item, index) => <SetupItem key={index} item={item} />)
       )}
+      {isLoading && <BackDrop chaild={<ScaleInLoader />} className="z-[200]" />}
     </div>
   );
 };

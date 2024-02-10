@@ -60,7 +60,7 @@ const SetupItem = ({ item }) => {
   const formattedDate = formatDate(timestamp);
 
   return (
-    <StyledSetupItem onClick={() => setOpen(false)}>
+    <StyledSetupItem onClick={() => setOpen(false)} className="hide-scroll">
       <BottomDivider />
       <FlexBetween className="p-[10px] max-[700px]:p-0 max-[700px]:mt-3">
         <div

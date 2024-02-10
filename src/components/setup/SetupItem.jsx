@@ -33,7 +33,8 @@ const SetupItem = ({ item }) => {
   const [openViewImg, setOpenViewImg] = useState(false);
   const [clickedImg, setClickedImg] = useState("");
 
-  function viewImg() {
+  function viewImg(e) {
+    e.stopPropagation();
     setClickedImg(item?.image?.url);
     setOpenViewImg(!openViewImg);
   }
@@ -59,8 +60,13 @@ const SetupItem = ({ item }) => {
   const timestamp = new Date(item.createdAt);
   const formattedDate = formatDate(timestamp);
 
+  function idea() {
+    goToSetup();
+    setOpen(false);
+  }
+
   return (
-    <StyledSetupItem onClick={() => setOpen(false)} className="hide-scroll">
+    <StyledSetupItem onClick={idea} className="hide-scroll cursor-pointer">
       <BottomDivider />
       <FlexBetween className="p-[10px] max-[700px]:p-0 max-[700px]:mt-3">
         <div
@@ -104,7 +110,6 @@ const SetupItem = ({ item }) => {
             className="text-neutral-200 font-[300] cursor-pointer flex text-sm font-poppins"
             maxLength={max}
             underText={less ? h : s}
-            onClick={goToSetup}
           />
         </Flex>
       </div>

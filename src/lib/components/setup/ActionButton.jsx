@@ -60,7 +60,10 @@ const ActionButton = ({ setup }) => {
   // }
 
   return (
-    <FlexEven className="p-[12px] max-[700px]:p-[9px]">
+    <FlexEven
+      className="p-[12px] max-[700px]:p-[9px]"
+      onClick={(e) => e.stopPropagation()}
+    >
       <IconWrap
         icon={
           liked ? (

@@ -14,3 +14,4 @@ export { default as MetrixDeleteModel } from "./MetrixDeleteModel";
 export { default as TradeDetails } from "./TradeDetails";
 export { default as AccountSwitchModal } from "./AccountSwitchModal";
 export { default as AddAccountModal } from "./AddAccountModal";
+export { default as PiarOptionsModal } from "./PiarOptionsModal";

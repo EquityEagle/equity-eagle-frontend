@@ -30,3 +30,4 @@ export { default as MessageIcon } from "./components/MessageIcon";
 export { default as ChatSender } from "./components/ChatSender";
 export { default as MobileHeader } from "./components/MobileHeader";
 export { default as TypingEffect } from "./components/TypingEffect";
+export { default as PairOptions } from "./components/setup/PairOptions";

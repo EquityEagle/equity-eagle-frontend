@@ -12,3 +12,4 @@ export { default as useDeletIdeaModal } from "./useDeletIdeaModal";
 export { default as useAccountSwitchModal } from "./useAccountSwitchModal";
 export { default as useAddAccountModal } from "./useAddAccountModal";
 export { default as useSwitchModal } from "./useSwitchModal";
+export { default as usePairOptionsModal } from "./usePairOptionsModal";

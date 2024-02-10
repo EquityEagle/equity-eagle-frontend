@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useCreateModal, useSetupModal } from "../hooks";
-import { BackDrop, Button, SelectOption } from "../lib";
+import { BackDrop, Button, PairOptions, SelectOption } from "../lib";
 import { MdKeyboardArrowLeft, MdPhotoCamera } from "react-icons/md";
 import { traded } from "../constants/pairs";
 import { type } from "../constants";
@@ -34,7 +34,7 @@ const SetupModal = () => {
     type: "",
     userId: auth.id,
   });
-  console.log("ideas-data:", data.pair);
+  console.log("ideas-data:", data);
 
   const [photo, setPhoto] = useState("");
 
@@ -89,7 +89,6 @@ const SetupModal = () => {
   }
 
   const bodyContent = (
-    // <div className="flex flex-col transition-all duration-1000 h-[auto] w-[500px] max-[700px]:w-[90%] bg-black shadow shadow-slate-600">
     <div className="flex flex-col bg-black w-[400px] shadow shadow-slate-600 max-[700px]:bottom-0 max-[700px]:fixed max-[700px]:w-full max-[700px]:rounded-b-[0] max-[700px]:rounded-t-[12px] rounded-[10px] h-[auto] z-[150]">
       <div className="flex p-[12px] gap-[1rem] items-center">
         <MdKeyboardArrowLeft
@@ -103,11 +102,7 @@ const SetupModal = () => {
       <div className="bg-neutral-500 h-[1px] w-full" />
       <div className="flex flex-col p-[12px] gap-[1rem] items-center w-full hide-scroll overflow-y-auto">
         <div className="flex flex-col gap-[10px] w-full">
-          <SelectOption
-            placeholder="Select pair"
-            data={traded}
-            setValue={setValue}
-          />
+          <PairOptions data={data} setData={setData} />
           <SelectOptionII
             placeholder="Setup type"
             data={type}

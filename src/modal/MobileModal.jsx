@@ -1,5 +1,5 @@
 import React from "react";
-import { useMobileModal } from "../hooks";
+import { useAccountSwitchModal, useMobileModal } from "../hooks";
 import { BackDrop } from "../lib";
 import { Placeholder } from "../assets";
 import { FlexBetween } from "../styles/Global";
@@ -16,6 +16,7 @@ const MobileModal = () => {
   const open = mobilemodal.isOpen;
   const user = useSelector((state) => state.AUTH);
   const dispatch = useDispatch();
+  const switchAccount = useAccountSwitchModal();
 
   function close() {
     mobilemodal.onClose();
@@ -24,15 +25,24 @@ const MobileModal = () => {
     dispatch(logOut());
   }
 
+  function openSwitch(e) {
+    e.preventDefault();
+    switchAccount.onOpen();
+  }
+
   const body = (
     <div className="flex flex-col bg-black fixed delayIn left-0 h-full z-[100] top-0 w-[300px] p-2">
-      <FlexBetween className="p-[8px] mb-1">
+      <FlexBetween onClick={(e) => e.preventDefault()} className="p-[8px] mb-1">
         <img
           src={user.profile?.url || Placeholder}
           alt="User profile"
           className="w-[40px] h-[40px] rounded-full hidden max-[700px]:block"
         />
-        <PiDotsThreeCircleVerticalDuotone size={20} color="#fff" />
+        <PiDotsThreeCircleVerticalDuotone
+          onClick={openSwitch}
+          size={25}
+          color="#fff"
+        />
       </FlexBetween>
       <div className="flex-col flex items-start text-justify p-1 mb-1">
         <p className="text-white font-kanit">{user.name}</p>

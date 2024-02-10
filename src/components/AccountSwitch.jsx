@@ -28,41 +28,42 @@ const AccountSwitch = () => {
 
   return (
     <>
-      {accounts?.map((user, index) => (
-        <div
-          className="flex justify-between items-center hover:bg-neutral-800 p-[8px] cursor-pointer rounded-[8px]"
-          key={index}
-          onClick={() => {
-            isswitchmodal.onSwitch();
-            dispatch(switchAccount(user));
-          }}
-        >
+      {accounts &&
+        accounts?.map((user, index) => (
           <div
-            className="flex relative gap-3"
-            onClick={(e) => e.preventDefault()}
+            className="flex justify-between items-center hover:bg-neutral-800 p-[8px] cursor-pointer rounded-[8px]"
+            key={index}
+            onClick={() => {
+              isswitchmodal.onSwitch();
+              dispatch(switchAccount(user));
+            }}
           >
-            <img
-              src={user?.profile?.url || Placeholder}
-              alt="User"
-              className="w-[45px] h-[45px] rounded-full"
-            />
-            <div className="flex flex-col">
-              <p className="text-white font-poppins">{user.name}</p>
-              <p className="text-neutral-400 text-[14px] font-poppins">
-                @{user.username}
-              </p>
+            <div
+              className="flex relative gap-3"
+              onClick={(e) => e.preventDefault()}
+            >
+              <img
+                src={user?.profile?.url || Placeholder}
+                alt="User"
+                className="w-[45px] h-[45px] rounded-full"
+              />
+              <div className="flex flex-col">
+                <p className="text-white font-poppins">{user.name}</p>
+                <p className="text-neutral-400 text-[14px] font-poppins">
+                  @{user.username}
+                </p>
+              </div>
             </div>
+            {userState.id === user.id ? (
+              <FaCheckCircle size={20} className="text-blue-600" />
+            ) : (
+              <MdOutlineRadioButtonUnchecked
+                size={20}
+                className="text-blue-600"
+              />
+            )}
           </div>
-          {userState.id === user.id ? (
-            <FaCheckCircle size={20} className="text-blue-600" />
-          ) : (
-            <MdOutlineRadioButtonUnchecked
-              size={20}
-              className="text-blue-600"
-            />
-          )}
-        </div>
-      ))}
+        ))}
 
       {isSwitching && (
         <BackDrop chaild={<ScaleInLoader />} className="z-[200]" />

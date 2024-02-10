@@ -27,4 +27,11 @@ export const StyledSwitchModal = styled.div`
   border-radius: 9px;
   gap: 8px;
   padding-bottom: 1rem;
+
+  @media (max-width: 700px) {
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 3rem;
+  }
 `;

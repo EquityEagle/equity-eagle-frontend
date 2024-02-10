@@ -32,7 +32,7 @@ import {
   UserSearchModal,
 } from "./modal";
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import Communities from "./pages/communities/Communities";
 import { checkUser } from "./redux/auth";
@@ -43,26 +43,28 @@ function App() {
   const path = useLocation();
   const dispatch = useDispatch();
 
-  useCallback(() => {
+  useEffect(() => {
     if (user.userLoaded) {
       navigate("/dashboard");
     } else {
       navigate("/auth/login");
     }
-  }, [user, navigate]);
+  }, [user]);
 
   useEffect(() => {
-    const processedUser = {
-      token: user.token,
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      username: user.username,
-      profile: user.profile,
-      userLoaded: user.userLoaded,
-    };
+    if (user.id) {
+      const processedUser = {
+        token: user.token,
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        username: user.username,
+        profile: user.profile,
+        userLoaded: user.userLoaded,
+      };
 
-    dispatch(checkUser(processedUser));
+      dispatch(checkUser(processedUser));
+    }
   }, [user, dispatch]);
   return (
     <div>

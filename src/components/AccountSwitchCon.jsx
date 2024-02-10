@@ -6,9 +6,11 @@ import AccountSwitch from "./AccountSwitch";
 
 const AccountSwitchCon = () => {
   const user = useSelector((state) => state.AUTH);
+  const accounts = user.Accounts;
+
   return (
     <>
-      {user.Accounts.length !== 0 ? (
+      {accounts.length > 1 ? (
         <AccountSwitch />
       ) : (
         <div className="flex justify-between items-center hover:bg-neutral-800 p-[8px] cursor-pointer rounded-[8px]">

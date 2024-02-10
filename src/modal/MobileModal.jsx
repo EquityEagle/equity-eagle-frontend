@@ -26,13 +26,13 @@ const MobileModal = () => {
   }
 
   function openSwitch(e) {
-    e.preventDefault();
+    // e.stopPropagation();
     switchAccount.onOpen();
   }
 
   const body = (
     <div className="flex flex-col bg-black fixed delayIn left-0 h-full z-[100] top-0 w-[300px] p-2">
-      <FlexBetween onClick={(e) => e.preventDefault()} className="p-[8px] mb-1">
+      <FlexBetween className="p-[8px] mb-1">
         <img
           src={user.profile?.url || Placeholder}
           alt="User profile"

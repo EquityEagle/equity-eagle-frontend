@@ -33,15 +33,13 @@ const AccountSwitch = () => {
           <div
             className="flex justify-between items-center hover:bg-neutral-800 p-[8px] cursor-pointer rounded-[8px]"
             key={index}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               isswitchmodal.onSwitch();
               dispatch(switchAccount(user));
             }}
           >
-            <div
-              className="flex relative gap-3"
-              onClick={(e) => e.preventDefault()}
-            >
+            <div className="flex relative gap-3">
               <img
                 src={user?.profile?.url || Placeholder}
                 alt="User"

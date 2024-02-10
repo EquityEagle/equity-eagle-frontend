@@ -14,17 +14,14 @@ const PiarOptionsModal = ({ data, setData, setSelectedPair }) => {
   const [pairQuery, setPairQuery] = useState("");
 
   const body = (
-    <div
-      onClick={(e) => e.preventDefault()}
-      className="bg-black w-[400px] h-[480px] rounded-[9px] max-[700px]:w-[95%] flex flex-col gap-3 relative overflow-y-auto hide-scroll shadow shadow-slate-600"
-    >
-      <div className="flex p-3 w-[400px] fixed -translate-y-1 h-auto z-50 bg-black border-b border-b-neutral-700">
+    <div className="bg-black w-[400px] h-[480px] rounded-[9px] max-[700px]:w-[95%] flex flex-col gap-3 relative overflow-y-auto hide-scroll shadow shadow-slate-600">
+      <div className="flex p-3 w-[400px] max-[700px]:w-[95%] fixed -translate-y-1 h-auto z-50 bg-black border-b border-b-neutral-700">
         <div className="bg-slate-800 rounded-[8px] items-center flex p-3 gap-2 w-full relative justify-between">
           <IoSearch color="white" size={25} />
           <input
             type="text"
             value={pairQuery}
-            onClick={(e) => e.preventDefault()}
+            onClick={(e) => e.stopPropagation()}
             onChange={(e) => setPairQuery(e.target.value)}
             placeholder="Search"
             className="text-white font-kanit w-full bg-transparent outline-none border-none"

@@ -33,5 +33,6 @@ export const StyledSwitchModal = styled.div`
     left: 0;
     right: 0;
     bottom: 3rem;
+    z-index: 200;
   }
 `;

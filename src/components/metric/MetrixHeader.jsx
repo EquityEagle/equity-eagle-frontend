@@ -19,7 +19,7 @@ const MetrixHeader = () => {
     }, 3000);
   }
   return (
-    <div className="flex items-center gap-5 p-2 relative mt-5">
+    <div className="flex items-center gap-5 p-2 relative mt-5 flex-wrap w-full">
       <Flex className="gap-2 cursor-pointer hover:bg-neutral-800 p-2 rounded-[8px]">
         <BsArrowLeftShort
           size={30}

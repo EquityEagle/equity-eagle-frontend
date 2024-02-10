@@ -16,7 +16,7 @@ const AccountSwitchCon = () => {
         <div className="flex justify-between items-center hover:bg-neutral-800 p-[8px] cursor-pointer rounded-[8px]">
           <div
             className="flex relative gap-3"
-            onClick={(e) => e.preventDefault()}
+            onClick={(e) => e.stopPropagation()}
           >
             <img
               src={user?.profile?.url || Placeholder}

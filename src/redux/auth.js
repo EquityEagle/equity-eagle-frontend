@@ -25,6 +25,10 @@ const initialState = {
   Accounts: accounts,
   add_status: null,
   add_error: null,
+  hasLock: false,
+  passcode: null,
+  lockId: "",
+  selectedId: "",
 };
 
 export const AddUser = createAsyncThunk(
@@ -171,6 +175,8 @@ const AuthSlice = createSlice({
       }
     },
     switchAccount: (state, action) => {
+      const userId = state.id;
+      const user = state.Accounts?.find((u) => u.id === userId);
       localStorage.setItem("eeToken", action.payload.token);
       return {
         ...state,
@@ -181,7 +187,29 @@ const AuthSlice = createSlice({
         profile: action.payload.profile,
         email: action.payload.email,
         userLoaded: true,
+        hasLock: user.hasLock,
+        passcode: user.passcode,
       };
+    },
+    setLock: (state, action) => {
+      state.lockId = action.payload.id;
+    },
+    setSelectedId: (state, action) => {
+      state.selectedId = action.payload.id;
+    },
+    lockAccount: (state, action) => {
+      const userId = action.payload.id;
+
+      // const user = accounts && accounts.find((u) => u.id === userId);
+      const user = state.Accounts.find((u) => u.id === userId);
+      if (user.passcode === null) {
+        user.passcode = action.payload.code;
+        toast.success("Account secured", {
+          position: "top-center",
+          className: "toast__alert",
+        });
+        // user.hasLock = true;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -271,6 +299,8 @@ const AuthSlice = createSlice({
         profile: user.profile,
         id: user.id,
         userLoaded: true,
+        passcode: null,
+        hasLock: false,
       };
       const updatedAccounts = Array.isArray(state.Accounts)
         ? [...state.Accounts, processedUser]
@@ -286,4 +316,12 @@ const AuthSlice = createSlice({
 });
 
 export default AuthSlice.reducer;
-export const { loadUser, logOut, checkUser, switchAccount } = AuthSlice.actions;
+export const {
+  loadUser,
+  logOut,
+  checkUser,
+  switchAccount,
+  lockAccount,
+  setLock,
+  setSelectedId,
+} = AuthSlice.actions;

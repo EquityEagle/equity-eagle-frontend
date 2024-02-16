@@ -107,6 +107,7 @@ const Hero = ({
             </p>
           </div>
           {hasConnect || user._id === connectorsId ? (
+            // <Button text='Unconnect' secondary />
             ""
           ) : (
             <Button
@@ -118,12 +119,12 @@ const Hero = ({
               className="max-[700px]:hidden absolute -right-[9rem] max-[1024px]:-right-[5rem] max-[800px]:-right-[10rem]"
             />
           )}
-          <IoMdChatbubbles
+          {/* <IoMdChatbubbles
             onClick={Chat}
             size={40}
             color="#fff"
             className="p-2 rounded-[9px] hover:bg-neutral-800 cursor-pointer -left-4"
-          />
+          /> */}
         </Flex>
       </div>
       {openUpdateModal && (

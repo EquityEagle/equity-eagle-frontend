@@ -24,9 +24,12 @@ import {
   AddAccountModal,
   CommunitySearch,
   CreateModal,
+  LockAccount,
+  ManageAccount,
   MenuModal,
   MobileModal,
   MoreMenuModal,
+  PassCodeCheck,
   SetupModal,
   TrackModal,
   UserSearchModal,
@@ -52,6 +55,8 @@ function App() {
   }, [user]);
 
   useEffect(() => {
+    const accState = user.Accounts;
+    const u = accState.find((ur) => ur.id === user.id);
     if (user.id) {
       const processedUser = {
         token: user.token,
@@ -61,11 +66,14 @@ function App() {
         username: user.username,
         profile: user.profile,
         userLoaded: user.userLoaded,
+        // hasLock: u.hasLock,
+        passcode: u.passcode,
       };
 
       dispatch(checkUser(processedUser));
     }
   }, [user, dispatch]);
+
   return (
     <div>
       <GlobalStyles />
@@ -82,6 +90,10 @@ function App() {
       <CommunitySearch />
       <UserSearchModal />
       <AccountSwitchModal />
+      <ManageAccount />
+      <LockAccount />
+      <PassCodeCheck />
+
       <Routes>
         <Route path="/" index element={<LandingPage />} />
         <Route path="/auth/login" index element={<Login />} />

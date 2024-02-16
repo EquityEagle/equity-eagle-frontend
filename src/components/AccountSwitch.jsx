@@ -4,14 +4,15 @@ import { FaCheckCircle } from "react-icons/fa";
 import { Placeholder } from "../assets";
 import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 import { BackDrop, ScaleInLoader } from "../lib";
-import { useSwitchModal } from "../hooks";
-import { switchAccount } from "../redux/auth";
+import { usePassCodeCheckModal, useSwitchModal } from "../hooks";
+import { setSelectedId, switchAccount } from "../redux/auth";
 
 const AccountSwitch = () => {
   const userState = useSelector((state) => state.AUTH);
   const accounts = userState.Accounts;
   const isswitchmodal = useSwitchModal();
   const isSwitching = isswitchmodal.isSwitching;
+  const passcheckmodal = usePassCodeCheckModal();
   const dispatch = useDispatch();
 
   // function StartSwitchaccount(user) {}/
@@ -35,8 +36,12 @@ const AccountSwitch = () => {
             key={index}
             onClick={(e) => {
               e.stopPropagation();
-              isswitchmodal.onSwitch();
-              dispatch(switchAccount(user));
+              dispatch(setSelectedId(user));
+              if (user.passcode) {
+                passcheckmodal.onOpen();
+              } else if (!user.passcode) {
+                dispatch(switchAccount(user));
+              }
             }}
           >
             <div className="flex relative gap-3">

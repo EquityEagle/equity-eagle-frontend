@@ -16,3 +16,6 @@ export { default as AccountSwitchModal } from "./AccountSwitchModal";
 export { default as AddAccountModal } from "./AddAccountModal";
 export { default as PiarOptionsModal } from "./PiarOptionsModal";
 export { default as TypeModal } from "./TypeModal";
+export { default as ManageAccount } from "./ManageAccount";
+export { default as LockAccount } from "./LockAccount";
+export { default as PassCodeCheck } from "./PassCodeCheck";

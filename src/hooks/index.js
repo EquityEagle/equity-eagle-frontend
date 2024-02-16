@@ -14,3 +14,6 @@ export { default as useAddAccountModal } from "./useAddAccountModal";
 export { default as useSwitchModal } from "./useSwitchModal";
 export { default as usePairOptionsModal } from "./usePairOptionsModal";
 export { default as useTypeModal } from "./useTypeModal";
+export { default as useMAModal } from "./useMAModal";
+export { default as useLockModal } from "./useLockModal";
+export { default as usePassCodeCheckModal } from "./usePassCodeCheckModal";

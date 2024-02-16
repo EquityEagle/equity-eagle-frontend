@@ -3,6 +3,7 @@ import { StyledSwitchModal } from "../styles/modal/styled";
 import {
   useAccountSwitchModal,
   useAddAccountModal,
+  useMAModal,
   useSwitchModal,
 } from "../hooks";
 import { AccountSwitchCon } from "../components";
@@ -13,6 +14,7 @@ const AccountSwitchModal = () => {
   const open = switchAccount.isOpen;
   const addaccountmodal = useAddAccountModal();
   const isswitchmodal = useSwitchModal();
+  const mamodel = useMAModal();
 
   function close() {
     if (isswitchmodal.isSwitching) {
@@ -40,7 +42,10 @@ const AccountSwitchModal = () => {
         >
           Add an exiting account
         </p>
-        <p className="text-white font-poppins cursor-pointer p-3 hover:bg-neutral-800">
+        <p
+          onClick={mamodel.onOpen}
+          className="text-white font-poppins cursor-pointer p-3 hover:bg-neutral-800"
+        >
           Manage accounts
         </p>
       </div>

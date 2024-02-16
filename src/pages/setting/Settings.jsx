@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { StyledDash } from "../../styles/pages/styled";
-import { SideNav } from "../../components";
+import { NextSideNav, SettingsContainer, SideNav } from "../../components";
 
 const Explore = () => {
   useEffect(() => {
@@ -9,6 +9,8 @@ const Explore = () => {
   return (
     <StyledDash>
       <SideNav />
+      <SettingsContainer />
+      <NextSideNav />
     </StyledDash>
   );
 };

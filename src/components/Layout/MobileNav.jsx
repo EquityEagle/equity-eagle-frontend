@@ -39,11 +39,12 @@ const MobileNav = () => {
           }
         />
       </Link>
-      <Link to="/messages">
+      {/* <Link to="/messages"> */}
+      <Link to="/coming-soon">
         <BiSolidMessageAltDetail
           size={27}
           className={
-            path.pathname === "/messages" ? "text-blue-600" : "text-white"
+            path.pathname === "/coming-soon" ? "text-blue-600" : "text-white"
           }
         />
       </Link>

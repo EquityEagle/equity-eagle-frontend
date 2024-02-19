@@ -5,6 +5,7 @@ import { GlobalStyles } from "./styles/Global";
 import "react-toastify/dist/ReactToastify.css";
 import {
   Account,
+  ComingSoon,
   Connect,
   Current,
   DashBoard,
@@ -96,6 +97,7 @@ function App() {
 
       <Routes>
         <Route path="/" index element={<LandingPage />} />
+        <Route path="/coming-soon" index element={<ComingSoon />} />
         <Route path="/auth/login" index element={<Login />} />
         <Route path="/auth/sign-up" index element={<SignUp />} />
         <Route path="/dashboard" element={<DashBoard />} />

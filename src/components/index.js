@@ -27,3 +27,4 @@ export { default as AccountSwitch } from "./AccountSwitch";
 export { default as AccountSwitchCon } from "./AccountSwitchCon";
 export { default as MAccounts } from "./settings/MAccounts";
 export { default as SettingsContainer } from "./settings/SettingsContainer";
+export { default as ComingSoonFeed } from "./ComingSoonFeed";

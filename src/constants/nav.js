@@ -38,7 +38,8 @@ export const sidenavdata = [
   },
   {
     text: "Messages",
-    link: "/messages",
+    // link: "/messages",
+    link: "/coming-soon",
     label: "Messages",
     icon: <BiSolidMessageAltDetail size={25} />,
     isMsg: true,
@@ -84,7 +85,8 @@ export const moremodaldata = [
   {
     text: "Report a problem",
     icon: <BiMessageAltError size={25} color="#fff" />,
-    link: "/account/settings/?report",
+    // link: "/account/settings/?report",
+    link: "coming-soon",
   },
 ];
 
@@ -123,6 +125,7 @@ export const mobilenavdata = [
   {
     text: "Report a problem",
     icon: <BiMessageAltError size={30} color="#fff" />,
-    link: "/account/settings/?report",
+    // link: "/account/settings/?report",
+    link: "coming-soon",
   },
 ];

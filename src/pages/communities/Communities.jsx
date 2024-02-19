@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { StyledDash } from "../../styles/pages/styled";
-import { CommunityFeed, NextSideNav, SideNav } from "../../components";
+import {
+  ComingSoonFeed,
+  CommunityFeed,
+  NextSideNav,
+  SideNav,
+} from "../../components";
 
 const Communities = () => {
   useEffect(() => {
@@ -9,7 +14,8 @@ const Communities = () => {
   return (
     <StyledDash>
       <SideNav />
-      <CommunityFeed />
+      {/* <CommunityFeed /> */}
+      <ComingSoonFeed />
       <NextSideNav />
     </StyledDash>
   );

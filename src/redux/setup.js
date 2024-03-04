@@ -125,7 +125,7 @@ const SetupSlice = createSlice({
   initialState,
   reducers: {
     updateIdeaState: (state, action) => {
-      const updatedIdeas = [action.payload, ...state.IDEAS];
+      const updatedIdeas = [...action.payload, ...state.IDEAS];
 
       return {
         ...state,
@@ -140,7 +140,7 @@ const SetupSlice = createSlice({
     [publishSetup.fulfilled]: (state, action) => {
       state.PUBLISH_STATUS = "success";
       toast.success("Setup shared", { position: "top-center" });
-      const updatedIdeas = [action.payload, ...state.IDEAS];
+      const updatedIdeas = [...action.payload, ...state.IDEAS];
       state.IDEAS = updatedIdeas;
     },
     [publishSetup.rejected]: (state, action) => {

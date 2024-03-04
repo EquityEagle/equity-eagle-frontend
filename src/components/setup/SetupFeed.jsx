@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BackDrop, Empty, Error, ScaleInLoader } from "../../lib";
 import { useDispatch, useSelector } from "react-redux";
-import { getSetups } from "../../redux/setup";
+import { getSetups, updateIdeaState } from "../../redux/setup";
 import SetupItem from "./SetupItem";
 import HomeHeader from "./HomeHeader";
 import ScrollToNewIdea from "../ScrollToNewIdea";
@@ -17,20 +17,19 @@ const SetupFeed = () => {
   const isLoading = delState.DELETE_STATUS === "Pending";
   const [ideas, setIdeas] = useState([]);
   const [ideaState, setIdeaState] = useState(data.IDEAS);
-  const error = data.FETCH_STATUS==="failed"
-  // const [newIdea, setNewIdea] = useState(false);
+  const error = data.FETCH_STATUS === "failed";
   const [newArr, setNewArr] = useState(false);
 
   useEffect(() => {
     if (ideas && ideas.length > ideaState.length) {
       setNewArr(true);
+    } else {
+      setNewArr(false);
     }
-  }, [ideas, ideaState]);
+  }, [ideas]);
 
-  async function getNewIdeas() {
-    const data = await getIdeas();
-    setIdeas(data);
-    setIdeaState(data);
+  function getNewIdeas() {
+    dispatch(updateIdeaState(ideas));
     setTimeout(() => {
       setNewArr(false);
     }, 500);
@@ -39,10 +38,8 @@ const SetupFeed = () => {
   useEffect(() => {
     const getideas = async () => {
       const data = await getIdeas();
-      if (data.length > ideas.length) {
-        setIdeas(data);
-        // setNewIdea(true);
-      }
+      setIdeas(data);
+      // setNewIdea(true);
     };
 
     // Fetch new ideas only if there are more ideas than before
@@ -61,7 +58,9 @@ const SetupFeed = () => {
       {newArr && <ScrollToNewIdea clickEvent={getNewIdeas} />}
       {loading ? (
         <ScaleInLoader size={110} className="mt-[25%] max-[800px]:mt-[80%]" />
-      ) : empty ? <Empty text='No ideas available be the first to shares' /> : error ? (
+      ) : empty ? (
+        <Empty text="No ideas available be the first to shares" />
+      ) : error ? (
         <div className="flex flex-col items-center relative mt-[30%] max-[800px]:mt-[55%] h-full w-full justify-center">
           <Error
             // networks

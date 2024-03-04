@@ -23,7 +23,7 @@ const NotificationFeed = () => {
 
   return (
     <div className="flex flex-col relative w-full h-full mt-5 border-l border-r border-r-neutral-800 border-l-neutral-800">
-      <BackArrow title="Notifications" />
+      <BackArrow title="Notifications" hasBg />
       <BottomDivider />
       <div className="flex flex-col w-full relative h-full">
         {error ? (

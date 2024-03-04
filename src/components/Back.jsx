@@ -3,7 +3,7 @@ import { BsArrowLeftShort } from "react-icons/bs";
 // import { IoSearch } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-const BackArrow = ({ className, isTrade, setOpenTrade, title }) => {
+const BackArrow = ({ className, isTrade, setOpenTrade, title, hasBg }) => {
   const navigate = useNavigate();
 
   function back() {
@@ -15,7 +15,9 @@ const BackArrow = ({ className, isTrade, setOpenTrade, title }) => {
   return (
     <div
       onClick={isTrade ? closeTrade : back}
-      className={`${className} flex gap-5 pb-1 items-center /bg-[rgb(0,0,0,0.5)] border-b/ border-b-neutral-700/`}
+      className={`${className} flex gap-5 pb-1 items-center ${
+        hasBg && ` bg - [rgb(0, 0, 0, 0.5)]`
+      } border-b/ border-b-neutral-700/`}
     >
       <BsArrowLeftShort
         color="#fff"

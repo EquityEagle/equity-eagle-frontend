@@ -71,12 +71,15 @@ const SetupItem = ({ item }) => {
       <FlexBetween className="p-[10px] max-[700px]:p-0 max-[700px]:mt-3">
         <div
           className="flex gap-4 items-center cursor-pointer"
-          onClick={() => navigate(`/account/${item.username}`)}
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate(`/account/${item.username}`);
+          }}
         >
           <img
             src={item.profile?.url || Placeholder}
             alt="placeholder"
-            className="w-10 rounded-full max-[700px]:ml-2"
+            className="w-[40px] h-[40px] rounded-full max-[700px]:ml-2"
           />
           <div className="flex flex-col">
             <p className="text-white font-kanit">{item.username}</p>

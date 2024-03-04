@@ -3,7 +3,7 @@ import { Flex } from "../../styles/components/styled";
 import { Placeholder } from "../../assets";
 import { BottomDivider } from "../../lib";
 // import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReadNotification } from "../../helper/post";
 import { toast } from "react-toastify";
 import { formatDate } from "../../lib/functions";
@@ -12,21 +12,20 @@ import { FaBrain, FaStar, FaUserPlus } from "react-icons/fa";
 import { HiOutlineSpeakerphone, HiSpeakerphone } from "react-icons/hi";
 import { LiaComment } from "react-icons/lia";
 import { useNavigate } from "react-router-dom";
+import { readNot } from "../../redux/notification";
 
 const NotificationItem = ({ notification }) => {
   const timestamp = new Date(notification.createdAt);
   const navigate = useNavigate();
   const userId = useSelector((state) => state.AUTH.id);
   const noteId = notification._id;
+  const dispatch = useDispatch();
 
-  const formattedDate = formatDate(timestamp);
+  // const formattedDate = formatDate(timestamp);
 
-  async function read(e) {
+  async function read() {
     await ReadNotification(userId, noteId);
-    // toast.success("Success", {
-    //   position: "top-center",
-    //   className: "toast__alert",
-    // });
+    dispatch(readNot(notification));
     if (notification?.objectId) {
       navigate(`/ideas/statusId/${notification.objectId}`);
     }

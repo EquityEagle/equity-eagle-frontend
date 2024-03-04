@@ -31,12 +31,26 @@ const NotificationSlice = createSlice({
   initialState,
   reducers: {
     updatedNotify: (state, action) => {
-      const updatedNotifications = [action.payload, ...state.NOTIFICATIONS]; // Add the new notification to the beginning of the array
+      const updatedNotifications = [...action.payload, ...state.NOTIFICATIONS]; // Add the new notification to the beginning of the array
 
       return {
         ...state,
         NOTIFICATIONS: updatedNotifications,
       };
+    },
+    readNot: (state, action) => {
+      const notify = action.payload;
+      // Find the notification in the state array and update its 'seen' property
+      const updatedNotifications = state.NOTIFICATIONS.map((notification) => {
+        if (notification._id === notify._id) {
+          // Update the 'seen' property to true
+          return { ...notification, seen: true };
+        }
+        return notification; // Return unchanged notification if not the one to update
+      });
+
+      // Return the updated state with the notifications array replaced
+      return { ...state, NOTIFICATIONS: updatedNotifications };
     },
   },
   extraReducers: (builder) => {
@@ -62,4 +76,4 @@ const NotificationSlice = createSlice({
 
 export default NotificationSlice.reducer;
 
-export const { updatedNotify } = NotificationSlice.actions;
+export const { updatedNotify, readNot } = NotificationSlice.actions;

@@ -22,18 +22,15 @@ const PairPerformance = ({ trades }) => {
   return (
     <div className="w-full flex-col relative flex gap-6">
       <div className="flex flex-wrap gap-5 relative justify-evenly">
-        {trades && trades
-          ? Object?.entries(totalTradesBySymbol)?.map(
-              ([symbol, totalTrades]) => (
-                <div className="flex gap-2 items-center" key={symbol}>
-                  <p className="text-white font-poppins">{symbol}</p>
-                  <h1 className="text-blue-600 font-semibold text-[18px]">
-                    {totalTrades}
-                  </h1>
-                </div>
-              )
-            )
-          : null}
+        {totalTradesBySymbol &&
+          Object.entries(totalTradesBySymbol).map(([symbol, totalTrades]) => (
+            <div className="flex gap-2 items-center" key={symbol}>
+              <p className="text-white font-poppins">{symbol}</p>
+              <h1 className="text-blue-600 font-semibold text-[18px]">
+                {totalTrades}
+              </h1>
+            </div>
+          ))}
       </div>
       <div className="flex gap-16 justify-evenly">
         <div className="flex gap-5 relative">
@@ -67,24 +64,24 @@ const PairPerformance = ({ trades }) => {
           </div>
         </div>
       </div>
-      <div className="flex w-full relative justify-evenly">
+      {/* <div className="flex w-full relative justify-evenly">
         <div className="flex flex-col items-center">
           <h1 className="text-green-500 text-[25px] font-kanit">
             {bestpair?.symbol}
           </h1>
-          {/* <p className="text-neutral-400 text-[13px] font-poppins">
+          <p className="text-neutral-400 text-[13px] font-poppins">
             Great job! This pair performed exceptionally well.
-          </p> */}
+          </p>
         </div>
         <div className="flex flex-col items-center">
           <h1 className="text-red-500 text-[25px] font-kanit">
             {lossingpair?.symbol}
           </h1>
-          {/* <p className="text-neutral-400 text-[13px] font-poppins">
+          <p className="text-neutral-400 text-[13px] font-poppins">
             This pair faced losses. Learn and adapt for future trades.
-          </p> */}
+          </p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

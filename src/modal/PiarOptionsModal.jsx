@@ -28,7 +28,7 @@ const PiarOptionsModal = ({ data, setData, setSelectedPair }) => {
           />
         </div>
       </div>
-      <div className="flex flex-col gap-2 mt-4">
+      <div className="flex flex-col gap-2 mt-20">
         {traded
           .filter((p) => {
             const searchTerm = pairQuery.toLowerCase();

@@ -20,6 +20,9 @@ const TrackModal = () => {
     accountsize: "",
     accounttype: "",
   });
+  const systemconfig = useSelector((state) => state.SYSTEM);
+  const islight = systemconfig.mode === "light";
+  const isdark = systemconfig.mode === "dark";
 
   function Closetrack() {
     usetrackmodal.onClose();
@@ -42,25 +45,43 @@ const TrackModal = () => {
   }
 
   const body = (
-    <div className="flex flex-col bg-black w-[400px] shadow shadow-slate-600 delayIn max-[700px]:bottom-0 max-[700px]:fixed max-[700px]:w-full max-[700px]:rounded-b-[0] max-[700px]:rounded-t-[12px] rounded-[10px] h-[auto] z-[150]">
+    <div
+      className={`flex flex-col ${
+        islight ? "bg-white" : "bg-black"
+      } w-[400px] shadow ${
+        islight ? "shadow-black" : "shadow-slate-600"
+      } delayIn max-[700px]:bottom-0 max-[700px]:fixed max-[700px]:w-full max-[700px]:rounded-b-[0] max-[700px]:rounded-t-[12px] rounded-[10px] h-[auto] z-[150]`}
+    >
       <div className="flex p-[1rem] justify-between items-center">
-        <h1 className="font-kanit text-[25px] text-white">Track growth</h1>
+        <h1
+          className={`font-kanit text-[25px] ${
+            islight ? "text-black" : "text-white"
+          }`}
+        >
+          Track growth
+        </h1>
         <IoClose
           size={35}
-          color="#fff"
+          color={islight ? "#000" : "#fff"}
           onClick={Closetrack}
-          className="cursor-pointer hover:bg-slate-800 p-1 rounded-full"
+          className={`cursor-pointer ${
+            islight ? "hover:bg-slate-600 text-white" : "hover:bg-slate-800"
+          } p-1 rounded-full`}
         />
       </div>
       <BottomDivider />
       <div className="p-[12px] gap-[16px] relative flex flex-col">
         <div className="flex-col flex gap-[6px] items-start">
           <div className="flex gap-2 relative items-center w-full">
-            <h2 className="text-white font-kanit">Account Type</h2>
+            <h2
+              className={`${islight ? "text-black" : "text-white"} font-kanit`}
+            >
+              Account Type
+            </h2>
             <FaCircleInfo
               size={15}
               className="cursor-pointer"
-              color="#fff"
+              color={islight ? "#000" : "#fff"}
               onMouseEnter={() => setHoverType(true)}
               onMouseLeave={() => setHoverType(false)}
               onClick={(e) => e.stopPropagation()}
@@ -81,7 +102,9 @@ const TrackModal = () => {
           />
         </div>
         <div className="flex-col flex gap-[6px] items-start">
-          <h2 className="text-white font-kanit">Account size</h2>
+          <h2 className={`${islight ? "text-black" : "text-white"} font-kanit`}>
+            Account size
+          </h2>
           <input
             type="number"
             value={data.accountsize}
@@ -95,7 +118,8 @@ const TrackModal = () => {
         </div>
         <Button
           text="Save"
-          secondary
+          secondary={isdark}
+          light={islight}
           disabled={isLoading}
           isLoading={isLoading}
           Onclick={trackacc}

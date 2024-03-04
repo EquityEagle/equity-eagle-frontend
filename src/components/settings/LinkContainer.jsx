@@ -4,7 +4,7 @@ import { settinglinks } from "../../constants/settings";
 
 const LinkContainer = () => {
   return (
-    <div className="flex flex-col gap-4 pb-[17rem]">
+    <div className="flex flex-col gap-4 pb-[10rem]">
       {settinglinks.map((link, index) => (
         <div
           key={index}
@@ -19,10 +19,9 @@ const LinkContainer = () => {
               </p>
             </div>
           </div>
-          <FaArrowRight size={20} color="white" />
+          {/* <FaArrowRight size={20} color="white" /> */}
         </div>
       ))}
-      {/* <h1 className="text-white text-[12rem]">EE</h1> */}
     </div>
   );
 };

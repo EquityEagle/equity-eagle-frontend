@@ -28,7 +28,7 @@ const Footer = () => {
           your trading strategy
         </p>
         <p className="text-neutral-300 font-kanit mt-[2rem]">
-          &copy; 2023 EquityEagle . All Rights Reserved
+          &copy; 2024 EquityEagle . All Rights Reserved
         </p>
       </div>
       <div className="flex flex-col gap-3">

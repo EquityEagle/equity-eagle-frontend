@@ -4,23 +4,42 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BiSolidCommentDetail } from "react-icons/bi";
 import IconWrap from "./IconWrap";
 import { formatNumberWithK } from "../../functions";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LikeSetup, StarSetup } from "../../../helper/post";
 import { getSetupActions } from "../../../helper/fetch";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { FiShare2 } from "react-icons/fi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MdInsertChartOutlined } from "react-icons/md";
+import { LiaComment } from "react-icons/lia";
+import { BsBookmark, BsBookmarkCheckFill } from "react-icons/bs";
+import { saveIdea } from "../../../redux/saved";
 
 const ActionButton = ({ setup }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const path = useLocation();
   const [actiondata, setActiondata] = useState([]);
   const userId = useSelector((state) => state.AUTH.id);
   const setupId = setup?._id;
-  const Liked = actiondata.likes;
-  const liked = Liked?.includes(userId);
-  const stared = actiondata.star?.includes(userId);
+  const [likes, setLikes] = useState(actiondata.likes?.length || 0);
+  const [comments, setComments] = useState(actiondata.comments?.length || 0);
+  const [views, setViews] = useState(actiondata.views?.length || 0);
+  const [stars, setStars] = useState(actiondata.star?.length || 0);
+  const stared =
+    actiondata.star?.includes(userId) || setup.star.includes(userId);
+
+  const liked =
+    actiondata.likes?.includes(userId) || setup?.likes?.includes(userId);
+
+  const ideaState = useSelector((state) => state.SAVED.Saved);
+  const savedidea = ideaState.find((idea) => idea._id === setup._id);
+
+  // Get idea action info througth redux state
+  const Ilikes = setup.likes.length;
+  const IComments = setup.comments.length;
+  const IStars = setup.star.length;
+  const IViews = setup.views.length;
 
   useEffect(() => {
     const fetchLikes = async () => {
@@ -30,10 +49,20 @@ const ActionButton = ({ setup }) => {
     fetchLikes();
   }, [actiondata, setupId]);
 
-  const likes = actiondata.likes?.length || 0;
-  const comments = actiondata.comments?.length || 0;
-  const views = actiondata.views?.length || 0;
-  const stars = actiondata.star?.length || 0;
+  useEffect(() => {
+    if (!actiondata || actiondata.length === 0) {
+      setLikes(Ilikes);
+      setComments(IComments);
+      setViews(IViews);
+      setStars(IStars);
+    } else {
+      setLikes(actiondata.likes.length);
+      setComments(actiondata.comments.length);
+      setViews(actiondata.views.length);
+      setStars(actiondata.star.length);
+    }
+  }, [actiondata]);
+
   const formattedLikes = formatNumberWithK(likes);
   const formattedcomment = formatNumberWithK(comments);
   const formattedviews = formatNumberWithK(views);
@@ -91,12 +120,7 @@ const ActionButton = ({ setup }) => {
         title="Star"
       />
       <IconWrap
-        icon={
-          <BiSolidCommentDetail
-            className="text-blue-600 cursor-pointer"
-            size={25}
-          />
-        }
+        icon={<LiaComment className="text-blue-600 cursor-pointer" size={25} />}
         color="text-blue-500"
         text={formattedcomment}
         onClick={goToSetup}
@@ -112,6 +136,21 @@ const ActionButton = ({ setup }) => {
         color="text-white"
         text={formattedviews}
         title="Views"
+      />
+      <IconWrap
+        icon={
+          savedidea ? (
+            <BsBookmarkCheckFill
+              className="text-blue-600 cursor-pointer"
+              size={22}
+            />
+          ) : (
+            <BsBookmark className="text-blue-600 cursor-pointer" size={22} />
+          )
+        }
+        color="text-white"
+        onClick={() => dispatch(saveIdea(setup))}
+        title="Save"
       />
       <IconWrap
         icon={<FiShare2 className="text-white cursor-pointer" size={22} />}

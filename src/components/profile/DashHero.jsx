@@ -8,6 +8,7 @@ import AccountMetric from "../metric/AccountMetric";
 import { findAllAccount } from "../../redux/accountmetrix";
 import { Placeholder } from "../../assets";
 import { useMobileModal } from "../../hooks";
+import StoriesFeed from "../stories/StoriesFeed";
 
 const DashHero = ({ setOpenTrade }) => {
   const user = useSelector((state) => state.AUTH);
@@ -18,10 +19,6 @@ const DashHero = ({ setOpenTrade }) => {
   const isLoading = accState.FETCH_STATUS === "Pending";
   const Rejected = accState.FETCH_STATUS === "Rejected";
   const mobilemodal = useMobileModal();
-
-  useEffect(() => {
-    dispatch(findAllAccount(userId));
-  }, [dispatch, userId]);
 
   function refreshFetch() {
     dispatch(findAllAccount(userId));
@@ -54,6 +51,7 @@ const DashHero = ({ setOpenTrade }) => {
           onClick={LogOut}
         />
       </FlexBox>
+      {/* <StoriesFeed /> */}
       <h1 className="text-white font-kanit text-[30px]">Hi, {user.name}</h1>
       <div className="relative w-[90%] max-[1024px]:w-[80%] max-[800px]:w-full rounded-[9px] overflow-y-auto bg-slate-700 overflow-x-auto hide-scroll"></div>
       <p className="text-neutral-400 font-kanit">Trading Accounts</p>

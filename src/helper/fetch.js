@@ -6,6 +6,16 @@ export async function getUserById(userId) {
   return response?.data;
 }
 
+export async function getSwitchUser(userId) {
+  const response = await axios.post(`${BASE_URL}/auth/switch/${userId}`);
+  return response?.data;
+}
+
+export async function getUserByUsername(user) {
+  const User = await axios.get(`${BASE_URL}/user/one/${user.username}`);
+  return User?.data;
+}
+
 export async function getSetupActions(setupId) {
   const response = await axios.get(`${BASE_URL}/setup/like/comment/${setupId}`);
   return response?.data;
@@ -66,5 +76,10 @@ export async function getMessages(chatId) {
 
 export async function getUnreadMessage(chatId) {
   const response = await axios.get(`${BASE_URL}/message/msg/unread/${chatId}`);
+  return response?.data;
+}
+
+export async function getIdeas() {
+  const response = await axios.get(`${BASE_URL}/setup`);
   return response?.data;
 }

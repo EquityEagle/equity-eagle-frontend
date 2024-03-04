@@ -30,7 +30,7 @@ const ViewedSetup = () => {
       className={`flex flex-col relative w-full overflow-x-hidden ${
         loading
           ? ""
-          : "border-l border-l-neutral-700 border-r border-r-neutral-700"
+          : "border-l border-l-neutral-800 border-r border-r-neutral-800"
       } h-full `}
     >
       <TopHeader label="Idea" />

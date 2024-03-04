@@ -66,25 +66,25 @@ export const sidenavdata = [
 ];
 
 export const moremodaldata = [
-  {
-    text: "Settings",
-    icon: <IoMdSettings size={25} color="#fff" />,
-    link: "/account/settings",
-  },
+  // {
+  //   text: "Settings",
+  //   icon: <IoMdSettings size={25} color="#fff" />,
+  //   link: "/account/settings",
+  // },
   {
     text: "Saved",
-    icon: <FiBookmark size={25} color="#fff" />,
+    icon: <FiBookmark size={25} />,
     link: "/dashboard/saved",
   },
   {
     text: "Account",
-    icon: <RiAccountPinBoxFill size={25} color="#fff" />,
+    icon: <RiAccountPinBoxFill size={25} />,
     link: "/account/",
     isprofie: true,
   },
   {
     text: "Report a problem",
-    icon: <BiMessageAltError size={25} color="#fff" />,
+    icon: <BiMessageAltError size={25} />,
     // link: "/account/settings/?report",
     link: "coming-soon",
   },

@@ -17,3 +17,8 @@ export { default as useTypeModal } from "./useTypeModal";
 export { default as useMAModal } from "./useMAModal";
 export { default as useLockModal } from "./useLockModal";
 export { default as usePassCodeCheckModal } from "./usePassCodeCheckModal";
+export { default as useSettingsModal } from "./useSettingsModal";
+export { default as useAccountInfoModal } from "./useAccountInfoModal";
+export { default as useChangePasswordModal_ } from "./useAccountInfoModal";
+export { default as useViewStory } from "./useViewStory";
+export { default as usePairFilterModal } from "./usePairFilterModal";

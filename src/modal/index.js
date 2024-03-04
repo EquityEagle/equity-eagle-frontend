@@ -19,3 +19,6 @@ export { default as TypeModal } from "./TypeModal";
 export { default as ManageAccount } from "./ManageAccount";
 export { default as LockAccount } from "./LockAccount";
 export { default as PassCodeCheck } from "./PassCodeCheck";
+export { default as SettingsModal } from "./SettingsModal";
+export { default as ViewStory } from "./ViewStory";
+export { default as PairFilter } from "./PairFilter";

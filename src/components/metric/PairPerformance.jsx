@@ -7,7 +7,7 @@ import {
   getPairWithLargestProfit,
   getProfitNum,
   getSellType,
-  // getTotalTradesBySymbol,
+  getTotalTradesBySymbol,
 } from "../../lib/functions/metrix";
 
 const PairPerformance = ({ trades }) => {
@@ -17,19 +17,23 @@ const PairPerformance = ({ trades }) => {
   const totalProfit = getProfitNum(trades);
   const bestpair = getPairWithLargestProfit(trades);
   const lossingpair = getPairWithLargestLoss(trades);
-  // const totalTradesBySymbol = getTotalTradesBySymbol(trades);
+  const totalTradesBySymbol = getTotalTradesBySymbol(trades);
 
   return (
     <div className="w-full flex-col relative flex gap-6">
       <div className="flex flex-wrap gap-5 relative justify-evenly">
-        {/* {Object?.entries(totalTradesBySymbol)?.map(([symbol, totalTrades]) => (
-          <div className="flex gap-2 items-center" key={symbol}>
-            <p className="text-white font-poppins">{symbol}</p>
-            <h1 className="text-blue-600 font-semibold text-[18px]">
-              {totalTrades}
-            </h1>
-          </div>
-        ))} */}
+        {trades && trades
+          ? Object?.entries(totalTradesBySymbol)?.map(
+              ([symbol, totalTrades]) => (
+                <div className="flex gap-2 items-center" key={symbol}>
+                  <p className="text-white font-poppins">{symbol}</p>
+                  <h1 className="text-blue-600 font-semibold text-[18px]">
+                    {totalTrades}
+                  </h1>
+                </div>
+              )
+            )
+          : null}
       </div>
       <div className="flex gap-16 justify-evenly">
         <div className="flex gap-5 relative">

@@ -45,14 +45,6 @@ const Navbar = () => {
             </p>
           </Link>
         ))}
-        <div className="flex gap-[1rem] ml-[3rem]">
-          <Link to="/auth/login">
-            <Button text="Sign In" primary />
-          </Link>
-          <Link to="/auth/sign-up">
-            <Button text="Sign Up" secondary />
-          </Link>
-        </div>
       </div>
       <ClickOpacity
         className="hidden max-[800px]:block"

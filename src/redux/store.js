@@ -7,6 +7,9 @@ import UseAbleReducer from "./useableSlice";
 import UserReducer from "./user";
 import NotificationReducer from "./notification";
 import ChatReducer from "./chats";
+import SystemReducer from "./system";
+import storyReducer from "./story";
+import SavedReducer from "./saved";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +21,9 @@ const store = configureStore({
     Acc: AccountReducer,
     Immute: UseAbleReducer,
     NOTIFICATION: NotificationReducer,
+    SYSTEM: SystemReducer,
+    Story: storyReducer,
+    SAVED: SavedReducer,
   },
 });
 

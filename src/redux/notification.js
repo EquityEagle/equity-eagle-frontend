@@ -29,7 +29,16 @@ export const fetchNotifications = createAsyncThunk(
 const NotificationSlice = createSlice({
   name: "notification",
   initialState,
-  reducers: {},
+  reducers: {
+    updatedNotify: (state, action) => {
+      const updatedNotifications = [action.payload, ...state.NOTIFICATIONS]; // Add the new notification to the beginning of the array
+
+      return {
+        ...state,
+        NOTIFICATIONS: updatedNotifications,
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchNotifications.pending, (state, action) => {
       return { ...state, FETCH_STATUS: "Pending" };
@@ -52,3 +61,5 @@ const NotificationSlice = createSlice({
 });
 
 export default NotificationSlice.reducer;
+
+export const { updatedNotify } = NotificationSlice.actions;

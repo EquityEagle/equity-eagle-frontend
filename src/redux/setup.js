@@ -123,7 +123,16 @@ export const deleteIdea = createAsyncThunk(
 const SetupSlice = createSlice({
   name: "setup",
   initialState,
-  reducers: {},
+  reducers: {
+    updateIdeaState: (state, action) => {
+      const updatedIdeas = [action.payload, ...state.IDEAS];
+
+      return {
+        ...state,
+        IDEAS: updatedIdeas,
+      };
+    },
+  },
   extraReducers: {
     [publishSetup.pending]: (state, action) => {
       state.PUBLISH_STATUS = "loading";
@@ -131,7 +140,8 @@ const SetupSlice = createSlice({
     [publishSetup.fulfilled]: (state, action) => {
       state.PUBLISH_STATUS = "success";
       toast.success("Setup shared", { position: "top-center" });
-      state.IDEAS.shift(action.payload);
+      const updatedIdeas = [action.payload, ...state.IDEAS];
+      state.IDEAS = updatedIdeas;
     },
     [publishSetup.rejected]: (state, action) => {
       state.PUBLISH_STATUS = "failed";
@@ -194,3 +204,5 @@ const SetupSlice = createSlice({
 });
 
 export default SetupSlice.reducer;
+
+export const { updateIdeaState } = SetupSlice.actions;

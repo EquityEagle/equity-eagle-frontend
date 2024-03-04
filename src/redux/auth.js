@@ -8,13 +8,36 @@ const accounts = localStorage.getItem("accounts")
   ? JSON.parse(localStorage.getItem("accounts"))
   : [];
 
+const userProfile = localStorage.getItem("profile");
+let getProfile;
+
+// Check if userProfile is not null and is a valid JSON string
+if (userProfile && userProfile.trim() !== "") {
+  try {
+    // Parse the userProfile JSON string
+    getProfile = JSON.parse(userProfile);
+  } catch (error) {
+    // Handle JSON parsing error
+    console.error("Error parsing userProfile JSON:", error);
+    // Set getProfile to a default value or handle the error as appropriate for your application
+    getProfile = null; // Or any other default value
+  }
+} else {
+  // Handle case when userProfile is null or empty
+  console.error("userProfile is null or empty");
+  // Set getProfile to a default value or handle the error as appropriate for your application
+  getProfile = null; // Or any other default value
+}
+
+// Use getProfile as needed
+
 const initialState = {
   token: localStorage.getItem("eeToken"),
   id: "",
   name: "",
   email: "",
   username: "",
-  profile: "",
+  profile: getProfile,
   loginStatus: null,
   loginError: null,
   regStatus: null,
@@ -122,22 +145,35 @@ const AuthSlice = createSlice({
     loadUser: (state, action) => {
       if (state.token) {
         const user = jwtDecode(state.token);
-
-        return {
-          ...state,
-          token: state.token,
-          name: user.name,
-          id: user.id,
-          username: user.username,
-          profile: user.profile,
-          email: user.email,
-          userLoaded: true,
-        };
+        if (userProfile) {
+          return {
+            ...state,
+            token: state.token,
+            name: user.name,
+            id: user.id,
+            username: user.username,
+            profile: getProfile,
+            email: user.email,
+            userLoaded: true,
+          };
+        } else {
+          return {
+            ...state,
+            token: state.token,
+            name: user.name,
+            id: user.id,
+            username: user.username,
+            profile: user.profile,
+            email: user.email,
+            userLoaded: true,
+          };
+        }
       }
     },
 
     logOut: (state) => {
-      localStorage.removeItem("eeToken");
+      // localStorage.removeItem("eeToken");
+      localStorage.clear();
       toast.info("Logged out", {
         position: "top-center",
         className: "toast__alert",
@@ -174,10 +210,35 @@ const AuthSlice = createSlice({
         return { ...state, Accounts: updatedAccounts };
       }
     },
+    updatedAccounts: (state, action) => {
+      const user = action.payload;
+      const userId = user.id;
+
+      // Find the user in the Accounts array based on their ID
+      const updatedAccounts = state.Accounts.map((account) => {
+        if (account.id === userId && !account.profile && user.profile) {
+          // If the user is found and their profile is empty, update the profile
+          return {
+            ...account,
+            profile: user.profile,
+          };
+        }
+        return account; // Return the account unchanged if it doesn't match the conditions
+      });
+
+      // Return the updated state
+      localStorage.setItem("accounts", JSON.stringify(updatedAccounts));
+      localStorage.setItem("profile", JSON.stringify(user.profile));
+      return {
+        ...state,
+        Accounts: updatedAccounts,
+      };
+    },
     switchAccount: (state, action) => {
       const userId = state.id;
       const user = state.Accounts?.find((u) => u.id === userId);
       localStorage.setItem("eeToken", action.payload.token);
+      localStorage.setItem("profile", JSON.stringify(action.payload.profile));
       return {
         ...state,
         token: action.payload.token,
@@ -187,8 +248,8 @@ const AuthSlice = createSlice({
         profile: action.payload.profile,
         email: action.payload.email,
         userLoaded: true,
-        hasLock: user.hasLock,
-        passcode: user.passcode,
+        // hasLock: user.hasLock,
+        passcode: user?.passcode,
       };
     },
     setLock: (state, action) => {
@@ -211,6 +272,16 @@ const AuthSlice = createSlice({
         // user.hasLock = true;
       }
     },
+    updateProfile: (state, action) => {
+      state.profile = action.payload;
+    },
+    mitateProfile: (state, action) => {
+      localStorage.setItem("profile", JSON.stringify(action.payload.profile));
+      return {
+        ...state,
+        profile: action.payload.profile,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(LoginUser.pending, (state, action) => {
@@ -218,6 +289,7 @@ const AuthSlice = createSlice({
     });
     builder.addCase(LoginUser.fulfilled, (state, action) => {
       const user = jwtDecode(action.payload);
+      localStorage.setItem("profile", JSON.stringify(user.profile));
       toast.success(`Welcome back ${user.username}`, {
         position: "top-center",
         className: "toast__alert",
@@ -243,6 +315,7 @@ const AuthSlice = createSlice({
     });
     builder.addCase(RegUser.fulfilled, (state, action) => {
       const user = jwtDecode(action.payload);
+      localStorage.setItem("profile", JSON.stringify(user.profile));
       toast.success(`Welcome ${user.username}`, {
         position: "top-center",
         className: "toast__alert",
@@ -324,4 +397,7 @@ export const {
   lockAccount,
   setLock,
   setSelectedId,
+  updateProfile,
+  mitateProfile,
+  updatedAccounts,
 } = AuthSlice.actions;

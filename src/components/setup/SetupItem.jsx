@@ -13,7 +13,7 @@ import { formatDate } from "../../lib/functions";
 const SetupItem = ({ item }) => {
   const setupId = item?._id;
   const navigate = useNavigate();
-  const [max, setMax] = useState(80);
+  const [max, setMax] = useState(95);
   const [less, setLess] = useState(false);
   const [open, setOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -21,12 +21,12 @@ const SetupItem = ({ item }) => {
 
   function show(event) {
     event.stopPropagation();
-    setMax(1000);
+    setMax(1200);
     setLess(true);
   }
   function hide(event) {
     event.stopPropagation();
-    setMax(70);
+    setMax(95);
     setLess(false);
   }
 
@@ -79,6 +79,7 @@ const SetupItem = ({ item }) => {
             className="w-10 rounded-full max-[700px]:ml-2"
           />
           <div className="flex flex-col">
+            <p className="text-white font-kanit">{item.username}</p>
             <p className="text-neutral-300 font-kanit text-[13px]">
               {formattedDate}
             </p>
@@ -100,18 +101,16 @@ const SetupItem = ({ item }) => {
           {open && <SetupMenuModal item={item} />}
         </div>
       </FlexBetween>
-      <div className="flex flex-col relative gap-3 h-full p-[12px] max-[700px]:p-[10px]">
-        <Flex className="gap-2">
-          <p className="text-white font-kanit p-1 bg-slate-600 rounded-[7px]">
-            {item.pair}
-          </p>
-          <TruncatedText
-            text={item?.desc}
-            className="text-neutral-200 font-[300] cursor-pointer flex text-sm font-poppins"
-            maxLength={max}
-            underText={less ? h : s}
-          />
-        </Flex>
+      <div className="flex flex-col gap-2 relative h-full p-[12px] max-[700px]:p-[10px] w-full">
+        <p className="text-white font-kanit p-1 bg-slate-600 rounded-[7px] w-[65px]">
+          {item.pair}
+        </p>
+        <TruncatedText
+          text={item?.desc}
+          className="text-neutral-200 font-[300] cursor-pointer flex text-sm font-poppins"
+          maxLength={max}
+          underText={less ? h : s}
+        />
       </div>
       <img
         src={item?.image.url}
@@ -125,7 +124,10 @@ const SetupItem = ({ item }) => {
       {openViewImg && (
         <BackDrop
           className="cursor-pointer"
-          onClick={() => setOpenViewImg(false)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpenViewImg(false);
+          }}
           chaild={
             <img
               alt="Idea"

@@ -1,30 +1,67 @@
-import React, { useEffect } from "react";
-import { BackDrop, Error, ScaleInLoader } from "../../lib";
+import React, { useEffect, useState } from "react";
+import { BackDrop, Empty, Error, ScaleInLoader } from "../../lib";
 import { useDispatch, useSelector } from "react-redux";
 import { getSetups } from "../../redux/setup";
 import SetupItem from "./SetupItem";
+import HomeHeader from "./HomeHeader";
+import ScrollToNewIdea from "../ScrollToNewIdea";
+import { getIdeas } from "../../helper/fetch";
 
 const SetupFeed = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getSetups());
-  }, [dispatch]);
+
   const data = useSelector((state) => state.SETUPS);
   const loading = data.FETCH_STATUS === "loading";
   const empty = data.IDEAS.length === 0;
   const delState = useSelector((state) => state.SETUPS);
   const isLoading = delState.DELETE_STATUS === "Pending";
+  const [ideas, setIdeas] = useState([]);
+  const [ideaState, setIdeaState] = useState(data.IDEAS);
+  const error = data.FETCH_STATUS==="failed"
+  // const [newIdea, setNewIdea] = useState(false);
+  const [newArr, setNewArr] = useState(false);
+
+  useEffect(() => {
+    if (ideas && ideas.length > ideaState.length) {
+      setNewArr(true);
+    }
+  }, [ideas, ideaState]);
+
+  async function getNewIdeas() {
+    const data = await getIdeas();
+    setIdeas(data);
+    setIdeaState(data);
+    setTimeout(() => {
+      setNewArr(false);
+    }, 500);
+  }
+
+  useEffect(() => {
+    const getideas = async () => {
+      const data = await getIdeas();
+      if (data.length > ideas.length) {
+        setIdeas(data);
+        // setNewIdea(true);
+      }
+    };
+
+    // Fetch new ideas only if there are more ideas than before
+    getideas();
+  }, [ideas]);
+
   return (
     <div
-      className={`flex flex-col relative w-full h-full hide-scroll overflow-x-hidden max-[700px]:pb-[4rem] ${
+      className={`flex flex-col relative w-full h-full hide-scroll /overflow-x-hidden max-[700px]:pb-[4rem] ${
         loading
           ? ""
-          : "border-l border-l-neutral-700 border-r border-r-neutral-700"
-      } h-full mt-[1rem] `}
+          : "border-l border-l-neutral-800 border-r border-r-neutral-800"
+      } h-full mt-[1rem] max-[700px]:mt-0 `}
     >
+      <HomeHeader />
+      {newArr && <ScrollToNewIdea clickEvent={getNewIdeas} />}
       {loading ? (
         <ScaleInLoader size={110} className="mt-[25%] max-[800px]:mt-[80%]" />
-      ) : empty ? (
+      ) : empty ? <Empty text='No ideas available be the first to shares' /> : error ? (
         <div className="flex flex-col items-center relative mt-[30%] max-[800px]:mt-[55%] h-full w-full justify-center">
           <Error
             // networks
@@ -34,7 +71,8 @@ const SetupFeed = () => {
           />
         </div>
       ) : (
-        data.IDEAS.map((item, index) => <SetupItem key={index} item={item} />)
+        ideaState &&
+        ideaState.map((item, index) => <SetupItem key={index} item={item} />)
       )}
       {isLoading && <BackDrop chaild={<ScaleInLoader />} className="z-[200]" />}
     </div>

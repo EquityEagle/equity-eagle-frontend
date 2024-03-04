@@ -8,8 +8,10 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import { loadUser } from "./redux/auth";
 import { getUsers } from "./redux/user";
+import { getSetups } from "./redux/setup";
 store.dispatch(loadUser());
 store.dispatch(getUsers());
+store.dispatch(getSetups());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

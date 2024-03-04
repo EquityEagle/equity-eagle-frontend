@@ -15,6 +15,7 @@ import {
   Metric,
   NewCommunity,
   Notification,
+  Saved,
   Settings,
   SetupId,
   Setups,
@@ -30,22 +31,78 @@ import {
   MenuModal,
   MobileModal,
   MoreMenuModal,
+  PairFilter,
   PassCodeCheck,
+  SettingsModal,
   SetupModal,
   TrackModal,
   UserSearchModal,
+  ViewStory,
 } from "./modal";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import Communities from "./pages/communities/Communities";
-import { checkUser } from "./redux/auth";
+import { checkUser, updatedAccounts } from "./redux/auth";
+import { ThemeProvider } from "styled-components";
+import { findAllAccount } from "./redux/accountmetrix";
+import { getSwitchUser, getUnreadNotifications } from "./helper/fetch";
+import { setNotification } from "./redux/system";
+import { fetchNotifications, updatedNotify } from "./redux/notification";
 
 function App() {
   const user = useSelector((state) => state.AUTH);
   const navigate = useNavigate();
   const path = useLocation();
   const dispatch = useDispatch();
+  const systemConfig = useSelector((state) => state.SYSTEM);
+  const bg = systemConfig.backgroudColor;
+  const userId = user.id;
+  const [notifications, setNotifications] = useState([]);
+  const [User, setUser] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchNotifications(userId));
+  }, [dispatch, userId]);
+
+  useEffect(() => {
+    const getuser = async () => {
+      const data = await getSwitchUser(userId);
+      setUser(data);
+    };
+    getuser();
+    // console.log("user:", User);
+  }, [userId]);
+
+  useEffect(() => {
+    dispatch(updatedAccounts(User));
+  }, [User]);
+
+  useEffect(() => {
+    const getNotes = async () => {
+      const data = await getUnreadNotifications(userId);
+      setNotifications(data);
+    };
+    getNotes();
+  }, [notifications, userId]);
+
+  useEffect(() => {
+    dispatch(setNotification(notifications));
+  }, [notifications]);
+
+  useEffect(() => {
+    dispatch(updatedNotify(notifications));
+  }, []);
+
+  useEffect(() => {
+    dispatch(findAllAccount(userId));
+  }, [dispatch, userId]);
+
+  const [color, setColor] = useState("");
+
+  useEffect(() => {
+    setColor(bg);
+  }, [bg]);
 
   useEffect(() => {
     if (user.userLoaded) {
@@ -68,15 +125,19 @@ function App() {
         profile: user.profile,
         userLoaded: user.userLoaded,
         // hasLock: u.hasLock,
-        passcode: u.passcode,
+        passcode: u?.passcode,
       };
 
       dispatch(checkUser(processedUser));
     }
   }, [user, dispatch]);
 
+  const theme = {
+    bg: color,
+  };
+
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Navbar />
       <ToastContainer draggable bodyClassName="toast__alert" />
@@ -94,6 +155,9 @@ function App() {
       <ManageAccount />
       <LockAccount />
       <PassCodeCheck />
+      <SettingsModal />
+      <ViewStory />
+      <PairFilter />
 
       <Routes>
         <Route path="/" index element={<LandingPage />} />
@@ -103,6 +167,7 @@ function App() {
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/notification" element={<Notification />} />
         <Route path="/ideas" element={<Setups />} />
+        <Route path="/dashboard/saved" element={<Saved />} />
         <Route path="/messages" element={<Messages />} />
         <Route path="/account/:username" element={<Account />} />
         <Route path="/ideas/statusId/:setupId" element={<SetupId />} />
@@ -121,7 +186,7 @@ function App() {
       ) : (
         <MobileNav />
       )}
-    </div>
+    </ThemeProvider>
   );
 }
 

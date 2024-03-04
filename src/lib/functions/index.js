@@ -27,7 +27,7 @@ export const formatDate = (timestamp) => {
     return `${minutes} minute${minutes !== 1 ? "s" : ""} ago`;
   } else {
     // Display in seconds if less than a minute
-    return `${seconds} second${seconds !== 1 ? "s" : ""} ago`;
+    return `${seconds !== 50 ? "just now" : ""}`;
   }
 };
 
@@ -57,3 +57,19 @@ export function getChatUser(chat, userid) {
 
   return person;
 }
+
+export const generateUniqueId = () => {
+  // const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  const numbers = "0123456789";
+
+  const characters = numbers;
+  // const characters = alphabet + numbers;
+
+  let id = "";
+  for (let i = 0; i < 21; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    id += characters[randomIndex];
+  }
+
+  return id;
+};

@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { getNotifications } from "../../helper/fetch";
 import BackArrow from "../Back";
-import { BottomDivider, Error, ScaleInLoader } from "../../lib";
+import { BottomDivider, Empty, Error, ScaleInLoader } from "../../lib";
 import NotificationItem from "./NotificationItem";
 import { fetchNotifications } from "../../redux/notification";
+import { notifydata } from "../../constants/noti";
+import { RiFolderHistoryLine } from "react-icons/ri";
 
 const NotificationFeed = () => {
   const userId = useSelector((state) => state.AUTH.id);
@@ -13,20 +15,17 @@ const NotificationFeed = () => {
   const notifications = noteState.NOTIFICATIONS;
   const isLoading = noteState.FETCH_STATUS === "Pending";
   const error = noteState.FETCH_STATUS === "Rejected";
-
-  useEffect(() => {
-    dispatch(fetchNotifications(userId));
-  }, [dispatch, userId]);
+  const empty = notifications.length === 0;
 
   useEffect(() => {
     document.title = "Notification | EquityEagle";
   });
 
   return (
-    <div className="flex flex-col relative w-full mt-5">
+    <div className="flex flex-col relative w-full h-full mt-5 border-l border-r border-r-neutral-800 border-l-neutral-800">
       <BackArrow title="Notifications" />
       <BottomDivider />
-      <div className="flex flex-col w-full relative">
+      <div className="flex flex-col w-full relative h-full">
         {error ? (
           <Error
             text="Cannot retieve notifications at this time. Please try again later"
@@ -34,15 +33,19 @@ const NotificationFeed = () => {
             className="translate-y-52"
             onClick={() => dispatch(fetchNotifications(userId))}
           />
+        ) : empty ? (
+          <Empty text="You have no notifications" />
         ) : isLoading ? (
           <div className="flex flex-col min-w-full">
             <ScaleInLoader />
           </div>
         ) : (
           notifications &&
-          notifications?.map((notification, index) => (
-            <NotificationItem key={index} notification={notification} />
-          ))
+          notifications
+            ?.filter((not) => not.reactionId !== userId)
+            .map((notification, index) => (
+              <NotificationItem key={index} notification={notification} />
+            ))
         )}
       </div>
     </div>

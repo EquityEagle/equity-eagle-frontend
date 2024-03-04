@@ -7,6 +7,9 @@ import { useAccountSwitchModal } from "../../hooks";
 const AccountSitch = () => {
   const switchAccount = useAccountSwitchModal();
   const user = useSelector((state) => state.AUTH);
+  const systemconfig = useSelector((state) => state.SYSTEM);
+  const islight = systemconfig.mode === "light";
+  const isdark = systemconfig.mode === "dark";
 
   return (
     <div
@@ -19,7 +22,9 @@ const AccountSitch = () => {
         className="w-[35px] h-[35px] rounded-full"
       />
       <div className="flex flex-col max-[1024px]:hidden">
-        <p className="text-white font-poppins">{user.name}</p>
+        <p className={`${isdark ? "text-white" : "text-black"} font-poppins`}>
+          {user.name}
+        </p>
         <p className="text-neutral-400 text-[14px] font-poppins">
           @{user.username}
         </p>
@@ -27,7 +32,7 @@ const AccountSitch = () => {
       <HiDotsHorizontal
         size={25}
         className="max-[1024px]:hidden"
-        color="#fff"
+        color={isdark ? "#fff" : "#000"}
       />
     </div>
   );

@@ -30,24 +30,18 @@ const TruncatedText = ({
           height={loadingHeight}
         />
       ) : (
-        <div className="flex flex-col gap-1 relative">
+        <div className="flex flex-col">
           <p
             onClick={onClick}
-            className={`${className} ${
-              fontMedium ? "font-medium" : "font-normal"
-            } ${fontSemiBold ? "font-semibold" : "font-normal"} ${
-              fontExtraBold ? "font-extrabold" : "font-normal"
-            } ${fontBold ? "font-bold" : "font-normal"} ${
-              fontKanit && "font-kanit"
-            } ${fontPoppins && "font-poppins"}`}
+            className={`${className} pre-tag /whitespace-pre-wrap /overflow-auto`}
           >
             {textReducer}
           </p>
           <p
             onClick={underClick}
-            className="cursor-pointer hover:underline w-[90px]"
+            className="cursor-pointer hover:underline w-[90px] show-more-text -translate-x-2 mt-1"
           >
-            {text?.length > 70 ? underText : ""}
+            {text?.length > 95 ? underText : ""}
           </p>
         </div>
       )}

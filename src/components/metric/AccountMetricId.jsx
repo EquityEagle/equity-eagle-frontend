@@ -63,7 +63,7 @@ const AccountMetricId = ({ userdata, setOpenTrade }) => {
           ) : (
             <FlexBox className="max-[800px]:flex-col max-[700px]:flex-col gap-[2rem]">
               <AccountStatic metrix={metrix} trades={trades} />
-              <div className="flex flex-col gap-[1.5rem] w-full">
+              <div className="flex flex-col items-center gap-[1.5rem] w-full">
                 <PairPerformance trades={trades} />
                 <AccountObject metrix={metrix} />
               </div>

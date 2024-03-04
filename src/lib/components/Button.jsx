@@ -14,6 +14,7 @@ const Button = ({
   size,
   padding,
   width,
+  light,
 }) => {
   return (
     <button
@@ -24,7 +25,7 @@ const Button = ({
         secondary ? "bg-blue-600 text-white hover:bg-blue-500" : ""
       } ${primary ? "text-white border-white-border hover:bg-slate-800" : ""} ${
         fullWidth ? "w-full" : ""
-      }`}
+      } ${light && "bg-black text-white hover:bg-neutral-800"}`}
     >
       {isLoading ? <BeatLoader color="#fff" size={size} /> : text}
     </button>

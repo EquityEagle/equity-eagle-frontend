@@ -6,6 +6,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { AddUser } from "../redux/auth";
 import { toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
 
 const AddAccountModal = () => {
   const addaccountmodal = useAddAccountModal();
@@ -14,6 +15,10 @@ const AddAccountModal = () => {
   const authState = useSelector((state) => state.AUTH);
   const isLoading = authState.add_status === "Loading";
   const dispatch = useDispatch();
+  const systemconfig = useSelector((state) => state.SYSTEM);
+  const islight = systemconfig.mode === "light";
+  const isdark = systemconfig.mode === "dark";
+  const path = useLocation();
 
   function handleToggleVisibility() {
     setVisible(!visible);
@@ -70,22 +75,36 @@ const AddAccountModal = () => {
   }, [data, dispatch, authState.email]);
 
   const body = (
-    <div className="flex flex-col relative bg-black shadow shadow-white rounded-[8px] w-[300px] h-[300px] max-[1024px]:w-[500px] max-[700px]:w-[90%]">
+    <div
+      className={`flex flex-col relative ${
+        islight ? "bg-white" : "bg-black"
+      } shadow ${
+        islight ? "shadow-black" : "shadow-white"
+      } rounded-[8px] w-[300px] h-[300px] max-[1024px]:w-[500px] max-[700px]:w-[90%]`}
+    >
       <div className="flex justify-between items-center p-[12px] bg-">
-        <h1 className="text-white font-poppins text-[20px] font-[500] text-center">
+        <h1
+          className={`${
+            islight ? "text-black" : "text-white"
+          } font-poppins text-[20px] font-[500] text-center`}
+        >
           Add account
         </h1>
         <IoClose
           size={35}
-          className="cursor-pointer bg-neutral-700 p-2 rounded-full"
-          color="white"
+          className={`cursor-pointer ${
+            islight ? "hover:bg-slate-600 text-white" : "hover:bg-slate-800"
+          } p-1 rounded-full`}
+          color={islight ? "#000" : "#fff"}
           onClick={close}
         />
       </div>
       <BottomDivider />
       <div className="flex flex-col items-center justify-center w-full h-full p-2 gap-4">
         <div className="flex flex-col w-full gap-[2px]">
-          <p className="text-white font-kanit">Email</p>
+          <p className={`${islight ? "text-black" : "text-white"} font-kanit`}>
+            Email
+          </p>
           <input
             type="text"
             value={data.email}
@@ -94,7 +113,9 @@ const AddAccountModal = () => {
           />
         </div>
         <div className="flex flex-col w-full gap-[2px]">
-          <p className="text-white font-kanit">Password</p>
+          <p className={`${islight ? "text-black" : "text-white"} font-kanit`}>
+            Password
+          </p>
           <div className="flex items-center justify-between p-[5px] bg-slate-700 rounded-[8px] w-full">
             <input
               type={visible ? "text" : "password"}
@@ -111,7 +132,8 @@ const AddAccountModal = () => {
           </div>
         </div>
         <Button
-          secondary
+          secondary={isdark}
+          light={islight}
           text="Add"
           fullWidth
           Onclick={Add}

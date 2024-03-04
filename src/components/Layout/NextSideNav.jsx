@@ -11,9 +11,16 @@ const NextSideNav = () => {
   const traders = userState.TRADES;
   const isLoading = userState.FETCH_STATUS === "Pending";
   const userId = useSelector((state) => state.AUTH.id);
+  const systemconfig = useSelector((state) => state.SYSTEM);
+  const islight = systemconfig.mode === "light";
+  const isdark = systemconfig.mode === "dark";
   return (
-    <StyledSideNav className="border border-l-neutral-900">
-      <h1 className="text-white font-kanit text-[20px] p-[16px]">
+    <StyledSideNav islight={islight} className="border border-l-neutral-800">
+      <h1
+        className={`${
+          islight ? "text-black" : "text-white"
+        } font-kanit text-[20px] p-[16px]`}
+      >
         Connect with traders
       </h1>
       <BottomDivider />
@@ -31,9 +38,12 @@ const NextSideNav = () => {
       </div>
       <Link to="/connect">
         <Button
-          primary
+          primary={isdark}
+          light={islight}
           text="View More"
-          className="items-center hover:bg-transparent hover:opacity-75"
+          className={`items-center hover:opacity-75 ${
+            isdark && "hover:bg-transparent"
+          }`}
         />
       </Link>
     </StyledSideNav>
@@ -49,7 +59,7 @@ const StyledSideNav = styled.nav`
   align-items: center;
   /* padding: 2rem; */
   right: 0;
-  background-color: #000;
+  background-color: ${({ islight }) => (islight ? "#fff" : "#000")};
 
   @media (max-width: 1024px) {
     width: 290px;

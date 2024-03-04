@@ -5,7 +5,7 @@ export const StyledMoreModal = styled.div`
   flex-direction: column;
   position: fixed;
   width: 250px;
-  background: #000;
+  background: ${({ islight }) => (islight ? "#fff" : "#000")};
   bottom: 5.9rem;
   height: auto;
   left: 16px;
@@ -19,7 +19,7 @@ export const StyledSwitchModal = styled.div`
   flex-direction: column;
   position: fixed;
   width: 300px;
-  background: #000;
+  background: ${({ islight }) => (islight ? "#fff" : "#000")};
   bottom: 5.9rem;
   height: auto;
   left: 16px;

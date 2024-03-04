@@ -1,20 +1,37 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BackDrop, Button } from "../../../lib";
 import { IoMdAddCircleOutline } from "react-icons/io";
 // import { MdCancel } from "react-icons/md";
 import { IoClose } from "react-icons/io5";
 import { ProfileUpdate } from "../../../helper/post";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserByUsername } from "../../../helper/fetch";
+import { mitateProfile } from "../../../redux/auth";
 
 const ProfileUpdateModal = ({ open, keepOpen }) => {
-  const userId = useSelector((state) => state.AUTH.id);
+  const user = useSelector((state) => state.AUTH);
+  const userId = user.id;
+  const [actionUser, setActionUser] = useState([]);
   const [photo, setPhoto] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const imgRef = useRef();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getUser = async () => {
+      const data = await getUserByUsername(user);
+      setActionUser(data);
+    };
+    getUser();
+  }, [isLoading]);
+
+  console.log("profile", actionUser);
 
   async function update() {
     setIsLoading(true);
     await ProfileUpdate(userId, photo);
+    // dispatch(photo);
+    dispatch(mitateProfile(actionUser));
     setIsLoading(false);
   }
 

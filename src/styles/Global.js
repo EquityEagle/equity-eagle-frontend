@@ -16,8 +16,8 @@ body{
     overflow-y: auto;
     overflow-x: hidden;
     --tw-bg-opacity: 1;
-    background-color: rgba(0,0,0,0.91);
-    /* background-color: rgb(23 31 33/var(--tw-bg-opacity)); */
+    background: ${({ theme }) => theme.bg};
+    /* background: linear-gradient( to right,red, green); */
 }
 `;
 

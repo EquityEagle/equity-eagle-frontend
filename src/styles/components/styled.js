@@ -79,7 +79,7 @@ export const StyledSideNavContainer = styled.div`
   flex-direction: column;
   height: 100%;
   position: fixed;
-  background: #000;
+  background: ${({ islight }) => (islight ? "#fff" : "#000")};
   width: 350px;
   padding: 1rem;
 

@@ -14,3 +14,4 @@ export { default as Notification } from "./Notification/Notification";
 export { default as Connect } from "./users/Connect";
 export { default as Messages } from "./message/Messages";
 export { default as ComingSoon } from "./ComingSoon";
+export { default as Saved } from "./setups/Saved";

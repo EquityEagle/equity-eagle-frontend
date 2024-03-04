@@ -8,6 +8,7 @@ import {
 } from "../hooks";
 import { AccountSwitchCon } from "../components";
 import { BottomDivider } from "../lib";
+import { useSelector } from "react-redux";
 
 const AccountSwitchModal = () => {
   const switchAccount = useAccountSwitchModal();
@@ -15,6 +16,9 @@ const AccountSwitchModal = () => {
   const addaccountmodal = useAddAccountModal();
   const isswitchmodal = useSwitchModal();
   const mamodel = useMAModal();
+  const systemconfig = useSelector((state) => state.SYSTEM);
+  const islight = systemconfig.mode === "light";
+  const isdark = systemconfig.mode === "dark";
 
   function close() {
     if (isswitchmodal.isSwitching) {
@@ -30,7 +34,10 @@ const AccountSwitchModal = () => {
   }
 
   const modal = (
-    <StyledSwitchModal className="shadow-slate-100 shadow">
+    <StyledSwitchModal
+      islight={islight}
+      className={`${islight ? "shadow-black" : "shadow-slate-100"} shadow`}
+    >
       <div className="p-[12px] gap-3 flex flex-col">
         <AccountSwitchCon />
       </div>
@@ -38,13 +45,25 @@ const AccountSwitchModal = () => {
       <div className="flex flex-col gap-0">
         <p
           onClick={addaccount}
-          className="text-white font-poppins cursor-pointer p-3 hover:bg-neutral-800"
+          className={`${
+            islight ? "text-black" : "text-white"
+          } font-poppins cursor-pointer p-3 ${
+            isdark
+              ? "hover:bg-neutral-800"
+              : "hover:bg-neutral-500 hover:text-white"
+          }`}
         >
           Add an exiting account
         </p>
         <p
           onClick={mamodel.onOpen}
-          className="text-white font-poppins cursor-pointer p-3 hover:bg-neutral-800"
+          className={`${
+            islight ? "text-black" : "text-white"
+          } font-poppins cursor-pointer p-3 ${
+            isdark
+              ? "hover:bg-neutral-800"
+              : "hover:bg-neutral-500 hover:text-white"
+          }`}
         >
           Manage accounts
         </p>

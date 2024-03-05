@@ -43,7 +43,6 @@ const SetupMenuModal = ({ item }) => {
       ) : (
         <p className="text-white font-roboto flex w-full hover:bg-slate-800 p-2 gap-2 cursor-pointer rounded-[4px]">
           <AiOutlineUserAdd size={25} className="cursor-pointer" color="#fff" />
-
           <p>
             {hasFollowed
               ? "You're now network"

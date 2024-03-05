@@ -16,7 +16,7 @@ const BackArrow = ({ className, isTrade, setOpenTrade, title, hasBg }) => {
     <div
       onClick={isTrade ? closeTrade : back}
       className={`${className} flex gap-5 pb-1 items-center ${
-        hasBg && ` bg - [rgb(0, 0, 0, 0.5)]`
+        hasBg && ` bg-[rgb(0, 0, 0, 0.5)]`
       } border-b/ border-b-neutral-700/`}
     >
       <BsArrowLeftShort

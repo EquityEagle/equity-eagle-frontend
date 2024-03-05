@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Flex, StyledSetupItem } from "../../styles/components/styled";
+import { StyledSetupItem } from "../../styles/components/styled";
 import { Placeholder } from "../../assets";
 import { ActionButton, BackDrop, BottomDivider, CustomTitle } from "../../lib";
 import { FlexBetween } from "../../styles/Global";
@@ -9,6 +9,7 @@ import TruncatedText from "../../lib/components/TruncatedText";
 import { useLocation, useNavigate } from "react-router-dom";
 import SetupMenuModal from "../../modal/SetupMenuModal";
 import { formatDate } from "../../lib/functions";
+import { IdeaMenuModal } from "../../modal";
 
 const SetupItem = ({ item }) => {
   const setupId = item?._id;
@@ -61,8 +62,11 @@ const SetupItem = ({ item }) => {
   const formattedDate = formatDate(timestamp);
 
   function idea() {
-    goToSetup();
-    setOpen(false);
+    if (open) {
+      setOpen(false);
+    } else {
+      goToSetup();
+    }
   }
 
   return (
@@ -88,7 +92,7 @@ const SetupItem = ({ item }) => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col relative">
+        <div className="flex flex-col relative h-full">
           <HiDotsHorizontal
             size={30}
             color="#fff"
@@ -101,7 +105,8 @@ const SetupItem = ({ item }) => {
             className="p-1 rounded-full hover:bg-slate-700 cursor-pointer max-[700px]:mr-2"
           />
           {isHovered && <CustomTitle title="More" className="/top-[35px]" />}
-          {open && <SetupMenuModal item={item} />}
+          {open && <IdeaMenuModal item={item} />}
+          {/* <IdeaMenuModal item={item} /> */}
         </div>
       </FlexBetween>
       <div className="flex flex-col gap-2 relative h-full p-[12px] max-[700px]:p-[10px] w-full">

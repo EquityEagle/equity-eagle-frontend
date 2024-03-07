@@ -13,8 +13,8 @@ const ViewedSetup = () => {
   const user = useSelector((state) => state.AUTH);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  // const empty = data.length === 0;
-  const [empty, setEmpy] = useState(false);
+  const empty = data.length === 0;
+  // const [empty, setEmpy] = useState(false);
 
   useEffect(() => {
     const getViewd = async () => {
@@ -26,12 +26,12 @@ const ViewedSetup = () => {
     getViewd();
   }, [setupId, user.id]);
 
-  useEffect(() => {
-    if (data.length === 0) {
-      setLoading(false);
-      setEmpy(true);
-    }
-  }, [setupId]);
+  // useEffect(() => {
+  //   if (!data) {
+  //     setLoading(false);
+  //     setEmpy(true);
+  //   }
+  // }, [setupId]);
 
   return (
     <div
@@ -44,10 +44,10 @@ const ViewedSetup = () => {
       } h-full `}
     >
       <TopHeader label="Idea" />
-      {loading ? (
-        <ScaleInLoader size={110} className="mt-[25%] max-[800px]:mt-[80%]" />
-      ) : empty ? (
+      {empty ? (
         <Empty text="Idea was not found, might have been deleted" />
+      ) : loading ? (
+        <ScaleInLoader size={110} className="mt-[25%] max-[800px]:mt-[80%]" />
       ) : (
         <div className="mt-[4rem]">
           <SetupItem item={data && data} />

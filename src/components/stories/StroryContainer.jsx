@@ -4,7 +4,7 @@ import StoryItem from "./StoryItem";
 
 const StroryContainerUsers = () => {
   return (
-    <div className="flex w-full h-full items-center gap-2 overflow-x-auto">
+    <div className="flex items-center gap-2">
       {storiesdata.map((story, index) => (
         <StoryItem story={story} key={index} />
       ))}

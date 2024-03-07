@@ -13,7 +13,7 @@ const UserStory = () => {
       <img
         src={user.profile?.url || Placeholder}
         alt="Story"
-        className={`w-[80px] h-[80px] rounded-full`}
+        className={`w-[80px] h-[80px] rounded-full cursor-pointer hover:opacity-75`}
       />
       {noStory && (
         <IoMdAdd

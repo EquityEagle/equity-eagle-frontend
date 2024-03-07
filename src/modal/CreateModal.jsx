@@ -11,6 +11,10 @@ import { IoClose } from "react-icons/io5";
 import { FaBrain } from "react-icons/fa";
 import { FaChartBar } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { TbHistoryToggle } from "react-icons/tb";
+import { BsFillPatchPlusFill } from "react-icons/bs";
+import { toast } from "react-toastify";
+import { HiMiniSignal } from "react-icons/hi2";
 
 const CreateModal = () => {
   const createmodal = useCreateModal();
@@ -35,6 +39,11 @@ const CreateModal = () => {
 
   function close() {
     createmodal.onClose();
+  }
+
+  function startLive(e) {
+    toast.info("Coming soon");
+    e.stopPropagation();
   }
 
   const body = (
@@ -86,6 +95,28 @@ const CreateModal = () => {
         >
           <FaBrain size={25} />
           <p className="font-kanit">Share Trade Idea</p>
+        </div>
+        <div
+          // onClick={openSet}
+          className={`flex gap-3 ${islight ? "text-black" : "text-white"} ${
+            islight
+              ? "hover:bg-neutral-500 hover:text-white"
+              : "hover:bg-neutral-800"
+          } rounded-[9px] cursor-pointer p-[13px] items-center`}
+        >
+          <BsFillPatchPlusFill size={25} />
+          <p className="font-kanit">Share Story</p>
+        </div>
+        <div
+          onClick={startLive}
+          className={`flex gap-3 ${islight ? "text-black" : "text-white"} ${
+            islight
+              ? "hover:bg-neutral-500 hover:text-white"
+              : "hover:bg-neutral-800"
+          } rounded-[9px] cursor-pointer p-[13px] items-center`}
+        >
+          <HiMiniSignal size={25} />
+          <p className="font-kanit">Start Live</p>
         </div>
       </div>
     </div>

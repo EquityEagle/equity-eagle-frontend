@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TopHeader from "../Layout/TopHeader";
-import { ScaleInLoader } from "../../lib";
+import { Empty, ScaleInLoader } from "../../lib";
 import { useSelector } from "react-redux";
 import SetupItem from "./SetupItem";
 import { useParams } from "react-router-dom";
@@ -13,7 +13,8 @@ const ViewedSetup = () => {
   const user = useSelector((state) => state.AUTH);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
-  const empty = data.length === 0;
+  // const empty = data.length === 0;
+  const [empty, setEmpy] = useState(false);
 
   useEffect(() => {
     const getViewd = async () => {
@@ -25,9 +26,18 @@ const ViewedSetup = () => {
     getViewd();
   }, [setupId, user.id]);
 
+  useEffect(() => {
+    if (data.length === 0) {
+      setLoading(false);
+      setEmpy(true);
+    }
+  }, [setupId]);
+
   return (
     <div
-      className={`flex flex-col relative w-full overflow-x-hidden ${
+      className={`flex flex-col relative w-full ${
+        empty ? "" : "overflow-x-hidden"
+      }  ${
         loading
           ? ""
           : "border-l border-l-neutral-800 border-r border-r-neutral-800"
@@ -37,14 +47,12 @@ const ViewedSetup = () => {
       {loading ? (
         <ScaleInLoader size={110} className="mt-[25%] max-[800px]:mt-[80%]" />
       ) : empty ? (
-        <div className="flex flex-col items-center w-full mt-[3rem] justify-center">
-          <p className="text-neutral-400 font-kanit">No setup avaliable</p>
-        </div>
+        <Empty text="Idea was not found, might have been deleted" />
       ) : (
         <div className="mt-[4rem]">
-          <SetupItem item={data} />
-          <Comments item={data} />
-          <SetupComments item={data} />
+          <SetupItem item={data && data} />
+          <Comments item={data && data} />
+          <SetupComments item={data && data} />
         </div>
       )}
     </div>

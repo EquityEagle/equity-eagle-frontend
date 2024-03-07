@@ -125,7 +125,7 @@ const SetupItem = ({ item }) => {
         />
       </div>
       <img
-        src={item?.image.url}
+        src={item?.image?.url}
         alt="Idea"
         className="w-[75%] self-center relative h-full rounded-[9px] cursor-pointer max-[700px]:h-[300px]"
         onClick={viewImg}

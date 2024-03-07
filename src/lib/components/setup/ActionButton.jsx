@@ -22,24 +22,24 @@ const ActionButton = ({ setup }) => {
   const [actiondata, setActiondata] = useState([]);
   const userId = useSelector((state) => state.AUTH.id);
   const setupId = setup?._id;
-  const [likes, setLikes] = useState(actiondata.likes?.length || 0);
-  const [comments, setComments] = useState(actiondata.comments?.length || 0);
-  const [views, setViews] = useState(actiondata.views?.length || 0);
-  const [stars, setStars] = useState(actiondata.star?.length || 0);
+  const [likes, setLikes] = useState(actiondata?.likes?.length || 0);
+  const [comments, setComments] = useState(actiondata?.comments?.length || 0);
+  const [views, setViews] = useState(actiondata?.views?.length || 0);
+  const [stars, setStars] = useState(actiondata?.star?.length || 0);
   const stared =
-    actiondata.star?.includes(userId) || setup.star.includes(userId);
+    actiondata?.star?.includes(userId) || setup.star?.includes(userId);
 
   const liked =
-    actiondata.likes?.includes(userId) || setup?.likes?.includes(userId);
+    actiondata?.likes?.includes(userId) || setup?.likes?.includes(userId);
 
   const ideaState = useSelector((state) => state.SAVED.Saved);
   const savedidea = ideaState.find((idea) => idea._id === setup._id);
 
   // Get idea action info througth redux state
-  const Ilikes = setup.likes.length;
-  const IComments = setup.comments.length;
-  const IStars = setup.star.length;
-  const IViews = setup.views.length;
+  const Ilikes = setup?.likes?.length;
+  const IComments = setup?.comments?.length;
+  const IStars = setup?.star?.length;
+  const IViews = setup?.views?.length;
 
   useEffect(() => {
     const fetchLikes = async () => {
@@ -50,16 +50,16 @@ const ActionButton = ({ setup }) => {
   }, [actiondata, setupId]);
 
   useEffect(() => {
-    if (!actiondata || actiondata.length === 0) {
+    if (!actiondata || actiondata?.length === 0) {
       setLikes(Ilikes);
       setComments(IComments);
       setViews(IViews);
       setStars(IStars);
     } else {
-      setLikes(actiondata.likes.length);
-      setComments(actiondata.comments.length);
-      setViews(actiondata.views.length);
-      setStars(actiondata.star.length);
+      setLikes(actiondata?.likes?.length);
+      setComments(actiondata?.comments?.length);
+      setViews(actiondata?.views?.length);
+      setStars(actiondata?.star?.length);
     }
   }, [actiondata]);
 

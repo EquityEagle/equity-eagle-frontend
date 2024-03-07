@@ -42,7 +42,7 @@ const CreateModal = () => {
   }
 
   function startLive(e) {
-    toast.info("Coming soon");
+    toast.info("Coming soon", { position: "top-center" });
     e.stopPropagation();
   }
 

@@ -5,34 +5,13 @@ import {
 } from "../../styles/components/fixedStyles";
 import UserStory from "../stories/UserStory";
 import { Placeholder } from "../../assets";
+import StroryContainerUsers from "../stories/StroryContainer";
 
 const StoryContainer = () => {
   return (
     <StoryXContainer className="hide-scroll">
       <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-      <UserStory />
-
-      {/* <img
-          src={Placeholder}
-          alt="User"
-          className="w-[70px] h-[70px] rounded-full"
-        /> */}
+      <StroryContainerUsers />
     </StoryXContainer>
   );
 };

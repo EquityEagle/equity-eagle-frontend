@@ -2,7 +2,7 @@ import React from "react";
 import { storiesdata } from "../../constants/stories";
 import StoryItem from "./StoryItem";
 
-const StroryContainer = () => {
+const StroryContainerUsers = () => {
   return (
     <div className="flex w-full h-full items-center gap-2 overflow-x-auto">
       {storiesdata.map((story, index) => (
@@ -12,4 +12,4 @@ const StroryContainer = () => {
   );
 };
 
-export default StroryContainer;
+export default StroryContainerUsers;

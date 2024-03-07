@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { NextSideNav, SideNav } from "../../components";
+import { NextSideNav, SavedIdea, SideNav } from "../../components";
 import { StyledDash } from "../../styles/pages/styled";
 
 const Saved = () => {
@@ -10,7 +10,7 @@ const Saved = () => {
   return (
     <StyledDash>
       <SideNav />
-      {/* <SetupFeed /> */}
+      <SavedIdea />
       <NextSideNav />
     </StyledDash>
   );

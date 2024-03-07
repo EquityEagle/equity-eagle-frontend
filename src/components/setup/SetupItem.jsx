@@ -9,7 +9,7 @@ import TruncatedText from "../../lib/components/TruncatedText";
 import { useLocation, useNavigate } from "react-router-dom";
 import SetupMenuModal from "../../modal/SetupMenuModal";
 import { formatDate } from "../../lib/functions";
-import { IdeaMenuModal } from "../../modal";
+import { IdeaMenuModal, IdeaMenuModalMobile } from "../../modal";
 
 const SetupItem = ({ item }) => {
   const setupId = item?._id;
@@ -36,8 +36,12 @@ const SetupItem = ({ item }) => {
 
   function viewImg(e) {
     e.stopPropagation();
-    setClickedImg(item?.image?.url);
-    setOpenViewImg(!openViewImg);
+    if (open) {
+      setOpen(false);
+    } else {
+      setClickedImg(item?.image?.url);
+      setOpenViewImg(!openViewImg);
+    }
   }
 
   function goToSetup() {
@@ -106,11 +110,11 @@ const SetupItem = ({ item }) => {
           />
           {isHovered && <CustomTitle title="More" className="/top-[35px]" />}
           {open && <IdeaMenuModal item={item} />}
-          {/* <IdeaMenuModal item={item} /> */}
+          <IdeaMenuModalMobile item={item} open={open} setOpen={setOpen} />
         </div>
       </FlexBetween>
       <div className="flex flex-col gap-2 relative h-full p-[12px] max-[700px]:p-[10px] w-full">
-        <p className="text-white font-kanit p-1 bg-slate-600 rounded-[7px] w-[65px]">
+        <p className="text-white font-kanit p-1 bg-slate-600 rounded-[7px] w-[70px]">
           {item.pair}
         </p>
         <TruncatedText

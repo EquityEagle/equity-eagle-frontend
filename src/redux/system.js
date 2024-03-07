@@ -34,7 +34,7 @@ const SystemSlice = createSlice({
       const hasPair = state.pref?.find((p) => p === pair);
       if (hasPair) {
         const updatedPair = state.pref.filter((p) => p !== pair);
-        localStorage.setItem("pairPref", JSON.stringify(state.pref));
+        localStorage.setItem("pairPref", JSON.stringify(updatedPair));
         return {
           ...state,
           pref: updatedPair,

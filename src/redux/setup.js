@@ -133,73 +133,126 @@ const SetupSlice = createSlice({
       };
     },
   },
-  extraReducers: {
-    [publishSetup.pending]: (state, action) => {
-      state.PUBLISH_STATUS = "loading";
-    },
-    [publishSetup.fulfilled]: (state, action) => {
-      state.PUBLISH_STATUS = "success";
-      toast.success("Setup shared", { position: "top-center" });
-      const updatedIdeas = [...action.payload, ...state.IDEAS];
-      state.IDEAS = updatedIdeas;
-    },
-    [publishSetup.rejected]: (state, action) => {
-      state.PUBLISH_STATUS = "failed";
-      state.PUBLISH_ERROR = action.payload;
-    },
-    [getSetups.pending]: (state, action) => {
-      state.FETCH_STATUS = "loading";
-    },
-    [getSetups.fulfilled]: (state, action) => {
-      state.FETCH_STATUS = "success";
-      state.IDEAS = action.payload;
-    },
-    [getSetups.rejected]: (state, action) => {
-      state.FETCH_STATUS = "failed";
-      state.FETCH_ERROR = action.payload;
-    },
-    [viewSetup.pending]: (state, action) => {
-      state.VIEWD_STATUS = "loading";
-    },
-    [viewSetup.fulfilled]: (state, action) => {
-      state.VIEWD_STATUS = "success";
-      state.VIEWD_IDEA = action.payload;
-    },
-    [viewSetup.rejected]: (state, action) => {
-      state.VIEWD_STATUS = "failed";
-      state.VIEWD_ERROR = action.payload;
-    },
-    [commentSetup.pending]: (state, action) => {
-      state.COMMENT_STATUS = "loading";
-    },
-    [commentSetup.fulfilled]: (state, action) => {
-      state.COMMENT_STATUS = "success";
-      toast.success("Comment shared", {
-        position: "top-center",
-        className: "toast__alert",
+  extraReducers: (builder) => {
+    builder
+      .addCase(publishSetup.pending, (state, action) => {
+        return { ...state, PUBLISH_STATUS: "loading" };
+      })
+      .addCase(publishSetup.fulfilled, (state, action) => {
+        toast.success("Setup shared", {
+          position: "top-center",
+          className: "toast__alert",
+        });
+        const updatedIdeas = [action.payload, ...state.IDEAS];
+
+        return {
+          ...state,
+          PUBLISH_STATUS: "success",
+          IDEAS: updatedIdeas,
+        };
+      })
+      .addCase(publishSetup.rejected, (state, action) => {
+        return {
+          ...state,
+          PUBLISH_ERROR: action.payload,
+          PUBLISH_STATUS: "failed",
+        };
+      })
+      .addCase(getSetups.pending, (state, action) => {
+        return {
+          ...state,
+          FETCH_STATUS: "loading",
+        };
+      })
+      .addCase(getSetups.fulfilled, (state, action) => {
+        return {
+          ...state,
+          FETCH_STATUS: "success",
+          IDEAS: action.payload,
+        };
+      })
+      .addCase(getSetups.rejected, (state, action) => {
+        return {
+          ...state,
+          FETCH_ERROR: action.payload,
+          FETCH_STATUS: "failed",
+        };
+      })
+      .addCase(viewSetup.pending, (state, action) => {
+        return {
+          ...state,
+          VIEWD_STATUS: "loading",
+        };
+      })
+      .addCase(viewSetup.fulfilled, (state, action) => {
+        return {
+          ...state,
+          VIEWD_STATUS: "success",
+          VIEWD_IDEA: action.payload,
+        };
+      })
+      .addCase(viewSetup.rejected, (state, action) => {
+        return {
+          ...state,
+          VIEWD_ERROR: action.payload,
+          VIEWD_STATUS: "failed",
+        };
+      })
+      .addCase(commentSetup.pending, (state, action) => {
+        return {
+          ...state,
+          COMMENT_STATUS: "loading",
+        };
+      })
+      .addCase(commentSetup.fulfilled, (state, action) => {
+        toast.success("Comment shared", {
+          position: "top-center",
+          className: "toast__alert",
+        });
+        return {
+          ...state,
+          COMMENT_STATUS: "success",
+        };
+      })
+      .addCase(commentSetup.rejected, (state, action) => {
+        return {
+          ...state,
+          COMMENT_ERROR: action.payload,
+          COMMENT_STATUS: "failed",
+        };
+      })
+      .addCase(deleteIdea.pending, (state, action) => {
+        return {
+          ...state,
+          DELETE_STATUS: "Pending",
+        };
+      })
+      .addCase(deleteIdea.fulfilled, (state, action) => {
+        const updatedIdeas = state.IDEAS.filter(
+          (idea) => idea._id !== action.meta.arg
+        );
+
+        toast.success("Idea deleted", {
+          position: "top-center",
+          className: "toast__alert",
+        });
+
+        console.log("Filtered Ideas:", updatedIdeas);
+
+        return {
+          ...state,
+          DELETE_STATUS: "Successful",
+          IDEAS: updatedIdeas,
+        };
+      })
+
+      .addCase(deleteIdea.rejected, (state, action) => {
+        return {
+          ...state,
+          DELETE_ERROR: action.payload,
+          DELETE_STATUS: "Rejected",
+        };
       });
-    },
-    [commentSetup.rejected]: (state, action) => {
-      state.COMMENT_STATUS = "failed";
-      state.COMMENT_ERROR = action.payload;
-    },
-    [deleteIdea.pending]: (state, action) => {
-      state.DELETE_STATUS = "Pending";
-    },
-    [deleteIdea.fulfilled]: (state, action) => {
-      state.DELETE_STATUS = "Successful";
-      state.IDEAS = state.IDEAS.filter(
-        (idea) => idea._id !== action.payload.deletedIdea._id
-      );
-      toast.success("Idea deleted", {
-        position: "top-center",
-        className: "toast__alert",
-      });
-    },
-    [deleteIdea.rejected]: (state, action) => {
-      state.DELETE_ERROR = action.payload;
-      state.DELETE_STATUS = "Rejected";
-    },
   },
 });
 

@@ -8,7 +8,6 @@ import AccountMetric from "../metric/AccountMetric";
 import { findAllAccount } from "../../redux/accountmetrix";
 import { Placeholder } from "../../assets";
 import { useMobileModal } from "../../hooks";
-import StoriesFeed from "../stories/StoriesFeed";
 
 const DashHero = ({ setOpenTrade }) => {
   const user = useSelector((state) => state.AUTH);

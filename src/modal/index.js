@@ -23,3 +23,4 @@ export { default as SettingsModal } from "./SettingsModal";
 export { default as ViewStory } from "./ViewStory";
 export { default as PairFilter } from "./PairFilter";
 export { default as IdeaMenuModal } from "./IdeaMenuModal";
+export { default as IdeaMenuModalMobile } from "./IdeaModalMobile";

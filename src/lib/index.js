@@ -34,3 +34,4 @@ export { default as PairOptions } from "./components/setup/PairOptions";
 export { default as TypeOptions } from "./components/setup/TypeOptions";
 export { default as StoryLoader } from "./components/StoryLoader";
 export { default as Empty } from "./components/Empty";
+export { default as PageHeader } from "./components/PageHeader";

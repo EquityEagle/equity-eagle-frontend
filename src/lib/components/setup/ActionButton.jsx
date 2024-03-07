@@ -3,7 +3,7 @@ import { FlexEven } from "../../../styles/Global";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BiSolidCommentDetail } from "react-icons/bi";
 import IconWrap from "./IconWrap";
-import { formatNumberWithK } from "../../functions";
+import { copyToClipboardFallback, formatNumberWithK } from "../../functions";
 import { useDispatch, useSelector } from "react-redux";
 import { LikeSetup, StarSetup } from "../../../helper/post";
 import { getSetupActions } from "../../../helper/fetch";
@@ -84,9 +84,12 @@ const ActionButton = ({ setup }) => {
     await StarSetup(setupId, userId);
   }
 
-  // async function bagsetup() {
-  //   await BagSetup(setupId, userId);
-  // }
+  function share() {
+    const ideaPage = `/statusId/${setup._id}`;
+    const url = window.location.href + ideaPage;
+    copyToClipboardFallback(url);
+    console.log("url:", url);
+  }
 
   return (
     <FlexEven
@@ -155,7 +158,7 @@ const ActionButton = ({ setup }) => {
       <IconWrap
         icon={<FiShare2 className="text-white cursor-pointer" size={22} />}
         color="text-white"
-        // onClick={bagsetup}
+        onClick={share}
         title="Share"
       />
     </FlexEven>

@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Placeholder } from "../../assets";
 import { LuSettings2 } from "react-icons/lu";
-import StoriesFeed from "../stories/StoriesFeed";
 import { useMobileModal, usePairFilterModal } from "../../hooks";
+import StoryContainer from "./StoryContainer";
 
 const HomeHeader = () => {
   const user = useSelector((state) => state.AUTH);
@@ -29,7 +29,7 @@ const HomeHeader = () => {
         <div className="flex justify-between items-center">
           <h1 className="text-white font-kanit text-[20px]">Stories</h1>
         </div>
-        <StoriesFeed />
+        <StoryContainer />
       </div>
     </div>
   );

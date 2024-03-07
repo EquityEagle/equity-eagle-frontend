@@ -27,7 +27,7 @@ const PairFilter = () => {
           onClick={close}
         />
       </div>
-      <div className="flex flex-wrap w-full relative mt-3 overflow-y-auto">
+      <div className="flex flex-wrap w-full relative mt-16 overflow-y-auto">
         {traded.map((pair, index) => (
           <PairPreference pair={pair} key={index} />
         ))}

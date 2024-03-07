@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineUserAdd } from "react-icons/ai";
-import { MdDelete, MdEditSquare } from "react-icons/md";
+import { MdEditSquare } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserById } from "../helper/fetch";
 import { FiTrash } from "react-icons/fi";
@@ -8,10 +7,10 @@ import { BsBookmark, BsBookmarkCheckFill } from "react-icons/bs";
 import { saveIdea } from "../redux/saved";
 import { FaUserCheck, FaUserPlus } from "react-icons/fa";
 import { deleteIdea } from "../redux/setup";
-import { PiSpinner } from "react-icons/pi";
 import { BiLoaderAlt } from "react-icons/bi";
+import { BackDrop } from "../lib";
 
-const IdeaMenuModal = ({ item }) => {
+const IdeaMenuModalMobile = ({ item, setOpen, open }) => {
   const userId = useSelector((state) => state.AUTH.id);
   const ideaState = useSelector((state) => state.SAVED.Saved);
   const IdeaActionState = useSelector((state) => state.SETUPS.DELETE_STATUS);
@@ -21,6 +20,7 @@ const IdeaMenuModal = ({ item }) => {
   const truncatedName =
     name && name.length > 4 ? name.slice(0, 4) + "..." : name;
   const [user, setUser] = useState(null);
+  const mobileOnly = window.innerWidth < 800;
 
   useEffect(() => {
     const getUser = async () => {
@@ -60,10 +60,10 @@ const IdeaMenuModal = ({ item }) => {
     dispatch(deleteIdea(ideaId));
   }
 
-  return (
+  const modal = (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="w-[300px] max-[700px]:h-[260px] h-[260px] max-[700px]:rounded-b-none max-[700px]:p-5 max-[700px]:pt-6 max-[700px]:rounded-tl-[16px] max-[700px]:rounded-tr-[16px] max-[700px]:fixed max-[700px]:bottom-0 max-[700px]:w-full max-[700px]:right-0 max-[700px]:left-0 p-4 absolute right-5 gap-3 flex flex-col z-[200] bg-neutral-800 rounded-[9px] shadow-slate-700 shadow"
+      className="hidden max-[700px]:flex h-[260px]  rounded-b-none p-5 pt-6 rounded-tl-[16px] rounded-tr-[16px] fixed bottom-0 w-full right-0 left-0 gap-3 flex-col z-[200] bg-neutral-800 shadow-slate-700 shadow"
     >
       {isOwner && (
         <div className="flex items-center justify-between text-white p-3 cursor-pointer rounded-[13px] bg-neutral-700 hover:bg-neutral-600">
@@ -102,6 +102,14 @@ const IdeaMenuModal = ({ item }) => {
       )}
     </div>
   );
+
+  return (
+    <div>
+      {open && mobileOnly && (
+        <BackDrop onClick={() => setOpen(false)} chaild={modal} />
+      )}
+    </div>
+  );
 };
 
-export default IdeaMenuModal;
+export default IdeaMenuModalMobile;

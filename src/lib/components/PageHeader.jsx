@@ -3,12 +3,12 @@ import { BsArrowLeftShort } from "react-icons/bs";
 import { RiSearchLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
-const MobileHeader = ({ label, onClick, navBack, hasSearchBar, barClick }) => {
+const PageHeader = ({ label, onClick, navBack, hasSearchBar, barClick }) => {
   const navigate = useNavigate();
   return (
-    <div className="items-center hidden top-0 max-[700px]:flex border-b border-neutral-700 fixed z-[120] p-3 h-[50px] gap-2 bg-[rgb(0,0,0,0.5)] w-full">
+    <div className="items-center flex top-0 max-[700px]:hidden border-b border-neutral-800 z-[120] p-3 h-[50px] gap-2 bg-[rgb(0,0,0,0.5)] w-full">
       <BsArrowLeftShort
-        size={38}
+        size={37}
         onClick={navBack ? () => navigate(-1) : onClick()}
         color="#fff"
         className="cursor-pointer hover:bg-neutral-700 rounded-[8px] p-1"
@@ -26,4 +26,4 @@ const MobileHeader = ({ label, onClick, navBack, hasSearchBar, barClick }) => {
   );
 };
 
-export default MobileHeader;
+export default PageHeader;

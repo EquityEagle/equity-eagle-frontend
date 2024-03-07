@@ -48,3 +48,16 @@
     transform: rotate(360deg);
   }
 }
+
+.loader {
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

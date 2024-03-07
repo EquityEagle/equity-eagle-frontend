@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 export function formatNumberWithK(number) {
   if (number >= 1000) {
     return (number / 1000).toFixed(1) + "k";
@@ -73,3 +75,14 @@ export const generateUniqueId = () => {
 
   return id;
 };
+
+export function copyToClipboardFallback(text) {
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textArea);
+  console.log("Text copied to clipboard: " + text);
+  toast.success("Link copied", { position: "top-center" });
+}

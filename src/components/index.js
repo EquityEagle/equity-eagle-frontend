@@ -37,3 +37,4 @@ export { default as Help } from "./Layout/settings/Help";
 export { default as StorageAndData } from "./Layout/settings/StorageAndData";
 export { default as AccountContainer } from "./Layout/settings/AccountContainer";
 export { default as PairPreference } from "./PairPreference";
+export { default as SavedIdea } from "./setup/SavedIdea";

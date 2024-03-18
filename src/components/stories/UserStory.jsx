@@ -19,7 +19,7 @@ const UserStory = () => {
         <IoMdAdd
           size={25}
           color="#fff"
-          className="absolute bottom-[25%] p-1 bg-blue-600 cursor-pointer border border-black hover:opacity-75 rounded-full left-[70px]"
+          className="absolute bottom-[25%] p-1 bg-blue-600 cursor-pointer border border-black hover:opacity-75 rounded-full left-[76px]"
         />
       )}
       {/* <p className="text-white font-roboto text-[15px]">My Story</p> */}
